@@ -1,0 +1,41 @@
+<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tk-ico-grad" x1="12" y1="10" x2="26" y2="26" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#3B82F6" />
+      <stop offset="50%" stopColor="#6366F1" />
+      <stop offset="100%" stopColor="#06B6D4" />
+    </linearGradient>
+    <linearGradient id="tk-ico-facet-upper" x1="18" y1="11" x2="25" y2="18" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.45" />
+      <stop offset="100%" stopColor="#6366F1" stopOpacity="0.15" />
+    </linearGradient>
+    <linearGradient id="tk-ico-facet-lower" x1="18" y1="18" x2="25" y2="25" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#6366F1" stopOpacity="0.4" />
+      <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.2" />
+    </linearGradient>
+  </defs>
+
+  {/* Outer Hexagonal Shield */}
+  <path
+    d="M18 3L31 10.5V25.5L18 33L5 25.5V10.5L18 3Z"
+    stroke="#3B82F6"
+    stroke-width="1.75"
+    stroke-linejoin="round"
+  />
+
+  {/* Geometric Facets */}
+  <path d="M18 11.5L24.5 11.5L18 18Z" fill="url(#tk-ico-facet-upper)" />
+  <path d="M18 18L24.5 24.5L18 24.5Z" fill="url(#tk-ico-facet-lower)" />
+
+  {/* Monogram T-Stem & Wings */}
+  <path d="M11.5 11.5H24.5" stroke="#F8FAFC" stroke-width="2.25" stroke-linecap="round" />
+  <path d="M18 11.5V24.5" stroke="#F8FAFC" stroke-width="2.25" stroke-linecap="round" />
+
+  {/* Kinetic K-Vectors */}
+  <path d="M18 18L24.5 11.5" stroke="url(#tk-ico-grad)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M18 18L24.5 24.5" stroke="url(#tk-ico-grad)" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+
+  {/* Core Jewel */}
+  <polygon points="18,16 20,18 18,20 16,18" fill="#3B82F6" />
+  <circle cx="18" cy="18" r="0.85" fill="#FFFFFF" />
+</svg>
