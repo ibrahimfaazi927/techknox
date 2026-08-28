@@ -64,6 +64,46 @@ export async function toggleSolution(formData: FormData) {
   revalidatePath('/');
 }
 
+export async function updateSolution(formData: FormData) {
+  const supabase = await requireAdmin();
+
+  const id = String(formData.get('id') ?? '').trim();
+  const title = String(formData.get('title') ?? '').trim();
+  if (!id || !title) return;
+
+  const slug = String(formData.get('slug') ?? '').trim() || slugify(title);
+  const description = String(formData.get('description') ?? '').trim() || null;
+  const icon = String(formData.get('icon') ?? 'funnel').trim();
+  const display_order = Number(formData.get('display_order') ?? 0);
+  const is_enabled = formData.get('is_enabled') === 'true' || formData.get('is_enabled') === 'on';
+
+  const rawFeatures = String(formData.get('features') ?? '').trim();
+  const features = rawFeatures ? rawFeatures.split('\n').map((f) => f.trim()).filter(Boolean) : null;
+
+  const rawUseCases = String(formData.get('use_cases') ?? '').trim();
+  const use_cases = rawUseCases ? rawUseCases.split(',').map((u) => u.trim()).filter(Boolean) : null;
+
+  try {
+    await supabase.from('solutions').update({
+      title,
+      slug,
+      description,
+      icon,
+      features,
+      use_cases,
+      is_enabled,
+      display_order,
+      updated_at: new Date().toISOString()
+    }).eq('id', id);
+  } catch (err) {
+    console.error('Failed to update solution in DB:', err);
+  }
+
+  revalidatePath('/admin/solutions');
+  revalidatePath('/solutions');
+  revalidatePath('/');
+}
+
 export async function deleteSolution(formData: FormData) {
   const supabase = await requireAdmin();
   const id = String(formData.get('id'));
@@ -78,3 +118,4 @@ export async function deleteSolution(formData: FormData) {
   revalidatePath('/solutions');
   revalidatePath('/');
 }
+

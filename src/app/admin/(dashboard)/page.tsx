@@ -115,6 +115,14 @@ export default async function AdminOverviewPage() {
           </Link>
 
           <Link
+            href="/admin/process-steps"
+            className="p-5 rounded-xl bg-ink border border-line hover:border-line-bright hover:bg-panel transition"
+          >
+            <div className="font-display font-semibold text-star text-base mb-1">🔄 How We Work</div>
+            <p className="text-xs text-steel">Configure engineering roadmap and delivery methodology steps.</p>
+          </Link>
+
+          <Link
             href="/admin/legal-pages"
             className="p-5 rounded-xl bg-ink border border-line hover:border-line-bright hover:bg-panel transition"
           >

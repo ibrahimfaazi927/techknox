@@ -69,6 +69,51 @@ export async function toggleService(formData: FormData) {
   revalidatePath('/');
 }
 
+export async function updateService(formData: FormData) {
+  const supabase = await requireAdmin();
+
+  const id = String(formData.get('id') ?? '').trim();
+  const title = String(formData.get('title') ?? '').trim();
+  if (!id || !title) return;
+
+  const slug = String(formData.get('slug') ?? '').trim() || slugify(title);
+  const short_description = String(formData.get('short_description') ?? '').trim() || null;
+  const description = String(formData.get('description') ?? '').trim() || null;
+  const icon = String(formData.get('icon') ?? 'code').trim();
+  const cta_label = String(formData.get('cta_label') ?? 'Start a Project').trim();
+  const display_order = Number(formData.get('display_order') ?? 0);
+  const is_enabled = formData.get('is_enabled') === 'true' || formData.get('is_enabled') === 'on';
+
+  const rawFeatures = String(formData.get('features') ?? '').trim();
+  const features = rawFeatures ? rawFeatures.split('\n').map((f) => f.trim()).filter(Boolean) : null;
+
+  const rawTech = String(formData.get('technologies') ?? '').trim();
+  const technologies = rawTech ? rawTech.split(',').map((t) => t.trim()).filter(Boolean) : null;
+
+  try {
+    await supabase.from('services').update({
+      title,
+      slug,
+      short_description,
+      description,
+      icon,
+      cta_label,
+      features,
+      technologies,
+      is_enabled,
+      display_order,
+      updated_at: new Date().toISOString()
+    }).eq('id', id);
+  } catch (err) {
+    console.error('Failed to update service in DB:', err);
+  }
+
+  revalidatePath('/admin/services');
+  revalidatePath('/services');
+  revalidatePath(`/services/${slug}`);
+  revalidatePath('/');
+}
+
 export async function deleteService(formData: FormData) {
   const supabase = await requireAdmin();
   const id = String(formData.get('id'));
@@ -83,3 +128,4 @@ export async function deleteService(formData: FormData) {
   revalidatePath('/services');
   revalidatePath('/');
 }
+

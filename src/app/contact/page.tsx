@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getCompanyProfile, getServices } from '@/lib/data';
 import SectionHeader from '@/components/SectionHeader';
-import { ArrowRightIcon } from '@/components/Icons';
+import { ArrowRightIcon, WhatsAppIcon } from '@/components/Icons';
 import ContactForm from './ContactForm';
 
 export const metadata: Metadata = {
@@ -75,17 +75,19 @@ export default async function ContactPage({
                   </div>
                 )}
 
-                {profile.whatsapp && (
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-accent-emerald/10 text-accent-emerald flex items-center justify-center shrink-0 font-mono text-xs">
-                      💬
-                    </div>
-                    <div>
-                      <span className="font-mono text-xs uppercase tracking-wider text-steeldim block">WhatsApp</span>
-                      <span className="text-star">{profile.whatsapp}</span>
-                    </div>
-                  </div>
-                )}
+                <div className="pt-2">
+                  <a
+                    href="https://wa.me/918310179301?text=Hi%20TechKnox%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs font-mono font-medium text-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-300 hover:border-emerald-500/50 transition-all duration-150 group"
+                    title="Direct WhatsApp Chat"
+                  >
+                    <WhatsAppIcon className="w-4 h-4 text-emerald-400" />
+                    <span>Let&apos;s Talk</span>
+                    <span className="text-emerald-400 group-hover:translate-x-0.5 transition-transform duration-150">↗</span>
+                  </a>
+                </div>
 
                 {profile.business_hours && (
                   <div className="flex items-start gap-3 pt-2 border-t border-line/60">

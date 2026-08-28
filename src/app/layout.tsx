@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { getCompanyProfile } from '@/lib/data';
 import RevealObserver from '@/components/RevealObserver';
+import Chatbot from '@/components/Chatbot';
 
 // Revalidate the layout (and all pages it wraps) at most every hour.
 // Admin CMS actions call revalidatePath to bust this cache immediately on edit.
@@ -76,6 +77,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Navbar brandName={profile.brand_name} />
           <main className="flex-1">{children}</main>
           <Footer profile={profile} />
+          <Chatbot />
         </ThemeProvider>
       </body>
     </html>

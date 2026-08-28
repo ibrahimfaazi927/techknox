@@ -1,5 +1,6 @@
 import { getProjects } from '@/lib/data';
 import { createProject, toggleProjectFeatured, deleteProject } from './actions';
+import EditProjectModal from './EditProjectModal';
 
 export default async function AdminProjectsPage() {
   const projects = await getProjects();
@@ -245,6 +246,7 @@ export default async function AdminProjectsPage() {
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex items-center justify-end gap-3 font-mono text-xs">
+                      <EditProjectModal project={p} />
                       <a href={`/projects/${p.slug}`} target="_blank" className="text-signal hover:underline">
                         View ↗
                       </a>

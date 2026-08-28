@@ -2,16 +2,7 @@ import Link from 'next/link';
 import { signOut } from '../actions';
 import TechKnoxLogo from '@/components/TechKnoxLogo';
 import ThemeToggle from '@/components/ThemeToggle';
-
-const links = [
-  { href: '/admin', label: 'Overview', icon: '📊' },
-  { href: '/admin/services', label: 'Services', icon: '⚡' },
-  { href: '/admin/solutions', label: 'Solutions', icon: '🎯' },
-  { href: '/admin/projects', label: 'Projects', icon: '💼' },
-  { href: '/admin/inquiries', label: 'Leads & Inquiries', icon: '📬' },
-  { href: '/admin/company-profile', label: 'Settings & Profile', icon: '⚙️' },
-  { href: '/admin/legal-pages', label: 'Legal Pages', icon: '⚖️' }
-];
+import { AdminSidebarNav, AdminMobileNav } from '@/components/AdminNav';
 
 export default function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -26,18 +17,7 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
             </div>
           </div>
 
-          <nav className="flex flex-col gap-1.5 text-sm">
-            {links.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-steel transition hover:bg-panel hover:text-star hover:border-line border border-transparent font-medium text-xs"
-              >
-                <span>{l.icon}</span>
-                <span>{l.label}</span>
-              </Link>
-            ))}
-          </nav>
+          <AdminSidebarNav />
         </div>
 
         <div className="pt-6 border-t border-line space-y-3">
@@ -80,16 +60,8 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
           </div>
         </div>
 
-        <div className="md:hidden overflow-x-auto border-b border-line bg-ink-900 px-4 py-2 flex gap-2">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="shrink-0 font-mono text-xs px-2.5 py-1 rounded bg-panel text-steel hover:text-star"
-            >
-              {l.label}
-            </Link>
-          ))}
+        <div className="md:hidden">
+          <AdminMobileNav />
         </div>
 
         <main className="flex-1 px-6 py-8 md:px-12 md:py-10 max-w-7xl w-full mx-auto">

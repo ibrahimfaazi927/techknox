@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import TechKnoxLogo from './TechKnoxLogo';
 import { CompanyProfile } from '@/lib/types';
+import { WhatsAppIcon } from './Icons';
 
 export default function Footer({ profile }: { profile: CompanyProfile }) {
   const currentYear = new Date().getFullYear();
@@ -51,6 +52,20 @@ export default function Footer({ profile }: { profile: CompanyProfile }) {
                   </a>
                 </div>
               )}
+              {/* WhatsApp Quick Link */}
+              <div>
+                <a
+                  href="https://wa.me/918310179301?text=Hi%20TechKnox%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1.5 text-[11px] font-mono font-medium text-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-300 hover:border-emerald-500/50 transition-all duration-150"
+                  title="Chat on WhatsApp"
+                >
+                  <WhatsAppIcon className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Let&apos;s Talk</span>
+                  <span className="text-[10px] text-emerald-500/80">↗</span>
+                </a>
+              </div>
               {profile.phone && (
                 <div className="flex items-center gap-2.5">
                   <span className="w-5 h-5 rounded-md bg-signal/10 text-signal flex items-center justify-center text-[9px]">☎</span>

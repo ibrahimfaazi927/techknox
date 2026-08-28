@@ -1,6 +1,7 @@
 import { getSolutions } from '@/lib/data';
 import { createSolution, toggleSolution, deleteSolution } from './actions';
 import { ServiceIconMapper } from '@/components/Icons';
+import EditSolutionModal from './EditSolutionModal';
 
 export default async function AdminSolutionsPage() {
   const solutions = await getSolutions();
@@ -167,12 +168,15 @@ export default async function AdminSolutionsPage() {
                     </form>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <form action={deleteSolution}>
-                      <input type="hidden" name="id" value={sol.id} />
-                      <button type="submit" className="font-mono text-xs text-steeldim hover:text-red-400 transition">
-                        Delete
-                      </button>
-                    </form>
+                    <div className="flex items-center justify-end gap-3 font-mono text-xs">
+                      <EditSolutionModal solution={sol} />
+                      <form action={deleteSolution}>
+                        <input type="hidden" name="id" value={sol.id} />
+                        <button type="submit" className="font-mono text-xs text-steeldim hover:text-red-400 transition">
+                          Delete
+                        </button>
+                      </form>
+                    </div>
                   </td>
                 </tr>
               ))}
