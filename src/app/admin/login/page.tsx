@@ -8,6 +8,22 @@ export default async function AdminLoginPage({
 }: {
   searchParams: { error?: string };
 }) {
+  const getErrorMessage = (errorKey?: string) => {
+    if (!errorKey) return null;
+    if (errorKey === 'missing_fields') return 'Please enter both your email address and password.';
+    if (errorKey === 'unconfigured_supabase') {
+      return 'Supabase environment variables (NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY) are missing in Vercel. Please add them in your Vercel Project Settings.';
+    }
+    if (errorKey === 'invalid_credentials') return 'Invalid email address or password.';
+    try {
+      return decodeURIComponent(errorKey);
+    } catch {
+      return errorKey;
+    }
+  };
+
+  const errorMessage = getErrorMessage(searchParams?.error);
+
   return (
     <div className="flex min-h-[85vh] items-center justify-center px-6 py-16">
       <div className="w-full max-w-md glass-card rounded-3xl p-8 sm:p-10 border border-line-bright shadow-2xl">
@@ -22,11 +38,9 @@ export default async function AdminLoginPage({
           Sign in with your authorized admin credentials to manage content and inquiries.
         </p>
 
-        {searchParams?.error && (
-          <div className="mb-6 rounded-xl border border-red-500/40 bg-red-500/10 p-3.5 text-xs text-star">
-            {searchParams.error === 'missing_fields'
-              ? 'Please enter both your email address and password.'
-              : 'Invalid email address or password.'}
+        {errorMessage && (
+          <div className="mb-6 rounded-xl border border-red-500/40 bg-red-500/10 p-3.5 text-xs text-star font-medium leading-relaxed">
+            {errorMessage}
           </div>
         )}
 
@@ -43,8 +57,12 @@ export default async function AdminLoginPage({
               name="email"
               type="email"
               required
-              placeholder="admin@techknox.dev"
-              className="w-full rounded-xl border border-line bg-ink px-4 py-3 text-sm text-star outline-none focus:border-signal"
+              autoCapitalize="none"
+              autoCorrect="off"
+              autoComplete="email"
+              spellCheck={false}
+              placeholder="techknoxin@gmail.com"
+              className="w-full rounded-xl border border-line bg-ink px-4 py-3 text-sm text-star outline-none focus:border-signal font-sans"
             />
           </div>
 
@@ -60,14 +78,15 @@ export default async function AdminLoginPage({
               name="password"
               type="password"
               required
+              autoComplete="current-password"
               placeholder="••••••••"
-              className="w-full rounded-xl border border-line bg-ink px-4 py-3 text-sm text-star outline-none focus:border-signal"
+              className="w-full rounded-xl border border-line bg-ink px-4 py-3 text-sm text-star outline-none focus:border-signal font-sans"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full rounded-xl bg-signal px-6 py-3.5 font-mono text-sm font-semibold text-white shadow-lg shadow-signal/25 transition hover:bg-signal-hover"
+            className="w-full rounded-xl bg-signal px-6 py-3.5 font-mono text-sm font-semibold text-white shadow-lg shadow-signal/25 transition hover:bg-signal-hover active:scale-[0.98]"
           >
             Sign In to Dashboard
           </button>
