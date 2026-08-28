@@ -20,19 +20,16 @@ export default function SectionHeader({
   return (
     <div className={`mb-12 md:mb-16 ${isCenter ? 'text-center mx-auto max-w-2xl' : 'max-w-2xl'} ${className}`}>
       {badge && (
-        <div className="section-badge mb-5">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal opacity-70" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-signal" />
-          </span>
+        <div className={`inline-flex items-center gap-2 px-2.5 py-1 rounded-md border border-line bg-panel text-[11px] font-mono uppercase tracking-wider font-semibold text-signal mb-4 shadow-sm ${isCenter ? 'mx-auto' : ''}`}>
+          <span className="w-1.5 h-1.5 rounded-full bg-signal" />
           <span>{badge}</span>
         </div>
       )}
-      <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-star leading-[1.15]">
+      <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-star leading-[1.18]">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-base sm:text-lg text-steel leading-relaxed max-w-xl">
+        <p className="mt-3 text-base sm:text-lg text-steel leading-relaxed">
           {description}
         </p>
       )}

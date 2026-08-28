@@ -1,11 +1,16 @@
 import Link from 'next/link';
 import TechKnoxLogo from './TechKnoxLogo';
 import { CompanyProfile } from '@/lib/types';
-import { WhatsAppIcon } from './Icons';
+import { WhatsAppIcon, LinkedInIcon, XTwitterIcon, InstagramIcon, GitHubIcon, FacebookIcon } from './Icons';
 
 export default function Footer({ profile }: { profile: CompanyProfile }) {
   const currentYear = new Date().getFullYear();
   const brand = profile.brand_name || 'TechKnox';
+
+  const whatsappClean = profile.whatsapp?.replace(/[^0-9]/g, '') || (profile.phone ? profile.phone.replace(/[^0-9]/g, '') : '918310179301');
+  const whatsappUrl = profile.whatsapp?.startsWith('http')
+    ? profile.whatsapp
+    : `https://wa.me/${whatsappClean}?text=Hi%20${encodeURIComponent(brand)}%2C%20I%27d%20like%20to%20discuss%20a%20project.`;
 
   const hasLegalDisclosures = Boolean(
     profile.legal_entity_name ||
@@ -15,71 +20,42 @@ export default function Footer({ profile }: { profile: CompanyProfile }) {
   );
 
   return (
-    <footer className="border-t border-line/60 bg-ink-900/80 relative overflow-hidden">
-      {/* Mesh background */}
-      <div className="absolute inset-0 bg-mesh-gradient opacity-40 pointer-events-none" />
-      {/* Subtle top glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-signal/20 to-transparent pointer-events-none" />
+    <footer className="border-t border-line bg-panel relative overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-14 lg:py-16">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
+          {/* Column 1 & 2: Brand + Position */}
+          <div className="lg:col-span-2 space-y-4">
+            <Link href="/" className="inline-block">
+              <TechKnoxLogo brandName={brand} />
+            </Link>
+            <p className="max-w-sm text-sm text-steel leading-relaxed">
+              {profile.footer_description ||
+                profile.short_description ||
+                'TechKnox designs and builds custom software solutions, AI automation pipelines, and API integrations for modern businesses.'}
+            </p>
+            <p className="font-mono text-xs text-signal font-semibold uppercase tracking-wider">
+              Software Solutions · AI · Business Automation · API Integration
+            </p>
 
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:py-20 relative">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-5">
-          {/* Column 1 & 2: Brand + Contact */}
-          <div className="lg:col-span-2 flex flex-col justify-between gap-8">
-            <div>
-              <Link href="/" className="inline-block mb-5">
-                <TechKnoxLogo brandName={brand} />
-              </Link>
-              <p className="max-w-sm text-sm text-steel leading-relaxed">
-                {profile.footer_description ||
-                  profile.short_description ||
-                  'Engineering custom digital solutions, intelligent automations, and resilient software systems for businesses worldwide.'}
-              </p>
-            </div>
-
-            {/* Contact info */}
-            <div className="space-y-2.5 text-xs font-mono text-steeldim">
+            {/* Quick Contact Line */}
+            <div className="space-y-2 pt-2 text-xs text-steel max-w-full overflow-hidden">
               {profile.email && (
-                <div className="flex items-center gap-2.5">
-                  <span className="w-5 h-5 rounded-md bg-signal/10 text-signal flex items-center justify-center text-[10px] font-bold">@</span>
+                <div className="flex flex-wrap items-center gap-1.5 min-w-0">
+                  <span className="font-mono text-steeldim">Email:</span>
                   <a
-                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-steel hover:text-star transition-colors duration-150"
-                    title={`Send email to ${profile.email}`}
+                    href={`mailto:${profile.email}`}
+                    className="hover:text-signal font-medium transition-colors truncate max-w-full"
                   >
                     {profile.email}
                   </a>
                 </div>
               )}
-              {/* WhatsApp Quick Link */}
-              <div>
-                <a
-                  href="https://wa.me/918310179301?text=Hi%20TechKnox%2C%20I%27d%20like%20to%20discuss%20a%20project."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1.5 text-[11px] font-mono font-medium text-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-300 hover:border-emerald-500/50 transition-all duration-150"
-                  title="Chat on WhatsApp"
-                >
-                  <WhatsAppIcon className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Let&apos;s Talk</span>
-                  <span className="text-[10px] text-emerald-500/80">↗</span>
-                </a>
-              </div>
               {profile.phone && (
-                <div className="flex items-center gap-2.5">
-                  <span className="w-5 h-5 rounded-md bg-signal/10 text-signal flex items-center justify-center text-[9px]">☎</span>
-                  <a href={`tel:${profile.phone}`} className="text-steel hover:text-star transition-colors duration-150">
+                <div className="flex flex-wrap items-center gap-1.5 min-w-0">
+                  <span className="font-mono text-steeldim">Phone:</span>
+                  <a href={`tel:${profile.phone}`} className="hover:text-signal font-medium transition-colors">
                     {profile.phone}
                   </a>
-                </div>
-              )}
-              {(profile.location || profile.address || profile.city) && (
-                <div className="flex items-center gap-2.5">
-                  <span className="w-5 h-5 rounded-md bg-signal/10 text-signal flex items-center justify-center text-[9px]">◎</span>
-                  <span className="text-steel">
-                    {profile.location || profile.address || [profile.city, profile.country].filter(Boolean).join(', ')}
-                  </span>
                 </div>
               )}
             </div>
@@ -87,10 +63,10 @@ export default function Footer({ profile }: { profile: CompanyProfile }) {
 
           {/* Column 3: Services */}
           <div>
-            <div className="mb-5 font-mono text-xs font-semibold uppercase tracking-widest text-steeldim">
+            <div className="mb-4 font-mono text-xs font-bold uppercase tracking-wider text-star">
               Services
             </div>
-            <ul className="space-y-3 text-sm text-steel">
+            <ul className="space-y-2.5 text-sm text-steel">
               {[
                 { href: '/services/web-app-development', label: 'Web & App Development' },
                 { href: '/services/ai-automation', label: 'AI & Automation' },
@@ -100,11 +76,7 @@ export default function Footer({ profile }: { profile: CompanyProfile }) {
                 { href: '/services/crm-workflow-systems', label: 'CRM & Workflow Systems' }
               ].map(({ href, label }) => (
                 <li key={href}>
-                  <Link
-                    href={href}
-                    className="group flex items-center gap-1.5 hover:text-star transition-colors duration-150"
-                  >
-                    <span className="w-0 group-hover:w-2 h-px bg-signal transition-all duration-200 rounded-full overflow-hidden" />
+                  <Link href={href} className="hover:text-signal transition-colors">
                     {label}
                   </Link>
                 </li>
@@ -112,97 +84,129 @@ export default function Footer({ profile }: { profile: CompanyProfile }) {
             </ul>
           </div>
 
-          {/* Column 4: Navigate */}
+          {/* Column 4: Navigation */}
           <div>
-            <div className="mb-5 font-mono text-xs font-semibold uppercase tracking-widest text-steeldim">
-              Navigate
+            <div className="mb-4 font-mono text-xs font-bold uppercase tracking-wider text-star">
+              Company
             </div>
-            <ul className="space-y-3 text-sm text-steel">
+            <ul className="space-y-2.5 text-sm text-steel">
               {[
-                { href: '/solutions', label: 'Solutions & Outcomes' },
-                { href: '/projects', label: 'Selected Projects' },
-                { href: '/about', label: 'About Our Approach' },
-                { href: '/contact', label: 'Contact Us' }
+                { href: '/about', label: 'About Us' },
+                { href: '/services', label: 'All Services' },
+                { href: '/solutions', label: 'Solutions by Outcome' },
+                { href: '/projects', label: 'Selected Work' },
+                { href: '/contact', label: 'Contact & Inquiries' }
               ].map(({ href, label }) => (
                 <li key={href}>
-                  <Link
-                    href={href}
-                    className="group flex items-center gap-1.5 hover:text-star transition-colors duration-150"
-                  >
-                    <span className="w-0 group-hover:w-2 h-px bg-signal transition-all duration-200 rounded-full overflow-hidden" />
+                  <Link href={href} className="hover:text-signal transition-colors">
                     {label}
                   </Link>
                 </li>
               ))}
-              <li>
+              <li className="pt-2">
                 <Link
                   href="/request-a-solution"
-                  className="inline-flex items-center gap-1.5 text-signal hover:text-signal2 transition-colors duration-150 font-medium"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-signal hover:underline"
                 >
-                  Start a Project
-                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
+                  <span>Start a Project</span>
+                  <span>→</span>
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 5: Social & Legal */}
+          {/* Column 5: Reach & Social */}
           <div>
-            <div className="mb-5 font-mono text-xs font-semibold uppercase tracking-widest text-steeldim">
-              Connect & Legal
+            <div className="mb-4 font-mono text-xs font-bold uppercase tracking-wider text-star">
+              Connect
             </div>
-            <ul className="space-y-3 text-sm text-steel mb-6">
+            <div className="flex flex-wrap gap-2 mb-6">
+              {whatsappUrl && (
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-lg border border-line bg-ink-800 flex items-center justify-center text-emerald-600 hover:border-emerald-500 hover:bg-emerald-500/10 transition-colors"
+                  title="WhatsApp"
+                >
+                  <WhatsAppIcon className="w-4 h-4" />
+                </a>
+              )}
               {profile.linkedin_url && (
-                <li>
-                  <a href={profile.linkedin_url} target="_blank" rel="noopener noreferrer"
-                    className="hover:text-star transition-colors duration-150">
-                    LinkedIn
-                  </a>
-                </li>
-              )}
-              {profile.github_url && (
-                <li>
-                  <a href={profile.github_url} target="_blank" rel="noopener noreferrer"
-                    className="hover:text-star transition-colors duration-150">
-                    GitHub
-                  </a>
-                </li>
-              )}
-              {profile.instagram_url && (
-                <li>
-                  <a href={profile.instagram_url} target="_blank" rel="noopener noreferrer"
-                    className="hover:text-star transition-colors duration-150">
-                    Instagram
-                  </a>
-                </li>
+                <a
+                  href={profile.linkedin_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-lg border border-line bg-ink-800 flex items-center justify-center text-steel hover:text-signal hover:border-signal transition-colors"
+                  title="LinkedIn"
+                >
+                  <LinkedInIcon className="w-4 h-4" />
+                </a>
               )}
               {profile.twitter_url && (
-                <li>
-                  <a href={profile.twitter_url} target="_blank" rel="noopener noreferrer"
-                    className="hover:text-star transition-colors duration-150">
-                    X (Twitter)
-                  </a>
-                </li>
+                <a
+                  href={profile.twitter_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-lg border border-line bg-ink-800 flex items-center justify-center text-steel hover:text-star hover:border-line-bright transition-colors"
+                  title="X (Twitter)"
+                >
+                  <XTwitterIcon className="w-3.5 h-3.5" />
+                </a>
               )}
-              <li>
-                <Link href="/privacy-policy" className="hover:text-star transition-colors duration-150">
+              {profile.instagram_url && (
+                <a
+                  href={profile.instagram_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-lg border border-line bg-ink-800 flex items-center justify-center text-steel hover:text-pink-600 hover:border-pink-500 transition-colors"
+                  title="Instagram"
+                >
+                  <InstagramIcon className="w-4 h-4" />
+                </a>
+              )}
+              {profile.other_social_url && (
+                <a
+                  href={profile.other_social_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-lg border border-line bg-ink-800 flex items-center justify-center text-steel hover:text-blue-600 hover:border-blue-500 transition-colors"
+                  title="Facebook"
+                >
+                  <FacebookIcon className="w-4 h-4" />
+                </a>
+              )}
+              {profile.github_url && (
+                <a
+                  href={profile.github_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-lg border border-line bg-ink-800 flex items-center justify-center text-steel hover:text-star hover:border-line-bright transition-colors"
+                  title="GitHub"
+                >
+                  <GitHubIcon className="w-4 h-4" />
+                </a>
+              )}
+            </div>
+
+            <div className="space-y-2 text-xs text-steel">
+              <div>
+                <Link href="/privacy-policy" className="hover:text-star transition-colors">
                   Privacy Policy
                 </Link>
-              </li>
-              <li>
-                <Link href="/terms-and-conditions" className="hover:text-star transition-colors duration-150">
-                  Terms & Conditions
+              </div>
+              <div>
+                <Link href="/terms-and-conditions" className="hover:text-star transition-colors">
+                  Terms &amp; Conditions
                 </Link>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Legal disclosures */}
         {hasLegalDisclosures && (
-          <div className="mt-12 pt-6 border-t border-line/40 text-xs text-steeldim space-y-1">
+          <div className="mt-10 pt-6 border-t border-line text-xs text-steeldim space-y-1 font-mono">
             {profile.legal_entity_name && (
               <div>Legal Entity: <span className="text-steel">{profile.legal_entity_name}</span></div>
             )}
@@ -213,25 +217,25 @@ export default function Footer({ profile }: { profile: CompanyProfile }) {
               <div>Tax / GST ID: <span className="text-steel">{profile.tax_id}</span></div>
             )}
             {profile.registered_address && (
-              <div>Registered Office: <span className="text-steel">{profile.registered_address}</span></div>
+              <div>Registered Address: <span className="text-steel">{profile.registered_address}</span></div>
             )}
           </div>
         )}
 
-        {/* Bottom bar */}
-        <div className="mt-12 border-t border-line/40 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-steeldim">
+        {/* Bottom Bar */}
+        <div className="mt-10 border-t border-line pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-steeldim">
           <p>
-            © {currentYear} {brand}. All rights reserved. Custom digital solutions.
+            &copy; {currentYear} {brand}. All rights reserved. Software &amp; Technology Solutions.
           </p>
-          <div className="flex items-center gap-6 font-mono">
-            <Link href="/privacy-policy" className="hover:text-steel transition-colors duration-150">
+          <div className="flex items-center gap-6">
+            <Link href="/privacy-policy" className="hover:text-steel transition-colors">
               Privacy
             </Link>
-            <Link href="/terms-and-conditions" className="hover:text-steel transition-colors duration-150">
+            <Link href="/terms-and-conditions" className="hover:text-steel transition-colors">
               Terms
             </Link>
-            <Link href="/admin" className="text-steeldim/50 hover:text-steeldim transition-colors duration-150">
-              Admin Portal
+            <Link href="/admin" className="text-steeldim/40 hover:text-steeldim transition-colors">
+              Admin
             </Link>
           </div>
         </div>

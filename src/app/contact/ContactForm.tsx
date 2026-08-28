@@ -7,12 +7,12 @@ import { isValidEmail, isValidPhone } from '@/lib/validation';
 import PhoneInputField from '@/components/PhoneInputField';
 
 const inputStyles =
-  'w-full rounded-xl border border-line-bright bg-panel px-4 py-3 text-sm text-star outline-none placeholder:text-steeldim/60 focus:border-signal focus:ring-1 focus:ring-signal transition';
+  'w-full rounded-lg border border-line bg-ink-800 px-4 py-3 text-sm text-star outline-none placeholder:text-steeldim transition focus:border-signal focus:ring-2 focus:ring-signal/20';
 const inputErrorStyles =
-  'w-full rounded-xl border border-red-500/70 bg-panel px-4 py-3 text-sm text-star outline-none placeholder:text-steeldim/60 focus:border-red-500 focus:ring-1 focus:ring-red-500/50 transition';
+  'w-full rounded-lg border border-red-400 bg-ink-800 px-4 py-3 text-sm text-star outline-none placeholder:text-steeldim transition focus:border-red-400 focus:ring-2 focus:ring-red-400/20';
 const labelStyles =
-  'mb-2 block font-mono text-xs uppercase tracking-wider text-steel font-medium';
-const fieldErrorStyles = 'mt-1.5 text-xs text-red-400 font-mono';
+  'mb-1.5 block font-mono text-xs uppercase tracking-wider text-steeldim font-semibold';
+const fieldErrorStyles = 'mt-1 text-xs text-red-500 font-mono';
 
 interface ContactFormProps {
   services: { id: string; title: string }[];

@@ -1,133 +1,178 @@
 import type { Metadata } from 'next';
-import { getCompanyProfile, getServices } from '@/lib/data';
-import SectionHeader from '@/components/SectionHeader';
-import { ArrowRightIcon, WhatsAppIcon } from '@/components/Icons';
+import Link from 'next/link';
+import { getServices, getCompanyProfile } from '@/lib/data';
 import ContactForm from './ContactForm';
+import { WhatsAppIcon, ArrowRightIcon } from '@/components/Icons';
 
 export const metadata: Metadata = {
-  title: 'Contact Us — TechKnox',
+  title: 'Contact TechKnox — Start a Project or Request a Quote',
   description:
-    'Get in touch with TechKnox for custom software, web apps, API integrations, and AI automation consulting.'
+    'Get in touch with TechKnox to discuss your software project, AI automation, or API integration. Direct contact via email, phone, and WhatsApp.'
 };
+
+export const revalidate = 3600;
 
 export default async function ContactPage({
   searchParams
 }: {
   searchParams: { submitted?: string; error?: string };
 }) {
-  const [profile, services] = await Promise.all([
-    getCompanyProfile(),
-    getServices()
-  ]);
+  const [services, profile] = await Promise.all([getServices(), getCompanyProfile()]);
+
+  const submittedFromUrl = searchParams.submitted === '1';
+  const errorFromUrl = searchParams.error || null;
+
+  const serviceItems = services.map((s) => ({ id: s.id, title: s.title }));
 
   return (
-    <div className="py-20 md:py-28 px-6">
-      <div className="mx-auto max-w-6xl">
-        <SectionHeader
-          badge="Direct Inquiries"
-          title="Let's talk through your project"
-          description="Have a question or looking to scope a custom build? Send us a message and we'll reply directly with an honest assessment."
-        />
+    <div className="relative overflow-hidden">
+      {/* ================================================================== */}
+      {/* 1. HERO                                                             */}
+      {/* ================================================================== */}
+      <section className="pt-16 pb-20 md:pt-24 md:pb-24 px-4 sm:px-6 border-b border-line bg-panel">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-ink-800 text-xs font-mono font-semibold text-signal mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-signal" />
+              <span>Contact &amp; Project Inquiries</span>
+            </div>
+            <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-star leading-[1.15] mb-6">
+              Start a conversation about your project.
+            </h1>
+            <p className="text-base sm:text-lg text-steel leading-relaxed max-w-2xl">
+              Use the form below or reach us directly by email, phone, or WhatsApp. We typically respond within one business day.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Direct Info & Communication Details */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="glass-card rounded-3xl p-8 border border-line-bright">
-              <h3 className="font-display text-xl font-bold text-star mb-4">
-                Direct Communication
-              </h3>
-              <p className="text-sm text-steel leading-relaxed mb-6">
-                We prefer clear, direct conversations. No aggressive automated sales sequences or pushy upsells.
-              </p>
+      {/* ================================================================== */}
+      {/* 2. CONTACT LAYOUT                                                   */}
+      {/* ================================================================== */}
+      <section className="py-20 px-4 sm:px-6 bg-ink-800/30">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Left: Contact Channels */}
+            <div className="lg:col-span-4 space-y-6">
+              <div>
+                <h2 className="font-display text-xl font-bold text-star mb-2">
+                  Direct contact
+                </h2>
+                <p className="text-sm text-steel leading-relaxed">
+                  Prefer a direct conversation? Reach us via any of the channels below.
+                </p>
+              </div>
 
-              <div className="space-y-4 text-sm">
+              {/* Contact Info Cards */}
+              <div className="space-y-3">
                 {profile.email && (
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-signal/10 text-signal flex items-center justify-center shrink-0 font-mono text-xs">
+                  <a
+                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-xl border border-line bg-panel p-4 text-sm hover:border-line-bright hover:shadow-sm transition"
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-signal font-bold text-xs shrink-0">
                       @
                     </div>
                     <div>
-                      <span className="font-mono text-xs uppercase tracking-wider text-steeldim block">Email</span>
-                      <a
-                        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-star hover:text-signal transition"
-                        title={`Send email to ${profile.email}`}
-                      >
-                        {profile.email}
-                      </a>
+                      <span className="block font-mono text-[10px] uppercase tracking-wider text-steeldim mb-0.5">Email</span>
+                      <span className="font-medium text-star">{profile.email}</span>
                     </div>
-                  </div>
+                  </a>
                 )}
 
                 {profile.phone && (
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-signal/10 text-signal flex items-center justify-center shrink-0 font-mono text-xs">
-                      📞
+                  <a
+                    href={`tel:${profile.phone}`}
+                    className="flex items-center gap-3 rounded-xl border border-line bg-panel p-4 text-sm hover:border-line-bright hover:shadow-sm transition"
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-signal text-xs shrink-0">
+                      ☎
                     </div>
                     <div>
-                      <span className="font-mono text-xs uppercase tracking-wider text-steeldim block">Phone / Call</span>
-                      <a href={`tel:${profile.phone}`} className="text-star hover:text-signal transition">
-                        {profile.phone}
-                      </a>
+                      <span className="block font-mono text-[10px] uppercase tracking-wider text-steeldim mb-0.5">Phone</span>
+                      <span className="font-medium text-star">{profile.phone}</span>
                     </div>
-                  </div>
+                  </a>
                 )}
 
-                <div className="pt-2">
-                  <a
-                    href="https://wa.me/918310179301?text=Hi%20TechKnox%2C%20I%27d%20like%20to%20discuss%20a%20project."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs font-mono font-medium text-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-300 hover:border-emerald-500/50 transition-all duration-150 group"
-                    title="Direct WhatsApp Chat"
-                  >
-                    <WhatsAppIcon className="w-4 h-4 text-emerald-400" />
-                    <span>Let&apos;s Talk</span>
-                    <span className="text-emerald-400 group-hover:translate-x-0.5 transition-transform duration-150">↗</span>
-                  </a>
-                </div>
+                <a
+                  href="https://wa.me/918310179301?text=Hi%20TechKnox%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4 text-sm hover:bg-emerald-500/10 transition"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-emerald-500/15 flex items-center justify-center shrink-0">
+                    <WhatsAppIcon className="w-5 h-5 text-emerald-600" />
+                  </div>
+                  <div>
+                    <span className="block font-mono text-[10px] uppercase tracking-wider text-emerald-600/80 mb-0.5">WhatsApp</span>
+                    <span className="font-medium text-emerald-700 dark:text-emerald-400">Chat with us now</span>
+                  </div>
+                </a>
 
-                {profile.business_hours && (
-                  <div className="flex items-start gap-3 pt-2 border-t border-line/60">
-                    <div className="w-8 h-8 rounded-lg bg-panel-light text-steel flex items-center justify-center shrink-0 font-mono text-xs">
-                      🕒
+                {(profile.location || profile.address || profile.city) && (
+                  <div className="flex items-center gap-3 rounded-xl border border-line bg-panel p-4 text-sm">
+                    <div className="w-9 h-9 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-signal text-xs shrink-0">
+                      ◎
                     </div>
                     <div>
-                      <span className="font-mono text-xs uppercase tracking-wider text-steeldim block">Working Hours</span>
-                      <span className="text-xs text-steel">{profile.business_hours}</span>
+                      <span className="block font-mono text-[10px] uppercase tracking-wider text-steeldim mb-0.5">Location</span>
+                      <span className="font-medium text-star">
+                        {profile.location || profile.address || [profile.city, profile.country].filter(Boolean).join(', ')}
+                      </span>
                     </div>
                   </div>
                 )}
               </div>
+
+              {/* Office Hours */}
+              {profile.business_hours && (
+                <div className="rounded-xl border border-line bg-panel p-5 text-xs">
+                  <p className="font-mono uppercase tracking-wider text-steeldim font-semibold mb-2">Business Hours</p>
+                  <p className="text-steel leading-relaxed">{profile.business_hours}</p>
+                </div>
+              )}
+
+              {/* Start a Project shortcut */}
+              <div className="rounded-xl border border-line bg-panel p-5">
+                <p className="text-xs font-semibold text-star mb-2">Prefer a structured intake form?</p>
+                <p className="text-xs text-steel mb-4 leading-relaxed">
+                  Our solution scoping form helps us understand your requirements in detail for an accurate proposal.
+                </p>
+                <Link
+                  href="/request-a-solution"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-signal hover:underline"
+                >
+                  <span>Go to Project Intake Form</span>
+                  <ArrowRightIcon className="w-3 h-3" />
+                </Link>
+              </div>
             </div>
 
-            <div className="rounded-2xl border border-line bg-ink/70 p-6 text-xs text-steeldim font-mono space-y-2">
-              <div className="text-star font-semibold">Need a detailed scoping intake?</div>
-              <p>
-                If you have detailed system requirements, existing tools, and specific timeline constraints, you can use our in-depth request form:
-              </p>
-              <a
-                href="/request-a-solution"
-                className="inline-flex items-center gap-1.5 text-signal hover:text-white transition pt-2 font-medium"
-              >
-                <span>Open Request-a-Solution Form</span>
-                <ArrowRightIcon className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
+            {/* Right: Contact Form */}
+            <div className="lg:col-span-8">
+              <div className="rounded-2xl border border-line bg-panel p-8 sm:p-10 shadow-sm">
+                <div className="mb-8">
+                  <h2 className="font-display text-2xl font-bold text-star mb-2">
+                    Send us a message
+                  </h2>
+                  <p className="text-sm text-steel">
+                    Tell us about your project and we will get back to you within one business day.
+                  </p>
+                </div>
 
-          {/* Right Column: Contact Form (client component with validation) */}
-          <div className="lg:col-span-7">
-            <ContactForm
-              services={services.map((s) => ({ id: s.id, title: s.title }))}
-              submittedFromUrl={!!searchParams?.submitted}
-              errorFromUrl={searchParams?.error ?? null}
-            />
+                <ContactForm
+                  services={serviceItems}
+                  submittedFromUrl={submittedFromUrl}
+                  errorFromUrl={errorFromUrl}
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

@@ -120,13 +120,13 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-40 font-sans">
+    <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-40 font-sans max-w-[calc(100vw-24px)]">
       {/* Floating Action Button */}
       {!isOpen && (
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="group relative flex items-center justify-center gap-2 rounded-full bg-signal p-2 sm:px-4.5 sm:py-3 text-white shadow-md shadow-signal/30 transition-all duration-300 hover:scale-105 active:scale-90 hover:bg-signal-hover hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-signal focus:ring-offset-2 dark:focus:ring-offset-ink"
+          className="group relative flex items-center justify-center gap-2 rounded-full bg-signal p-2 sm:px-4 sm:py-2.5 text-white shadow-md transition-all duration-200 hover:bg-signal-hover active:scale-95 focus:outline-none focus:ring-2 focus:ring-signal focus:ring-offset-2"
           aria-label="Open TechKnox AI Assistant"
         >
           <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
@@ -152,19 +152,19 @@ export default function Chatbot() {
 
       {/* Modern Chat Window */}
       {isOpen && (
-        <div className="flex flex-col w-[94vw] sm:w-[410px] h-[520px] sm:h-[580px] max-h-[82vh] glass-card rounded-2xl sm:rounded-3xl border border-line-bright shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-3 duration-200 bg-panel/95 backdrop-blur-2xl">
+        <div className="flex flex-col w-[calc(100vw-24px)] sm:w-[400px] h-[500px] sm:h-[560px] max-h-[80vh] rounded-xl border border-line bg-panel shadow-xl overflow-hidden animate-in fade-in slide-in-from-bottom-3 duration-200">
           {/* Header */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-line bg-ink/60">
+          <div className="flex items-center justify-between px-5 py-3.5 border-b border-line bg-ink-800">
             <div className="flex items-center gap-3">
-              <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-signal/15 border border-signal/30 text-signal">
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-signal/10 border border-signal/25 text-signal">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                   />
                 </svg>
-                <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-panel" />
+                <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 bg-emerald-500 rounded-full border border-panel" />
               </div>
               <div>
                 <div className="font-display font-bold text-sm text-star flex items-center gap-2">
@@ -211,8 +211,8 @@ export default function Chatbot() {
                   <div
                     className={`max-w-[85%] rounded-2xl px-4 py-3 text-xs leading-relaxed whitespace-pre-wrap ${
                       isUser
-                        ? 'bg-signal text-white rounded-br-none shadow-md shadow-signal/20'
-                        : 'bg-ink/90 border border-line text-star rounded-bl-none shadow-sm'
+                        ? 'bg-signal text-white rounded-br-none shadow-sm'
+                        : 'bg-ink-800 border border-line text-star rounded-bl-none'
                     }`}
                   >
                     {msg.content}
@@ -227,7 +227,7 @@ export default function Chatbot() {
             {/* Typing Indicator */}
             {isLoading && (
               <div className="flex items-start">
-                <div className="bg-ink/90 border border-line rounded-2xl rounded-bl-none px-4 py-3 text-xs shadow-sm">
+                <div className="bg-ink-800 border border-line rounded-2xl rounded-bl-none px-4 py-3 text-xs">
                   <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-signal animate-bounce" />
                     <span className="w-1.5 h-1.5 rounded-full bg-signal animate-bounce [animation-delay:0.2s]" />
@@ -256,7 +256,7 @@ export default function Chatbot() {
                       key={q}
                       type="button"
                       onClick={() => handleSendMessage(q)}
-                      className="text-left text-[11px] px-3 py-1.5 rounded-xl border border-line bg-ink hover:border-signal/50 hover:bg-signal/5 text-steel hover:text-star transition"
+                      className="text-left text-[11px] px-2.5 py-1 rounded-lg border border-line bg-ink-800 hover:border-signal/40 hover:text-star text-steel transition"
                     >
                       {q}
                     </button>
@@ -269,7 +269,7 @@ export default function Chatbot() {
           </div>
 
           {/* Quick Action Footer */}
-          <div className="px-4 py-2 bg-ink/40 border-t border-line/60 flex items-center justify-between text-[11px] font-mono text-steeldim">
+          <div className="px-4 py-2 bg-ink-800 border-t border-line flex items-center justify-between text-[11px] font-mono text-steeldim">
             <span>Looking for scoping?</span>
             <Link
               href="/request-a-solution"
@@ -292,7 +292,7 @@ export default function Chatbot() {
                 onKeyDown={handleKeyDown}
                 placeholder="Ask about TechKnox services, tech, solutions..."
                 disabled={isLoading}
-                className="w-full rounded-xl border border-line bg-ink px-3.5 py-2.5 pr-11 text-xs text-star placeholder:text-steeldim outline-none focus:border-signal focus:ring-1 focus:ring-signal transition disabled:opacity-50"
+                className="w-full rounded-lg border border-line bg-ink-800 px-3.5 py-2.5 pr-11 text-xs text-star placeholder:text-steeldim outline-none focus:border-signal focus:ring-2 focus:ring-signal/20 transition disabled:opacity-50"
               />
               <button
                 type="button"

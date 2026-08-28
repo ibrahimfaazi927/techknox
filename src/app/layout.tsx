@@ -74,7 +74,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className="font-body antialiased bg-ink text-star min-h-screen flex flex-col selection:bg-signal selection:text-white">
         <ThemeProvider>
           <RevealObserver />
-          <Navbar brandName={profile.brand_name} />
+          <Navbar brandName={profile.brand_name} email={profile.email} />
           <main className="flex-1">{children}</main>
           <Footer profile={profile} />
           <Chatbot />

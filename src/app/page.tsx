@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
   getServices,
@@ -7,9 +8,16 @@ import {
   getCompanyProfile
 } from '@/lib/data';
 import SectionHeader from '@/components/SectionHeader';
-import { ServiceIconMapper, ArrowRightIcon, CheckIcon } from '@/components/Icons';
+import { ServiceIconMapper, ArrowRightIcon, CheckIcon, WhatsAppIcon } from '@/components/Icons';
 import HeroGraphic from '@/components/HeroGraphic';
 import ScrollReveal from '@/components/ScrollReveal';
+import { TechStackLogo } from '@/components/TechIcons';
+
+export const metadata: Metadata = {
+  title: 'TechKnox — Software Solutions, AI & Business Automation',
+  description:
+    'TechKnox designs and builds custom software, AI-powered automation, and API integrations that solve real business problems.'
+};
 
 export const revalidate = 3600;
 
@@ -23,523 +31,303 @@ export default async function HomePage() {
   ]);
 
   const featuredProjects = projects.filter((p) => p.is_featured);
+  const primaryProject = featuredProjects[0] || projects[0];
+  const secondaryProjects = (featuredProjects.length > 1 ? featuredProjects.slice(1, 4) : projects.slice(1, 4));
+
+  const techStackList = [
+    { name: 'React', category: 'Frontend' },
+    { name: 'Next.js', category: 'Framework' },
+    { name: 'TypeScript', category: 'Language' },
+    { name: 'Node.js', category: 'Backend' },
+    { name: 'Python', category: 'AI & Data' },
+    { name: 'PostgreSQL', category: 'Database' },
+    { name: 'Supabase', category: 'Backend/Auth' },
+    { name: 'Docker', category: 'DevOps' },
+    { name: 'AWS', category: 'Cloud' }
+  ];
 
   return (
     <div className="relative overflow-hidden">
-      {/* ==================================================================== */}
-      {/* 1. HERO SECTION                                                       */}
-      {/* ==================================================================== */}
-      <section className="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 border-b border-line/50 overflow-hidden">
-        {/* Animated grid background */}
-        <div className="absolute inset-0 bg-tech-grid opacity-60 pointer-events-none" />
-
-        {/* Ambient radial glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[500px] bg-hero-gradient pointer-events-none" />
-        <div className="absolute top-20 left-1/4 w-[400px] h-[300px] bg-signal/8 blur-[120px] pointer-events-none rounded-full" />
-        <div className="absolute top-32 right-1/4 w-[300px] h-[250px] bg-signal2/6 blur-[100px] pointer-events-none rounded-full" />
-
-        {/* Scanline accent at bottom of hero */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-signal/25 to-transparent pointer-events-none" />
-
+      {/* ================================================================== */}
+      {/* 1. HERO                                                             */}
+      {/* ================================================================== */}
+      <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 px-4 sm:px-6 border-b border-line bg-panel overflow-hidden">
         <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
-            {/* Left: Text content */}
-            <div className="text-left lg:pr-4">
-              {/* Status badge */}
-              <div className="animate-hero-badge inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-signal/30 bg-signal/8 dark:bg-signal/10 text-xs font-mono text-signal mb-7 backdrop-blur-md shadow-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal opacity-70" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-signal" />
-                </span>
-                <span className="tracking-wide">Custom Technology & Engineering Agency</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            {/* Hero Left Content */}
+            <div className="lg:col-span-7 text-left max-w-2xl">
+              <div className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-md border border-line bg-ink-800 text-[11px] sm:text-xs font-mono font-semibold text-signal mb-6 max-w-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-signal shrink-0" />
+                <span>Software Solutions · AI · Business Automation · API Integration</span>
               </div>
 
-              {/* Main headline */}
-              <h1 className="animate-hero-text font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-star leading-[1.08] mb-6">
-                We build the{' '}
-                <span className="text-gradient-signal">technology</span>{' '}
-                your business needs.
+              <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-star leading-[1.12] mb-6">
+                Technology that works for your business.
               </h1>
 
-              {/* Subtitle */}
-              <p className="animate-hero-subtitle text-base sm:text-lg text-steel leading-relaxed mb-9 max-w-lg">
-                TechKnox designs and engineers custom web applications, AI automation systems,
-                API integrations, software tools, and real-time dashboards built specifically
-                around your business bottlenecks.
+              <p className="text-base sm:text-lg text-steel leading-relaxed mb-8 max-w-xl">
+                We engineer custom software applications, AI-powered automation pipelines, and API integrations that eliminate repetitive work and make your systems communicate seamlessly.
               </p>
 
-              {/* CTAs */}
-              <div className="animate-hero-cta flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-12">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                 <Link
                   href="/request-a-solution"
-                  className="btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-signal px-7 py-3.5 font-mono text-sm font-semibold text-white shadow-signal-md transition-all duration-200 hover:bg-signal-hover hover:shadow-signal-lg active:scale-[0.97]"
+                  id="hero-cta-primary"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-signal px-6 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-signal-hover transition active:scale-[0.98]"
                 >
                   <span>Start a Project</span>
                   <ArrowRightIcon className="w-4 h-4" />
                 </Link>
+
                 <Link
                   href="/services"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-line-bright bg-panel/70 px-7 py-3.5 font-mono text-sm font-medium text-star transition-all duration-200 hover:border-signal/40 hover:bg-panel backdrop-blur-sm"
+                  id="hero-cta-secondary"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-panel px-6 py-3.5 text-sm font-medium text-star hover:bg-ink-800 transition"
                 >
-                  Explore Services
+                  <span>Explore Services</span>
                 </Link>
               </div>
 
-              {/* Capability badges */}
-              <div className="animate-hero-badges grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {[
-                  'Web & App Dev',
-                  'AI Automation',
-                  'API Integration',
-                  'Custom Software',
-                  'Business Dashboards',
-                  'CRM Systems'
-                ].map((cap) => (
-                  <div
-                    key={cap}
-                    className="py-2 px-3 rounded-lg border border-line/60 bg-panel/40 dark:bg-ink-900/60 font-mono text-xs text-steeldim text-center hover:border-signal/30 hover:text-steel transition-all duration-200 backdrop-blur-sm"
-                  >
-                    {cap}
-                  </div>
-                ))}
+              {/* Quick Trust Highlights */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-8 mt-8 border-t border-line text-xs font-medium text-steel">
+                <div className="p-2 sm:p-0">
+                  <span className="block font-bold text-star text-sm">Custom Code</span>
+                  <span>100% Client Owned</span>
+                </div>
+                <div className="p-2 sm:p-0">
+                  <span className="block font-bold text-star text-sm">Direct Engineering</span>
+                  <span>No Template Lock-in</span>
+                </div>
+                <div className="p-2 sm:p-0">
+                  <span className="block font-bold text-star text-sm">Production Ready</span>
+                  <span>Tested &amp; Scalable</span>
+                </div>
               </div>
             </div>
 
-            {/* Right: Hero Graphic */}
-            <div className="animate-hero-graphic hidden lg:flex items-center justify-center h-[480px] xl:h-[520px] relative">
+            {/* Hero Right Visual */}
+            <div className="lg:col-span-5 flex items-center justify-center">
               <HeroGraphic />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ==================================================================== */}
-      {/* 2. WHAT WE BUILD / ARCHITECTURE HIGHLIGHT                             */}
-      {/* ==================================================================== */}
-      <section className="py-24 px-6 border-b border-line/50 bg-ink-900/40 relative">
-        <div className="absolute inset-0 bg-dots opacity-30 pointer-events-none" />
-        <div className="mx-auto max-w-7xl relative">
+      {/* ================================================================== */}
+      {/* 2. INTRODUCTION / POSITIONING STATEMENT                             */}
+      {/* ================================================================== */}
+      <section className="py-16 px-4 sm:px-6 border-b border-line bg-ink-800/60">
+        <div className="mx-auto max-w-5xl text-center">
+          <ScrollReveal>
+            <p className="font-mono text-xs uppercase tracking-wider text-signal font-semibold mb-3">
+              Our Core Philosophy
+            </p>
+            <p className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-star leading-snug tracking-tight">
+              Technology should solve real problems, simplify everyday operations, and create better ways of working.
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ================================================================== */}
+      {/* 3. THREE CORE SERVICE PILLARS                                       */}
+      {/* ================================================================== */}
+      <section className="py-20 px-4 sm:px-6 border-b border-line bg-panel">
+        <div className="mx-auto max-w-7xl">
           <ScrollReveal>
             <SectionHeader
-              badge="Capabilities"
-              title="Engineered around your problem, not generic templates"
-              description="We solve real operational friction with tailor-made software architectures. No cookie-cutter page builders — only maintainable, high-performance technology."
+              badge="Services"
+              title="Comprehensive technology capabilities"
+              description="We design and build systems across three core pillars to help businesses modernize their software and automate repetitive tasks."
             />
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: 'code' as const,
-                color: 'signal',
-                colorClass: 'bg-signal/10 border-signal/20 text-signal',
-                title: 'Applications & Portals',
-                desc: 'High-speed web apps, client-facing portals, and internal management tools designed with modern frameworks (Next.js, React, Node.js, Python).',
-                checks: [
-                  'Full code ownership',
-                  'Role-based permissions (RBAC)',
-                  'Sub-second response speeds'
-                ]
-              },
-              {
-                icon: 'sparkles' as const,
-                color: 'purple',
-                colorClass: 'bg-accent-purple/10 border-accent-purple/20 text-accent-purple',
-                title: 'AI & Intelligent Workflows',
-                desc: 'Practical AI integrations that eliminate repetitive manual labor — automated document extraction, smart support triaging, and private knowledge assistants.',
-                checks: [
-                  'Private zero-training data policies',
-                  'Automated document parsing (OCR)',
-                  'Deterministic validation guards'
-                ]
-              },
-              {
-                icon: 'plug' as const,
-                color: 'cyan',
-                colorClass: 'bg-accent-cyan/10 border-accent-cyan/20 text-accent-cyan',
-                title: 'API & Ecosystem Integration',
-                desc: 'Resilient middleware connecting payment processors, CRMs, WhatsApp Business, ERPs, accounting software, and internal databases into a single sync engine.',
-                checks: [
-                  'Guaranteed event delivery queues',
-                  'Automated retry & dead-letter recovery',
-                  'Webhook idempotency protection'
-                ]
-              }
-            ].map((item, i) => (
-              <ScrollReveal key={item.title} delay={i * 80}>
-                <div className="glass-card rounded-2xl p-8 flex flex-col justify-between glass-card-hover relative">
-                  <div>
-                    <div className={`icon-ring w-12 h-12 rounded-xl border flex items-center justify-center mb-6 ${item.colorClass}`}>
-                      <ServiceIconMapper icon={item.icon} className="w-6 h-6" />
-                    </div>
-                    <h3 className="font-display text-xl font-semibold text-star mb-3">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-steel leading-relaxed mb-6">
-                      {item.desc}
-                    </p>
-                  </div>
-                  <ul className="space-y-2 text-xs font-mono text-steeldim border-t border-line/60 pt-4">
-                    {item.checks.map((c) => (
-                      <li key={c} className="flex items-center gap-2">
-                        <CheckIcon className="text-signal w-3.5 h-3.5 shrink-0" />
-                        {c}
-                      </li>
-                    ))}
-                  </ul>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Pillar 01 */}
+            <ScrollReveal className="rounded-xl border border-line bg-panel p-8 flex flex-col justify-between hover:border-line-bright transition shadow-sm">
+              <div>
+                <div className="w-10 h-10 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-signal font-bold font-mono text-xs mb-6">
+                  01
                 </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================================== */}
-      {/* 3. CORE SERVICES GRID (DYNAMIC)                                       */}
-      {/* ==================================================================== */}
-      <section className="py-24 px-6 border-b border-line/50">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
-            <ScrollReveal>
-              <SectionHeader
-                badge="Services"
-                title="Tailored technology services"
-                description="Explore our dedicated engineering disciplines. Each service is fully scoped around your exact technical needs."
-                className="mb-0 md:mb-0"
-              />
-            </ScrollReveal>
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 font-mono text-sm text-signal hover:text-signal2 transition shrink-0"
-            >
-              <span>View all services</span>
-              <ArrowRightIcon className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {services.map((service, index) => (
-              <ScrollReveal key={service.id} delay={index * 60}>
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="group glass-card rounded-2xl p-7 flex flex-col justify-between glass-card-hover relative overflow-hidden h-full"
-                >
-                  {/* Subtle hover background accent */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-signal/0 to-signal/0 group-hover:from-signal/3 group-hover:to-signal2/3 transition-all duration-500 rounded-2xl pointer-events-none" />
-
-                  <div>
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="icon-ring w-12 h-12 rounded-xl bg-panel-light border border-line-bright flex items-center justify-center text-signal group-hover:border-signal/50 group-hover:bg-signal/10 transition-all duration-300">
-                        <ServiceIconMapper icon={service.icon} className="w-6 h-6" />
-                      </div>
-                      <span className="font-mono text-xs text-steeldim/60 font-semibold tabular-nums">
-                        0{index + 1}
-                      </span>
-                    </div>
-
-                    <h3 className="font-display text-xl font-bold text-star group-hover:text-white transition-colors duration-200 mb-3">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-steel leading-relaxed mb-6">
-                      {service.short_description}
-                    </p>
-                  </div>
-
-                  <div className="flex items-end justify-between">
-                    {service.technologies && service.technologies.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5">
-                        {service.technologies.slice(0, 3).map((tech) => (
-                          <span key={tech} className="tech-tag">
-                            {tech}
-                          </span>
-                        ))}
-                        {service.technologies.length > 3 && (
-                          <span className="tech-tag">+{service.technologies.length - 3}</span>
-                        )}
-                      </div>
-                    )}
-                    <span className="card-arrow flex items-center gap-1 font-mono text-xs text-signal ml-3 shrink-0">
-                      View
-                      <ArrowRightIcon className="w-3 h-3" />
-                    </span>
-                  </div>
-                </Link>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================================== */}
-      {/* 4. SPOTLIGHT: API & ECOSYSTEM INTEGRATION                              */}
-      {/* ==================================================================== */}
-      <section className="py-24 px-6 border-b border-line/50 bg-ink-900/60 relative overflow-hidden">
-        <div className="absolute inset-0 bg-tech-grid opacity-40 pointer-events-none" />
-        <div className="mx-auto max-w-7xl relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <ScrollReveal className="lg:col-span-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent-cyan/30 bg-accent-cyan/8 dark:bg-accent-cyan/10 font-mono text-xs text-accent-cyan mb-5">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan animate-pulse" />
-                <span>INTEGRATION ARCHITECTURE</span>
-              </div>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-star mb-6">
-                Connect the software your business already relies on
-              </h2>
-              <p className="text-base text-steel leading-relaxed mb-6">
-                We engineer custom API integrations and data bridges that synchronize information
-                in real time. Eliminate manual copy-pasting and keep your operations unified across platforms.
-              </p>
-
-              <div className="space-y-3 mb-8">
-                {[
-                  'Payment Processors (Stripe, Razorpay, PayPal, Bank Webhooks)',
-                  'CRM & Lead Platforms (HubSpot, Salesforce, Zoho, Pipedrive)',
-                  'WhatsApp Business API & Customer Communication Flows',
-                  'ERP, Inventory & Accounting Systems (QuickBooks, Xero, SAP)',
-                  'E-commerce Connectors (Shopify, WooCommerce, Custom Storefronts)'
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-3 text-sm text-steel">
-                    <CheckIcon className="w-4 h-4 text-accent-cyan mt-0.5 shrink-0" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="p-4 rounded-xl border border-line bg-panel/40 text-xs text-steeldim font-mono mb-6">
-                * TechKnox builds custom integrations using official third-party APIs and developer SDKs.
-                We do not claim official corporate partnerships unless explicitly noted.
-              </div>
-
-              <Link
-                href="/services/api-integration"
-                className="inline-flex items-center gap-2 font-mono text-sm text-accent-cyan hover:text-white transition"
-              >
-                <span>Read more about API Integration</span>
-                <ArrowRightIcon className="w-4 h-4" />
-              </Link>
-            </ScrollReveal>
-
-            {/* Visual integration matrix */}
-            <ScrollReveal className="lg:col-span-6" delay={100}>
-              <div className="glass-card rounded-2xl p-6 sm:p-8 border border-line-bright shimmer-bg">
-                <div className="flex items-center justify-between mb-6 pb-4 border-b border-line/60">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-accent-emerald" />
-                    <span className="font-mono text-xs font-semibold text-star">TechKnox Sync Bridge</span>
-                  </div>
-                  <span className="font-mono text-[11px] text-accent-cyan bg-accent-cyan/10 px-2.5 py-1 rounded-md border border-accent-cyan/20">
-                    Real-time Webhook Engine
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3 mb-5">
-                  {[
-                    { title: 'Payment Gateways', desc: 'Stripe · Razorpay · PayPal', state: 'Active Sync', color: 'text-accent-emerald' },
-                    { title: 'Customer CRMs', desc: 'HubSpot · Zoho · Salesforce', state: 'Bi-directional', color: 'text-signal' },
-                    { title: 'Messaging APIs', desc: 'WhatsApp · Email · SMS', state: 'Auto-Trigger', color: 'text-accent-cyan' },
-                    { title: 'Accounting & ERP', desc: 'QuickBooks · Xero · SAP', state: 'Reconciled', color: 'text-accent-amber' }
-                  ].map((block) => (
-                    <div
-                      key={block.title}
-                      className="integration-item p-4 rounded-xl bg-ink/80 dark:bg-ink-900/90 border border-line"
-                    >
-                      <div className="font-display text-sm font-semibold text-star mb-1">{block.title}</div>
-                      <div className="text-xs text-steeldim mb-2.5">{block.desc}</div>
-                      <div className={`font-mono text-[10px] flex items-center gap-1.5 ${block.color}`}>
-                        <span className="w-1.5 h-1.5 rounded-full bg-current" />
-                        {block.state}
-                      </div>
-                    </div>
+                <h3 className="font-display text-2xl font-bold text-star mb-3">Software Solutions</h3>
+                <p className="text-sm text-steel leading-relaxed mb-6">
+                  Custom web applications, business dashboards, and tailored software designed around specific operational workflows.
+                </p>
+                <ul className="space-y-2 text-xs text-steel border-t border-line pt-4">
+                  {['Web Applications', 'Mobile Applications', 'Custom Business Software', 'Dashboards & Analytics', 'CRM Systems & Customer Portals'].map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-signal shrink-0" />
+                      <span>{item}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
+              </div>
+              <div className="pt-6 mt-6 border-t border-line">
+                <Link href="/services/web-app-development" className="inline-flex items-center gap-1.5 text-xs font-semibold text-signal hover:underline">
+                  <span>Explore Software Solutions</span>
+                  <ArrowRightIcon className="w-3 h-3" />
+                </Link>
+              </div>
+            </ScrollReveal>
 
-                <div className="rounded-lg bg-ink-900/80 p-3.5 border border-line/60 font-mono text-xs text-steeldim flex items-center justify-between">
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent-emerald" />
-                    Latency: &lt;120ms
-                  </span>
-                  <span>Idempotency: 100% Guaranteed</span>
+            {/* Pillar 02 */}
+            <ScrollReveal delay={80} className="rounded-xl border border-line bg-panel p-8 flex flex-col justify-between hover:border-line-bright transition shadow-sm">
+              <div>
+                <div className="w-10 h-10 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-signal font-bold font-mono text-xs mb-6">
+                  02
                 </div>
+                <h3 className="font-display text-2xl font-bold text-star mb-3">AI &amp; Automation</h3>
+                <p className="text-sm text-steel leading-relaxed mb-6">
+                  AI-powered automation for repetitive operational processes, intelligent chatbots, and document parsing workflows.
+                </p>
+                <ul className="space-y-2 text-xs text-steel border-t border-line pt-4">
+                  {['AI Agents & Assistants', 'Business Workflow Automation', 'Document & Invoice OCR', 'Lead Routing & Qualification', 'n8n & Custom Event Triggers'].map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-signal shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="pt-6 mt-6 border-t border-line">
+                <Link href="/services/ai-automation" className="inline-flex items-center gap-1.5 text-xs font-semibold text-signal hover:underline">
+                  <span>Explore AI &amp; Automation</span>
+                  <ArrowRightIcon className="w-3 h-3" />
+                </Link>
+              </div>
+            </ScrollReveal>
+
+            {/* Pillar 03 */}
+            <ScrollReveal delay={160} className="rounded-xl border border-line bg-panel p-8 flex flex-col justify-between hover:border-line-bright transition shadow-sm">
+              <div>
+                <div className="w-10 h-10 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-signal font-bold font-mono text-xs mb-6">
+                  03
+                </div>
+                <h3 className="font-display text-2xl font-bold text-star mb-3">API &amp; System Integration</h3>
+                <p className="text-sm text-steel leading-relaxed mb-6">
+                  API integration connecting the third-party platforms, CRMs, payment gateways, and databases already used by your team.
+                </p>
+                <ul className="space-y-2 text-xs text-steel border-t border-line pt-4">
+                  {['Custom API Integration', 'Third-Party Webhooks & Sync', 'Payment Gateway Integration', 'Database Connectors', 'Cloud System Connectivity'].map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-signal shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="pt-6 mt-6 border-t border-line">
+                <Link href="/services/api-integration" className="inline-flex items-center gap-1.5 text-xs font-semibold text-signal hover:underline">
+                  <span>Explore API Integrations</span>
+                  <ArrowRightIcon className="w-3 h-3" />
+                </Link>
               </div>
             </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* ==================================================================== */}
-      {/* 5. SPOTLIGHT: AI & AUTOMATION                                          */}
-      {/* ==================================================================== */}
-      <section className="py-24 px-6 border-b border-line/50">
+      {/* ================================================================== */}
+      {/* 4. TECHNOLOGY STACK                                                 */}
+      {/* ================================================================== */}
+      <section className="py-16 px-4 sm:px-6 border-b border-line bg-ink-800/40">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <p className="font-mono text-xs uppercase tracking-wider text-signal font-semibold mb-2">
+              Technology Stack
+            </p>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-star">
+              Built with industry-standard technologies
+            </h2>
+            <p className="text-sm text-steel mt-2">
+              We engineer with maintainable, reliable tools chosen for performance and long-term security.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-2 sm:gap-3 text-center">
+            {techStackList.map((t) => (
+              <div
+                key={t.name}
+                className="p-2.5 sm:p-4 rounded-lg border border-line bg-panel hover:border-line-bright transition flex flex-col items-center justify-center gap-1.5 sm:gap-2 shadow-sm min-w-0 overflow-hidden"
+              >
+                <TechStackLogo name={t.name} className="w-5 h-5 sm:w-6 sm:h-6" />
+                <span className="text-[11px] sm:text-xs font-semibold text-star truncate max-w-full">{t.name}</span>
+                <span className="text-[9px] sm:text-[10px] text-steeldim truncate max-w-full">{t.category}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================== */}
+      {/* 5. BUSINESS PROBLEMS & SOLUTIONS MATRIX                             */}
+      {/* ================================================================== */}
+      <section className="py-20 px-4 sm:px-6 border-b border-line bg-panel">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
             <SectionHeader
-              badge="AI Engineering"
-              title="Practical AI automation for real operational bottlenecks"
-              description="We avoid generic marketing hype and focus on concrete business problems — extracting data from unstructured documents, triaging customer inquiries, and automating multi-step human workflows."
+              badge="Problem Solving"
+              title="Technology for real business challenges"
+              description="Common operational bottlenecks and how we engineer practical solutions to resolve them."
             />
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                num: '01',
-                title: 'Intelligent Document Extraction',
-                desc: 'Automatically parse complex PDF invoices, contracts, receipts, and order forms into validated, structured JSON in your database without manual typing.'
+                problem: 'Too much manual work?',
+                solution: 'Workflow Automation',
+                desc: 'Automate multi-step data entry, status updates, and notifications across your teams.',
+                link: '/services/ai-automation'
               },
               {
-                num: '02',
-                title: '24/7 AI Support & Triage Agents',
-                desc: 'Domain-specific conversational assistants grounded strictly in your private product docs, answering customer queries with zero hallucinations and auto-escalation.'
+                problem: "Systems don't communicate?",
+                solution: 'API & System Integration',
+                desc: 'Connect your CRM, payment processors, spreadsheets, and databases into a unified flow.',
+                link: '/services/api-integration'
               },
               {
-                num: '03',
-                title: 'Lead Automation & Routing',
-                desc: 'Qualify incoming website or WhatsApp inquiries automatically, score intent based on your criteria, and schedule high-value prospects straight onto your calendar.'
+                problem: 'Need a custom business platform?',
+                solution: 'Custom Software Development',
+                desc: 'Web applications and customer portals built specifically for your exact business requirements.',
+                link: '/services/web-app-development'
+              },
+              {
+                problem: 'Want AI inside existing operations?',
+                solution: 'AI Agents & Document Automation',
+                desc: 'Add AI capabilities to categorize inquiries, extract document data, and assist support staff.',
+                link: '/services/ai-automation'
+              },
+              {
+                problem: 'Need better operational visibility?',
+                solution: 'Dashboards & Reporting',
+                desc: 'Consolidated real-time metrics and executive dashboards that show key KPIs at a glance.',
+                link: '/services/business-dashboards'
+              },
+              {
+                problem: 'Legacy spreadsheets causing errors?',
+                solution: 'Custom Database & Web Portals',
+                desc: 'Transition fragile manual spreadsheets into secure, permission-controlled database systems.',
+                link: '/services/custom-software'
               }
-            ].map((item, i) => (
-              <ScrollReveal key={item.num} delay={i * 90}>
-                <div className="glass-card rounded-2xl p-8 glass-card-hover h-full relative overflow-hidden">
-                  {/* Subtle purple accent bg */}
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-accent-purple/5 blur-2xl rounded-full pointer-events-none" />
-                  <div className="step-badge mb-6">
-                    {item.num}
-                  </div>
-                  <h3 className="font-display text-lg font-bold text-star mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-steel leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================================== */}
-      {/* 6. SOLUTIONS BY OUTCOME                                               */}
-      {/* ==================================================================== */}
-      <section className="py-24 px-6 border-b border-line/50 bg-ink-900/40">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
-            <ScrollReveal>
-              <SectionHeader
-                badge="Outcomes"
-                title="Solutions focused on business results"
-                description="Discover outcome-driven systems designed to improve efficiency, eliminate manual overhead, and accelerate team velocity."
-                className="mb-0 md:mb-0"
-              />
-            </ScrollReveal>
-            <Link
-              href="/solutions"
-              className="inline-flex items-center gap-2 font-mono text-sm text-signal hover:text-signal2 transition shrink-0"
-            >
-              <span>Explore all solutions</span>
-              <ArrowRightIcon className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {solutions.slice(0, 6).map((sol, i) => (
-              <ScrollReveal key={sol.id} delay={i * 60}>
-                <div className="glass-card rounded-2xl p-7 flex flex-col justify-between glass-card-hover h-full">
+            ].map((card, i) => (
+              <ScrollReveal key={card.problem} delay={i * 50}>
+                <div className="rounded-xl border border-line bg-panel p-6 h-full flex flex-col justify-between hover:border-line-bright hover:shadow-md transition">
                   <div>
-                    <div className="icon-ring w-11 h-11 rounded-xl bg-panel border border-line-bright flex items-center justify-center text-signal mb-5">
-                      <ServiceIconMapper icon={sol.icon} className="w-5 h-5" />
-                    </div>
-                    <h3 className="font-display text-lg font-semibold text-star mb-2">
-                      {sol.title}
+                    <span className="inline-block font-mono text-xs font-bold text-signal mb-2">
+                      {card.problem}
+                    </span>
+                    <h3 className="font-display text-lg font-bold text-star mb-2">
+                      → {card.solution}
                     </h3>
-                    <p className="text-sm text-steel leading-relaxed mb-6">
-                      {sol.description}
+                    <p className="text-xs text-steel leading-relaxed">
+                      {card.desc}
                     </p>
                   </div>
-
-                  {sol.benefits && sol.benefits.length > 0 && (
-                    <div className="pt-4 border-t border-line/60 space-y-2">
-                      {sol.benefits.map((b) => (
-                        <div key={b} className="flex items-center gap-2 text-xs text-steeldim font-mono">
-                          <CheckIcon className="w-3 h-3 text-signal shrink-0" />
-                          <span>{b}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================================== */}
-      {/* 7. FEATURED WORK / PROJECTS                                            */}
-      {/* ==================================================================== */}
-      <section className="py-24 px-6 border-b border-line/50">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
-            <ScrollReveal>
-              <SectionHeader
-                badge="Portfolio"
-                title="Selected builds & concept architectures"
-                description="Explore working systems and concept builds showcasing our engineering standards, architecture decisions, and code quality."
-                className="mb-0 md:mb-0"
-              />
-            </ScrollReveal>
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-2 font-mono text-sm text-signal hover:text-signal2 transition shrink-0"
-            >
-              <span>View all projects</span>
-              <ArrowRightIcon className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {featuredProjects.map((project, i) => (
-              <ScrollReveal key={project.id} delay={i * 70}>
-                <div className="glass-card rounded-2xl p-7 flex flex-col justify-between glass-card-hover h-full">
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="font-mono text-xs uppercase tracking-wider text-signal font-semibold">
-                        {project.project_type || 'Software System'}
-                      </span>
-                      {project.is_demo && (
-                        <span className="px-2 py-0.5 rounded-full border border-accent-amber/40 bg-accent-amber/10 font-mono text-[10px] text-accent-amber font-medium">
-                          Concept
-                        </span>
-                      )}
-                    </div>
-
-                    <h3 className="font-display text-xl font-bold text-star mb-3">
-                      {project.name}
-                    </h3>
-                    <p className="text-sm text-steel leading-relaxed mb-6">
-                      {project.short_description}
-                    </p>
-                  </div>
-
-                  <div>
-                    {project.technologies && project.technologies.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5 mb-5">
-                        {project.technologies.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-2 py-0.5 rounded-md bg-ink/80 dark:bg-ink-900/90 border border-line font-mono text-[11px] text-steel"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    <Link
-                      href={`/projects/${project.slug}`}
-                      className="inline-flex items-center gap-1.5 font-mono text-xs text-signal hover:text-white transition font-medium"
-                    >
-                      <span>View Architecture Breakdown</span>
-                      <ArrowRightIcon className="w-3.5 h-3.5" />
+                  <div className="pt-4 mt-4 border-t border-line">
+                    <Link href={card.link} className="inline-flex items-center gap-1.5 text-xs font-semibold text-signal hover:underline">
+                      <span>View Capability</span>
+                      <ArrowRightIcon className="w-3 h-3" />
                     </Link>
                   </div>
                 </div>
@@ -549,38 +337,186 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ==================================================================== */}
-      {/* 8. HOW WE WORK (PROCESS)                                               */}
-      {/* ==================================================================== */}
-      <section className="py-24 px-6 border-b border-line/50 bg-ink-900/40">
+      {/* ================================================================== */}
+      {/* 6. AUTOMATION SHOWCASE DIAGRAM                                      */}
+      {/* ================================================================== */}
+      <section className="py-20 px-4 sm:px-6 border-b border-line bg-ink-800/50">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="font-mono text-xs uppercase tracking-wider text-signal font-semibold mb-2">
+              Workflow Demonstration
+            </p>
+            <h2 className="font-display text-3xl font-bold text-star">
+              How business automation works in practice
+            </h2>
+            <p className="text-sm text-steel mt-2">
+              A sample event-driven pipeline bridging customer input with internal team actions.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+            {[
+              { step: '01', title: 'Customer Enquiry', sub: 'Web Form / WhatsApp', color: 'border-line' },
+              { step: '02', title: 'AI Processing', sub: 'Parser & Enrichment', color: 'border-signal/40 bg-signal/5' },
+              { step: '03', title: 'Qualification', sub: 'Rule Evaluation', color: 'border-line' },
+              { step: '04', title: 'CRM Sync', sub: 'Database Record Added', color: 'border-line' },
+              { step: '05', title: 'Team Alert', sub: 'Instant Notification', color: 'border-line' },
+              { step: '06', title: 'Follow-up', sub: 'Automated Response', color: 'border-emerald-500/40 bg-emerald-500/5' }
+            ].map((node, idx) => (
+              <div
+                key={node.step}
+                className={`rounded-xl border ${node.color} bg-panel p-5 text-center flex flex-col justify-between shadow-sm relative`}
+              >
+                <div>
+                  <span className="font-mono text-[10px] font-bold text-signal block mb-1">
+                    Step {node.step}
+                  </span>
+                  <p className="font-display text-sm font-bold text-star">{node.title}</p>
+                  <p className="text-[11px] text-steeldim mt-1">{node.sub}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================== */}
+      {/* 7. FEATURED WORK (REAL PROJECTS ONLY)                               */}
+      {/* ================================================================== */}
+      <section className="py-20 px-4 sm:px-6 border-b border-line bg-panel">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+            <ScrollReveal>
+              <SectionHeader
+                badge="Portfolio"
+                title="Featured projects &amp; case studies"
+                description="Real software architectures, custom portals, and automated systems built by TechKnox."
+                className="mb-0 md:mb-0"
+              />
+            </ScrollReveal>
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-signal hover:underline shrink-0"
+            >
+              <span>View All Projects</span>
+              <ArrowRightIcon className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Primary Featured Project */}
+            {primaryProject && (
+              <div className="lg:col-span-7 rounded-xl border border-line bg-panel p-8 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-4">
+                    <span className="font-mono text-xs uppercase tracking-wider text-signal font-semibold">
+                      Featured System
+                    </span>
+                    {primaryProject.is_demo && (
+                      <span className="px-2.5 py-0.5 rounded border border-amber-500/30 bg-amber-500/10 text-[10px] font-mono text-amber-600 font-medium">
+                        Concept Build
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-star mb-3">
+                    {primaryProject.name}
+                  </h3>
+                  <p className="text-sm sm:text-base text-steel leading-relaxed mb-6">
+                    {primaryProject.short_description}
+                  </p>
+                  {primaryProject.problem && (
+                    <div className="p-4 rounded-lg bg-ink-800 border border-line mb-6 text-xs text-steel space-y-1">
+                      <span className="font-bold text-star block">Challenge Addressed:</span>
+                      <p>{primaryProject.problem}</p>
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  {primaryProject.technologies && (
+                    <div className="flex flex-wrap gap-1.5 mb-6">
+                      {primaryProject.technologies.slice(0, 5).map((tech) => (
+                        <span key={tech} className="px-2 py-0.5 rounded border border-line bg-ink-800 text-[10px] font-mono text-steel">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <Link
+                    href={`/projects/${primaryProject.slug}`}
+                    className="inline-flex items-center gap-2 rounded-lg bg-signal px-5 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-signal-hover transition"
+                  >
+                    <span>View Case Breakdown</span>
+                    <ArrowRightIcon className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            )}
+
+            {/* Secondary Projects List */}
+            <div className="lg:col-span-5 space-y-4">
+              {secondaryProjects.map((project) => (
+                <div key={project.id} className="rounded-xl border border-line bg-panel p-6 shadow-sm hover:border-line-bright transition">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-mono text-[10px] uppercase text-signal font-semibold">
+                      {project.project_type || 'Software System'}
+                    </span>
+                    {project.is_demo && (
+                      <span className="px-2 py-0.5 rounded border border-amber-500/30 bg-amber-500/10 text-[9px] font-mono text-amber-600">
+                        Concept
+                      </span>
+                    )}
+                  </div>
+                  <h4 className="font-display text-lg font-bold text-star mb-1">
+                    {project.name}
+                  </h4>
+                  <p className="text-xs text-steel leading-relaxed mb-4">
+                    {project.short_description}
+                  </p>
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-signal hover:underline"
+                  >
+                    <span>Read Details</span>
+                    <ArrowRightIcon className="w-3 h-3" />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================== */}
+      {/* 8. HOW WE WORK (PROCESS)                                            */}
+      {/* ================================================================== */}
+      <section className="py-20 px-4 sm:px-6 border-b border-line bg-ink-800/40">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
             <SectionHeader
-              badge="Methodology"
+              badge="Execution"
               title="How we work with you"
-              description="A transparent, milestone-driven engineering process from initial discovery to production deployment."
+              description="A clear, milestone-based development process from discovery through handover."
               align="center"
             />
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {steps.map((step, i) => (
-              <ScrollReveal key={step.id} delay={i * 60}>
-                <div className="glass-card rounded-2xl p-7 relative h-full">
-                  {/* Step connector line at top for desktop */}
-                  <div className="absolute top-7 left-7 w-8 h-px bg-gradient-to-r from-signal/40 to-transparent hidden lg:block" />
-                  <div className="font-mono text-xs font-bold text-signal mb-4 flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-md bg-signal/10 border border-signal/20 flex items-center justify-center text-[10px]">
-                      {i + 1}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { num: '01', title: 'Understand', desc: 'We analyze your business workflows, operational friction, and exact system requirements.' },
+              { num: '02', title: 'Plan & Architect', desc: 'We design the system architecture, database schema, data flows, and project milestones.' },
+              { num: '03', title: 'Build & Integrate', desc: 'We engineer the software with clean code, testing, and third-party API integrations.' },
+              { num: '04', title: 'Launch & Handover', desc: 'Production deployment, team onboarding, and complete ownership transfer of custom assets.' }
+            ].map((step, i) => (
+              <ScrollReveal key={step.num} delay={i * 60}>
+                <div className="rounded-xl border border-line bg-panel p-6 shadow-sm h-full flex flex-col justify-between">
+                  <div>
+                    <span className="w-8 h-8 rounded-md bg-ink-800 border border-line flex items-center justify-center font-mono text-xs font-bold text-signal mb-4">
+                      {step.num}
                     </span>
-                    <span className="tracking-widest text-steeldim">STEP 0{i + 1}</span>
+                    <h3 className="font-display text-lg font-bold text-star mb-2">{step.title}</h3>
+                    <p className="text-xs text-steel leading-relaxed">{step.desc}</p>
                   </div>
-                  <h3 className="font-display text-lg font-semibold text-star mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-steel leading-relaxed">
-                    {step.description}
-                  </p>
                 </div>
               </ScrollReveal>
             ))}
@@ -588,49 +524,45 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ==================================================================== */}
-      {/* 9. WHY TECHKNOX / VALUES                                              */}
-      {/* ==================================================================== */}
-      <section className="py-24 px-6 border-b border-line/50">
+      {/* ================================================================== */}
+      {/* 9. WHY TECHKNOX                                                     */}
+      {/* ================================================================== */}
+      <section className="py-20 px-4 sm:px-6 border-b border-line bg-panel">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
             <SectionHeader
-              badge="Why Us"
-              title="Why businesses work with TechKnox"
-              description="Our core operating principles ensure your technology investment is secure, scalable, and built for your real business needs."
+              badge="Why Choose Us"
+              title="A serious engineering partner for your business"
+              description="Four principles that define how we deliver high-quality technology solutions."
             />
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                title: 'Problem-First Focus',
-                desc: 'We start with your operational bottleneck, not an arbitrary tech stack. The technology serves your business goal.',
-                accent: 'bg-signal/10 border-signal/20 text-signal'
+                title: 'Business-Focused Solutions',
+                desc: 'We select technology to solve your actual workflow bottleneck — not to satisfy tech trends.'
               },
               {
-                title: '100% Code Ownership',
-                desc: 'You own every line of custom code, database schema, and digital asset we build. No vendor lock-in.',
-                accent: 'bg-accent-emerald/10 border-accent-emerald/20 text-accent-emerald'
+                title: 'Custom Architectures',
+                desc: 'Tailored systems built around your specific operational requirements and data models.'
               },
               {
-                title: 'Transparent Scoping',
-                desc: 'Clear milestones, upfront technical feasibility assessments, and realistic delivery timelines without false hype.',
-                accent: 'bg-accent-cyan/10 border-accent-cyan/20 text-accent-cyan'
+                title: 'Modern & Maintainable',
+                desc: 'Clean, documented code using industry standards so future maintenance is straightforward.'
               },
               {
-                title: 'Clean Architecture',
-                desc: 'Engineered with modern TypeScript, modular components, and documented schemas that are easy to maintain and scale.',
-                accent: 'bg-accent-purple/10 border-accent-purple/20 text-accent-purple'
+                title: 'Transparent Process',
+                desc: 'Clear scope, weekly milestones, direct communication, and 100% intellectual property ownership.'
               }
-            ].map((v, i) => (
-              <ScrollReveal key={v.title} delay={i * 70}>
-                <div className="glass-card rounded-2xl p-6 glass-card-hover h-full">
-                  <div className={`icon-ring w-9 h-9 rounded-xl border flex items-center justify-center mb-5 ${v.accent}`}>
+            ].map((item, i) => (
+              <ScrollReveal key={item.title} delay={i * 60}>
+                <div className="rounded-xl border border-line bg-panel p-6 shadow-sm h-full">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-600 flex items-center justify-center mb-4">
                     <CheckIcon className="w-4 h-4" />
                   </div>
-                  <h3 className="font-display text-base font-semibold text-star mb-2">{v.title}</h3>
-                  <p className="text-xs text-steel leading-relaxed">{v.desc}</p>
+                  <h3 className="font-display text-base font-bold text-star mb-2">{item.title}</h3>
+                  <p className="text-xs text-steel leading-relaxed">{item.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -638,55 +570,53 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ==================================================================== */}
-      {/* 10. FINAL CTA BANNER                                                  */}
-      {/* ==================================================================== */}
-      <section className="py-24 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-mesh-gradient opacity-50 pointer-events-none" />
+      {/* ================================================================== */}
+      {/* 10. REACH OUT / FINAL CONTACT BANNER                                */}
+      {/* ================================================================== */}
+      <section className="py-20 px-4 sm:px-6 bg-ink-800">
+        <div className="mx-auto max-w-5xl">
+          <div className="rounded-2xl border border-line bg-panel p-8 sm:p-14 text-center shadow-sm">
+            <p className="font-mono text-xs uppercase tracking-wider text-signal font-semibold mb-3">
+              Get In Touch
+            </p>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-star mb-4">
+              Let&apos;s discuss your project.
+            </h2>
+            <p className="max-w-lg mx-auto text-sm sm:text-base text-steel leading-relaxed mb-8">
+              Tell us what you are trying to build, improve, or automate. We will provide an honest architectural evaluation and scoping proposal.
+            </p>
 
-        <ScrollReveal>
-          <div className="mx-auto max-w-5xl rounded-3xl border border-line-bright bg-gradient-to-b from-panel/90 to-ink/80 p-10 sm:p-16 text-center relative overflow-hidden shadow-2xl backdrop-blur-sm">
-            {/* Glow behind */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-signal/12 blur-3xl pointer-events-none rounded-full" />
-            {/* Grid overlay */}
-            <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none rounded-3xl" />
+            <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 max-w-full">
+              <Link
+                href="/request-a-solution"
+                id="footer-start-project-btn"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-signal px-5 sm:px-6 py-3 sm:py-3.5 text-xs font-semibold text-white shadow-sm hover:bg-signal-hover transition active:scale-[0.98]"
+              >
+                <span>Start a Project</span>
+                <ArrowRightIcon className="w-4 h-4" />
+              </Link>
 
-            <div className="relative">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-signal/30 bg-signal/8 dark:bg-signal/12 font-mono text-xs text-signal mb-6">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal opacity-70" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-signal" />
-                </span>
-                <span>READY TO BUILD?</span>
-              </div>
+              <a
+                href="https://wa.me/918310179301?text=Hi%20TechKnox%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-4 sm:px-5 py-3 sm:py-3.5 text-xs font-semibold text-emerald-600 hover:bg-emerald-500/20 transition"
+              >
+                <WhatsAppIcon className="w-4 h-4 text-emerald-600" />
+                <span>WhatsApp Us</span>
+              </a>
 
-              <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-star mb-6 max-w-2xl mx-auto leading-[1.1]">
-                Let&apos;s build the technology solution your business needs.
-              </h2>
-
-              <p className="max-w-xl mx-auto text-base sm:text-lg text-steel mb-10 leading-relaxed">
-                Tell us about your project, workflow challenges, or integration requirements.
-                We&apos;ll review your scope and provide a practical plan.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link
-                  href="/request-a-solution"
-                  className="btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-signal px-8 py-4 font-mono text-sm font-semibold text-white shadow-signal-md transition hover:bg-signal-hover hover:shadow-signal-lg active:scale-[0.97]"
+              {profile.email && (
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-panel px-4 sm:px-5 py-3 sm:py-3.5 text-xs font-medium text-star hover:bg-ink-800 transition max-w-full truncate"
                 >
-                  <span>Request a Solution</span>
-                  <ArrowRightIcon className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="/contact"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-line-bright bg-panel/70 backdrop-blur-sm px-8 py-4 font-mono text-sm font-medium text-star transition hover:border-signal/40 hover:text-white"
-                >
-                  Contact Us Directly
-                </Link>
-              </div>
+                  <span className="truncate">Email: {profile.email}</span>
+                </a>
+              )}
             </div>
           </div>
-        </ScrollReveal>
+        </div>
       </section>
     </div>
   );

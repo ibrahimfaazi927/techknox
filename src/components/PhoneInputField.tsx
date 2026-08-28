@@ -192,7 +192,7 @@ export default function PhoneInputField({
           type="button"
           disabled={disabled}
           onClick={() => setOpen((o) => !o)}
-          className="flex items-center gap-1.5 px-3 py-3 border-r border-line-bright bg-panel-light hover:bg-panel text-sm font-mono text-star shrink-0 transition rounded-l-xl min-w-[100px] justify-center"
+          className="flex items-center gap-1.5 px-2.5 sm:px-3 py-3 border-r border-line-bright bg-panel-light hover:bg-panel text-sm font-mono text-star shrink-0 transition rounded-l-xl min-w-[85px] sm:min-w-[100px] justify-center"
           aria-haspopup="listbox"
           aria-expanded={open}
           aria-label={`Country code: ${country.name} +${country.calling}`}
@@ -223,7 +223,7 @@ export default function PhoneInputField({
           onChange={handleDigitInput}
           aria-invalid={error ? 'true' : 'false'}
           aria-describedby={ariaDescribedById}
-          className="flex-1 min-w-0 px-4 py-3 text-sm text-star bg-transparent outline-none placeholder:text-steeldim/60"
+          className="flex-1 min-w-0 px-3 sm:px-4 py-3 text-sm text-star bg-transparent outline-none placeholder:text-steeldim/60"
         />
       </div>
 
@@ -233,7 +233,7 @@ export default function PhoneInputField({
       {/* ── Country dropdown ───────────────────────────────────────────── */}
       {open && (
         <div
-          className="absolute z-[100] left-0 top-[calc(100%+4px)] w-72 rounded-xl border border-line-bright bg-panel shadow-2xl shadow-black/60 overflow-hidden"
+          className="absolute z-[100] left-0 top-[calc(100%+4px)] w-72 max-w-[calc(100vw-32px)] rounded-xl border border-line-bright bg-panel shadow-2xl shadow-black/60 overflow-hidden"
           role="dialog"
           aria-label="Select country"
         >
