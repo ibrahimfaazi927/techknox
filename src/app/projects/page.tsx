@@ -21,17 +21,17 @@ export default async function ProjectsPage() {
       {/* ================================================================== */}
       {/* 1. HERO                                                             */}
       {/* ================================================================== */}
-      <section className="pt-16 pb-20 md:pt-24 md:pb-24 px-4 sm:px-6 border-b border-line bg-panel">
+      <section className="pt-14 pb-16 sm:pt-20 sm:pb-20 px-4 sm:px-6 border-b border-line bg-panel">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-ink-800 text-xs font-mono font-semibold text-signal mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-signal" />
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-line bg-panel text-[10px] sm:text-xs font-mono font-semibold text-purple-600 dark:text-purple-400 mb-4 shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
               <span>Portfolio &amp; Case Studies</span>
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-star leading-[1.15] mb-6">
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-star leading-[1.15] mb-4">
               Architecture blueprints &amp; working software systems.
             </h1>
-            <p className="text-base sm:text-lg text-steel leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-base text-steel leading-relaxed max-w-2xl">
               Explore working proof-of-concept builds, system architectures, and software tools designed to demonstrate our engineering capabilities and technical standards.
             </p>
           </div>
@@ -41,7 +41,7 @@ export default async function ProjectsPage() {
       {/* ================================================================== */}
       {/* 2. PROJECTS GRID                                                    */}
       {/* ================================================================== */}
-      <section className="py-20 px-4 sm:px-6 border-b border-line bg-ink-800/30">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 border-b border-line bg-ink-800/30">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, idx) => (
@@ -53,7 +53,7 @@ export default async function ProjectsPage() {
                   <div>
                     {/* Header Meta */}
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                      <span className="font-mono text-xs uppercase tracking-wider text-signal font-semibold">
+                      <span className="font-mono text-xs uppercase tracking-wider text-purple-600 dark:text-purple-400 font-semibold">
                         {project.industry || project.project_type || 'Software System'}
                       </span>
                       <div className="flex items-center gap-2">
@@ -87,7 +87,7 @@ export default async function ProjectsPage() {
                         </div>
                         {project.solution && (
                           <div className="pt-2 border-t border-line">
-                            <span className="font-mono uppercase text-signal block text-[10px] font-semibold">
+                            <span className="font-mono uppercase text-purple-600 dark:text-purple-400 block text-[10px] font-semibold">
                               Solution Architecture:
                             </span>
                             <p className="text-star font-medium">{project.solution}</p>
@@ -115,7 +115,7 @@ export default async function ProjectsPage() {
                     <div className="flex items-center justify-between pt-4 border-t border-line">
                       <Link
                         href={`/projects/${project.slug}`}
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-signal hover:underline"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-600 dark:text-purple-400 hover:underline"
                       >
                         <span>View Case Breakdown</span>
                         <ArrowRightIcon className="w-3 h-3" />
@@ -155,18 +155,18 @@ export default async function ProjectsPage() {
       {/* ================================================================== */}
       {/* 3. CTA BANNER                                                       */}
       {/* ================================================================== */}
-      <section className="py-20 px-4 sm:px-6 bg-panel">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-panel">
         <div className="mx-auto max-w-4xl text-center">
-          <div className="rounded-2xl border border-line bg-ink-800 p-8 sm:p-12 shadow-sm">
+          <div className="rounded-2xl border border-line bg-ink-800/40 p-8 sm:p-12 shadow-xs">
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-star mb-3">
               Have a project or internal tool in mind?
             </h2>
-            <p className="text-sm sm:text-base text-steel max-w-xl mx-auto mb-8">
+            <p className="text-xs sm:text-sm text-steel max-w-xl mx-auto mb-8 leading-relaxed">
               We can architect and build a custom prototype or full production application designed for your team.
             </p>
             <Link
               href="/request-a-solution"
-              className="inline-flex items-center gap-2 rounded-lg bg-signal px-6 py-3.5 text-xs font-semibold text-white shadow-sm hover:bg-signal-hover transition"
+              className="inline-flex items-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-700 px-5 sm:px-6 py-3 sm:py-3.5 text-xs font-semibold text-white shadow-xs transition-colors"
             >
               <span>Scope Your Build</span>
               <ArrowRightIcon className="w-4 h-4" />

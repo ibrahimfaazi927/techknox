@@ -126,27 +126,22 @@ export default function Chatbot() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="group relative flex items-center justify-center gap-2 rounded-full bg-signal p-2 sm:px-4 sm:py-2.5 text-white shadow-md transition-all duration-200 hover:bg-signal-hover active:scale-95 focus:outline-none focus:ring-2 focus:ring-signal focus:ring-offset-2"
+          className="group relative flex h-12 w-12 sm:h-13 sm:w-13 items-center justify-center rounded-full bg-gradient-to-tr from-purple-600 via-purple-500 to-indigo-500 hover:from-purple-500 hover:to-indigo-400 text-white shadow-[0_0_22px_rgba(147,51,234,0.5)] transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
           aria-label="Open TechKnox AI Assistant"
         >
-          <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-white" />
-          </span>
           <svg
-            className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:rotate-12"
+            className="w-5 h-5 sm:w-5.5 sm:h-5.5 transition-transform duration-200 group-hover:scale-110"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            strokeWidth={2}
+            strokeWidth={1.8}
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+              d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a.75.75 0 01-.84-.84c.09-.54.26-1.12.51-1.68C3.766 16.71 3 14.47 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"
             />
           </svg>
-          <span className="hidden sm:inline-block font-mono text-xs font-semibold tracking-wide">TechKnox AI</span>
         </button>
       )}
 

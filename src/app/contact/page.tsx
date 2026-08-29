@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getServices, getCompanyProfile } from '@/lib/data';
 import ContactForm from './ContactForm';
-import { WhatsAppIcon, ArrowRightIcon } from '@/components/Icons';
+import { WhatsAppOutlineIcon, ArrowRightIcon } from '@/components/Icons';
 
 export const metadata: Metadata = {
   title: 'Contact TechKnox — Start a Project or Request a Quote',
@@ -29,17 +29,17 @@ export default async function ContactPage({
       {/* ================================================================== */}
       {/* 1. HERO                                                             */}
       {/* ================================================================== */}
-      <section className="pt-16 pb-20 md:pt-24 md:pb-24 px-4 sm:px-6 border-b border-line bg-panel">
+      <section className="pt-14 pb-16 sm:pt-20 sm:pb-20 px-4 sm:px-6 border-b border-line bg-panel">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-ink-800 text-xs font-mono font-semibold text-signal mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-signal" />
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-line bg-panel text-[10px] sm:text-xs font-mono font-semibold text-purple-600 dark:text-purple-400 mb-4 shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
               <span>Contact &amp; Project Inquiries</span>
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-star leading-[1.15] mb-6">
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-star leading-[1.15] mb-4">
               Start a conversation about your project.
             </h1>
-            <p className="text-base sm:text-lg text-steel leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-base text-steel leading-relaxed max-w-2xl">
               Use the form below or reach us directly by email, phone, or WhatsApp. We typically respond within one business day.
             </p>
           </div>
@@ -49,7 +49,7 @@ export default async function ContactPage({
       {/* ================================================================== */}
       {/* 2. CONTACT LAYOUT                                                   */}
       {/* ================================================================== */}
-      <section className="py-20 px-4 sm:px-6 bg-ink-800/30">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-ink-800/30">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left: Contact Channels */}
@@ -72,7 +72,7 @@ export default async function ContactPage({
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 rounded-xl border border-line bg-panel p-4 text-sm hover:border-line-bright hover:shadow-sm transition"
                   >
-                    <div className="w-9 h-9 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-signal font-bold text-xs shrink-0">
+                    <div className="w-9 h-9 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-purple-600 dark:text-purple-400 font-bold text-xs shrink-0">
                       @
                     </div>
                     <div>
@@ -87,7 +87,7 @@ export default async function ContactPage({
                     href={`tel:${profile.phone}`}
                     className="flex items-center gap-3 rounded-xl border border-line bg-panel p-4 text-sm hover:border-line-bright hover:shadow-sm transition"
                   >
-                    <div className="w-9 h-9 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-signal text-xs shrink-0">
+                    <div className="w-9 h-9 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-purple-600 dark:text-purple-400 text-xs shrink-0">
                       ☎
                     </div>
                     <div>
@@ -98,13 +98,13 @@ export default async function ContactPage({
                 )}
 
                 <a
-                  href="https://wa.me/918310179301?text=Hi%20TechKnox%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                  href="https://wa.me/918310179301?text=Hi%20techknox%2C%20I%27d%20like%20to%20discuss%20a%20project."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4 text-sm hover:bg-emerald-500/10 transition"
+                  className="flex items-center gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4 text-sm hover:bg-emerald-500/10 transition-colors"
                 >
                   <div className="w-9 h-9 rounded-lg bg-emerald-500/15 flex items-center justify-center shrink-0">
-                    <WhatsAppIcon className="w-5 h-5 text-emerald-600" />
+                    <WhatsAppOutlineIcon className="w-5 h-5 text-emerald-600" />
                   </div>
                   <div>
                     <span className="block font-mono text-[10px] uppercase tracking-wider text-emerald-600/80 mb-0.5">WhatsApp</span>
@@ -114,7 +114,7 @@ export default async function ContactPage({
 
                 {(profile.location || profile.address || profile.city) && (
                   <div className="flex items-center gap-3 rounded-xl border border-line bg-panel p-4 text-sm">
-                    <div className="w-9 h-9 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-signal text-xs shrink-0">
+                    <div className="w-9 h-9 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-purple-600 dark:text-purple-400 text-xs shrink-0">
                       ◎
                     </div>
                     <div>
@@ -143,7 +143,7 @@ export default async function ContactPage({
                 </p>
                 <Link
                   href="/request-a-solution"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-signal hover:underline"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-600 dark:text-purple-400 hover:underline"
                 >
                   <span>Go to Project Intake Form</span>
                   <ArrowRightIcon className="w-3 h-3" />

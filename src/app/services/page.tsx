@@ -21,17 +21,17 @@ export default async function ServicesPage() {
       {/* ================================================================== */}
       {/* 1. HERO                                                             */}
       {/* ================================================================== */}
-      <section className="pt-16 pb-20 md:pt-24 md:pb-24 px-4 sm:px-6 border-b border-line bg-panel">
+      <section className="pt-14 pb-16 sm:pt-20 sm:pb-20 px-4 sm:px-6 border-b border-line bg-panel">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-ink-800 text-xs font-mono font-semibold text-signal mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-signal" />
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-line bg-panel text-[10px] sm:text-xs font-mono font-semibold text-purple-600 dark:text-purple-400 mb-4 shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
               <span>Services &amp; Capabilities</span>
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-star leading-[1.15] mb-6">
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-star leading-[1.15] mb-4">
               Technology engineered around your specific business requirements.
             </h1>
-            <p className="text-base sm:text-lg text-steel leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-base text-steel leading-relaxed max-w-2xl">
               From web applications and business portals to AI-driven automation and API integrations, explore our core engineering disciplines below.
             </p>
           </div>
@@ -41,7 +41,7 @@ export default async function ServicesPage() {
       {/* ================================================================== */}
       {/* 2. SERVICES CATALOG                                                 */}
       {/* ================================================================== */}
-      <section className="py-20 px-4 sm:px-6 border-b border-line bg-ink-800/30">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 border-b border-line bg-ink-800/30">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 gap-8">
             {services.map((service, index) => (
@@ -54,7 +54,7 @@ export default async function ServicesPage() {
                     {/* Left: Info */}
                     <div className="lg:col-span-6">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-signal">
+                        <div className="w-10 h-10 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-purple-600 dark:text-purple-400">
                           <ServiceIconMapper icon={service.icon} className="w-5 h-5" />
                         </div>
                         <span className="font-mono text-xs uppercase tracking-wider text-steeldim font-semibold">
@@ -73,7 +73,7 @@ export default async function ServicesPage() {
                       <div className="flex flex-wrap items-center gap-3 pt-2">
                         <Link
                           href={`/services/${service.slug}`}
-                          className="inline-flex items-center gap-2 rounded-lg bg-signal px-5 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-signal-hover transition"
+                          className="inline-flex items-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-700 px-4 sm:px-5 py-2.5 text-xs font-semibold text-white shadow-xs transition-colors"
                         >
                           <span>Explore Service Details</span>
                           <ArrowRightIcon className="w-3.5 h-3.5" />
@@ -97,7 +97,7 @@ export default async function ServicesPage() {
                           <ul className="space-y-2">
                             {service.features.map((feat) => (
                               <li key={feat} className="flex items-start gap-2 text-xs text-steel">
-                                <CheckIcon className="w-3.5 h-3.5 text-signal shrink-0 mt-0.5" />
+                                <CheckIcon className="w-3.5 h-3.5 text-purple-500 shrink-0 mt-0.5" />
                                 <span>{feat}</span>
                               </li>
                             ))}
@@ -134,26 +134,26 @@ export default async function ServicesPage() {
       {/* ================================================================== */}
       {/* 3. CTA BANNER                                                       */}
       {/* ================================================================== */}
-      <section className="py-20 px-4 sm:px-6 bg-panel">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-panel">
         <div className="mx-auto max-w-4xl text-center">
-          <div className="rounded-2xl border border-line bg-ink-800 p-8 sm:p-12">
+          <div className="rounded-2xl border border-line bg-ink-800/40 p-8 sm:p-12">
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-star mb-3">
               Need a cross-discipline solution?
             </h2>
-            <p className="text-sm sm:text-base text-steel max-w-xl mx-auto mb-8">
+            <p className="text-xs sm:text-sm text-steel max-w-xl mx-auto mb-8 leading-relaxed">
               Most business challenges combine custom software with API integrations and automated workflows. We can architect a unified solution for your specific requirements.
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3">
               <Link
                 href="/request-a-solution"
-                className="inline-flex items-center gap-2 rounded-lg bg-signal px-6 py-3.5 text-xs font-semibold text-white shadow-sm hover:bg-signal-hover transition"
+                className="inline-flex items-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-700 px-5 sm:px-6 py-3 sm:py-3.5 text-xs font-semibold text-white shadow-xs transition-colors"
               >
                 <span>Start a Project</span>
                 <ArrowRightIcon className="w-4 h-4" />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-lg border border-line bg-panel px-6 py-3.5 text-xs font-medium text-star hover:bg-ink-800 transition"
+                className="inline-flex items-center gap-2 rounded-xl border border-line bg-panel px-4 sm:px-5 py-3 sm:py-3.5 text-xs font-medium text-star hover:bg-ink-800 transition-colors"
               >
                 <span>Talk with an Engineer</span>
               </Link>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   getServices,
   getSolutions,
@@ -8,15 +9,23 @@ import {
   getCompanyProfile
 } from '@/lib/data';
 import SectionHeader from '@/components/SectionHeader';
-import { ServiceIconMapper, ArrowRightIcon, CheckIcon, WhatsAppIcon } from '@/components/Icons';
-import HeroGraphic from '@/components/HeroGraphic';
+import {
+  ServiceIconMapper,
+  ArrowRightIcon,
+  CheckIcon,
+  WhatsAppOutlineIcon,
+  GlobeIcon,
+  SparklesIcon,
+  MobileAppIcon,
+  ChartIcon
+} from '@/components/Icons';
 import ScrollReveal from '@/components/ScrollReveal';
 import { TechStackLogo } from '@/components/TechIcons';
 
 export const metadata: Metadata = {
   title: 'TechKnox — Software Solutions, AI & Business Automation',
   description:
-    'TechKnox designs and builds custom software, AI-powered automation, and API integrations that solve real business problems.'
+    'TechKnox transforms ambitious ideas into intelligent digital experiences, automation systems and scalable technology solutions.'
 };
 
 export const revalidate = 3600;
@@ -46,194 +55,162 @@ export default async function HomePage() {
     { name: 'AWS', category: 'Cloud' }
   ];
 
+  const capabilityCards = [
+    {
+      title: 'Web Development',
+      description: 'Modern, responsive and high-performance websites and web applications.',
+      icon: GlobeIcon,
+      link: '/services/web-app-development',
+      tag: 'Web & Platforms'
+    },
+    {
+      title: 'AI & Automation',
+      description: 'Intelligent workflows and automation systems that reduce repetitive work.',
+      icon: SparklesIcon,
+      link: '/services/ai-automation',
+      tag: 'Intelligent Systems'
+    },
+    {
+      title: 'App Development',
+      description: 'Scalable and user-friendly mobile and application solutions.',
+      icon: MobileAppIcon,
+      link: '/services/custom-software',
+      tag: 'Cross-Platform'
+    },
+    {
+      title: 'Data & Analytics',
+      description: 'Turn business data into useful insights and better decisions.',
+      icon: ChartIcon,
+      link: '/services/business-dashboards',
+      tag: 'Insights & Reporting'
+    }
+  ];
+
   return (
     <div className="relative overflow-hidden">
       {/* ================================================================== */}
-      {/* 1. HERO                                                             */}
+      {/* 1. HERO SECTION WITH BLENDED WORKSPACE BACKGROUND                   */}
       {/* ================================================================== */}
-      <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 px-4 sm:px-6 border-b border-line bg-panel overflow-hidden">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            {/* Hero Left Content */}
-            <div className="lg:col-span-7 text-left max-w-2xl">
-              <div className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-md border border-line bg-ink-800 text-[11px] sm:text-xs font-mono font-semibold text-signal mb-6 max-w-full">
-                <span className="w-1.5 h-1.5 rounded-full bg-signal shrink-0" />
-                <span>Software Solutions · AI · Business Automation · API Integration</span>
-              </div>
-
-              <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-star leading-[1.12] mb-6">
-                Technology that works for your business.
-              </h1>
-
-              <p className="text-base sm:text-lg text-steel leading-relaxed mb-8 max-w-xl">
-                We engineer custom software applications, AI-powered automation pipelines, and API integrations that eliminate repetitive work and make your systems communicate seamlessly.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                <Link
-                  href="/request-a-solution"
-                  id="hero-cta-primary"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-signal px-6 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-signal-hover transition active:scale-[0.98]"
-                >
-                  <span>Start a Project</span>
-                  <ArrowRightIcon className="w-4 h-4" />
-                </Link>
-
-                <Link
-                  href="/services"
-                  id="hero-cta-secondary"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-panel px-6 py-3.5 text-sm font-medium text-star hover:bg-ink-800 transition"
-                >
-                  <span>Explore Services</span>
-                </Link>
-              </div>
-
-              {/* Quick Trust Highlights */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-8 mt-8 border-t border-line text-xs font-medium text-steel">
-                <div className="p-2 sm:p-0">
-                  <span className="block font-bold text-star text-sm">Custom Code</span>
-                  <span>100% Client Owned</span>
-                </div>
-                <div className="p-2 sm:p-0">
-                  <span className="block font-bold text-star text-sm">Direct Engineering</span>
-                  <span>No Template Lock-in</span>
-                </div>
-                <div className="p-2 sm:p-0">
-                  <span className="block font-bold text-star text-sm">Production Ready</span>
-                  <span>Tested &amp; Scalable</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Hero Right Visual */}
-            <div className="lg:col-span-5 flex items-center justify-center">
-              <HeroGraphic />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================== */}
-      {/* 2. INTRODUCTION / POSITIONING STATEMENT                             */}
-      {/* ================================================================== */}
-      <section className="py-16 px-4 sm:px-6 border-b border-line bg-ink-800/60">
-        <div className="mx-auto max-w-5xl text-center">
-          <ScrollReveal>
-            <p className="font-mono text-xs uppercase tracking-wider text-signal font-semibold mb-3">
-              Our Core Philosophy
-            </p>
-            <p className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-star leading-snug tracking-tight">
-              Technology should solve real problems, simplify everyday operations, and create better ways of working.
-            </p>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* ================================================================== */}
-      {/* 3. THREE CORE SERVICE PILLARS                                       */}
-      {/* ================================================================== */}
-      <section className="py-20 px-4 sm:px-6 border-b border-line bg-panel">
-        <div className="mx-auto max-w-7xl">
-          <ScrollReveal>
-            <SectionHeader
-              badge="Services"
-              title="Comprehensive technology capabilities"
-              description="We design and build systems across three core pillars to help businesses modernize their software and automate repetitive tasks."
+      <section className="relative min-h-[500px] sm:min-h-[580px] lg:min-h-[640px] pt-12 pb-16 sm:pt-20 sm:pb-24 px-4 sm:px-6 border-b border-line bg-ink-900 flex items-center overflow-hidden">
+        {/* Background Image Layer with Seamless Faded Edges */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0">
+          <div className="relative w-full h-full">
+            <Image
+              src="/images/hero-workspace.jpg"
+              alt="TechKnox Technology Development Workspace"
+              fill
+              priority
+              quality={95}
+              className="object-cover object-[75%_center] md:object-[68%_center] opacity-45 dark:opacity-55"
             />
-          </ScrollReveal>
+            {/* Multi-directional gradient masks for edge fading matching the reference */}
+            <div className="absolute inset-0 bg-gradient-to-r from-ink-900 via-ink-900/90 sm:via-ink-900/75 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-transparent to-ink-900/80 z-10" />
+            <div className="absolute inset-0 bg-purple-950/20 dark:bg-purple-950/35 mix-blend-multiply z-10" />
+          </div>
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Pillar 01 */}
-            <ScrollReveal className="rounded-xl border border-line bg-panel p-8 flex flex-col justify-between hover:border-line-bright transition shadow-sm">
-              <div>
-                <div className="w-10 h-10 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-signal font-bold font-mono text-xs mb-6">
-                  01
-                </div>
-                <h3 className="font-display text-2xl font-bold text-star mb-3">Software Solutions</h3>
-                <p className="text-sm text-steel leading-relaxed mb-6">
-                  Custom web applications, business dashboards, and tailored software designed around specific operational workflows.
-                </p>
-                <ul className="space-y-2 text-xs text-steel border-t border-line pt-4">
-                  {['Web Applications', 'Mobile Applications', 'Custom Business Software', 'Dashboards & Analytics', 'CRM Systems & Customer Portals'].map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-signal shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="pt-6 mt-6 border-t border-line">
-                <Link href="/services/web-app-development" className="inline-flex items-center gap-1.5 text-xs font-semibold text-signal hover:underline">
-                  <span>Explore Software Solutions</span>
-                  <ArrowRightIcon className="w-3 h-3" />
-                </Link>
-              </div>
-            </ScrollReveal>
+        {/* Hero Foreground Content */}
+        <div className="relative z-20 mx-auto max-w-7xl w-full">
+          <div className="max-w-xl lg:max-w-2xl">
+            {/* Minimal Brand Tag matching reference */}
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-purple-800/40 bg-purple-950/50 backdrop-blur-sm text-[11px] font-medium text-purple-300 mb-5 shadow-xs">
+              <span>Smart Solutions. Real Impact.</span>
+            </div>
 
-            {/* Pillar 02 */}
-            <ScrollReveal delay={80} className="rounded-xl border border-line bg-panel p-8 flex flex-col justify-between hover:border-line-bright transition shadow-sm">
-              <div>
-                <div className="w-10 h-10 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-signal font-bold font-mono text-xs mb-6">
-                  02
-                </div>
-                <h3 className="font-display text-2xl font-bold text-star mb-3">AI &amp; Automation</h3>
-                <p className="text-sm text-steel leading-relaxed mb-6">
-                  AI-powered automation for repetitive operational processes, intelligent chatbots, and document parsing workflows.
-                </p>
-                <ul className="space-y-2 text-xs text-steel border-t border-line pt-4">
-                  {['AI Agents & Assistants', 'Business Workflow Automation', 'Document & Invoice OCR', 'Lead Routing & Qualification', 'n8n & Custom Event Triggers'].map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-signal shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="pt-6 mt-6 border-t border-line">
-                <Link href="/services/ai-automation" className="inline-flex items-center gap-1.5 text-xs font-semibold text-signal hover:underline">
-                  <span>Explore AI &amp; Automation</span>
-                  <ArrowRightIcon className="w-3 h-3" />
-                </Link>
-              </div>
-            </ScrollReveal>
+            {/* Headline matching reference */}
+            <h1 className="font-display text-[30px] sm:text-4xl md:text-5xl lg:text-[52px] font-bold tracking-tight text-white leading-[1.14] mb-5">
+              Where Ideas Evolve
+              <br />
+              Into <span className="text-purple-500 dark:text-purple-400">Digital Innovation.</span>
+            </h1>
 
-            {/* Pillar 03 */}
-            <ScrollReveal delay={160} className="rounded-xl border border-line bg-panel p-8 flex flex-col justify-between hover:border-line-bright transition shadow-sm">
-              <div>
-                <div className="w-10 h-10 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-signal font-bold font-mono text-xs mb-6">
-                  03
-                </div>
-                <h3 className="font-display text-2xl font-bold text-star mb-3">API &amp; System Integration</h3>
-                <p className="text-sm text-steel leading-relaxed mb-6">
-                  API integration connecting the third-party platforms, CRMs, payment gateways, and databases already used by your team.
-                </p>
-                <ul className="space-y-2 text-xs text-steel border-t border-line pt-4">
-                  {['Custom API Integration', 'Third-Party Webhooks & Sync', 'Payment Gateway Integration', 'Database Connectors', 'Cloud System Connectivity'].map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-signal shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="pt-6 mt-6 border-t border-line">
-                <Link href="/services/api-integration" className="inline-flex items-center gap-1.5 text-xs font-semibold text-signal hover:underline">
-                  <span>Explore API Integrations</span>
-                  <ArrowRightIcon className="w-3 h-3" />
-                </Link>
-              </div>
-            </ScrollReveal>
+            {/* Supporting Description */}
+            <p className="text-xs sm:text-base text-slate-300 dark:text-slate-400 leading-relaxed mb-8 max-w-lg">
+              TechKnox transforms ambitious ideas into intelligent digital experiences, automation systems and scalable technology solutions.
+            </p>
+
+            {/* Hero Single Glowing CTA Button matching reference */}
+            <div>
+              <Link
+                href="/services"
+                id="hero-cta-primary"
+                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 px-6 sm:px-7 py-3.5 text-xs sm:text-sm font-semibold text-white shadow-[0_0_25px_rgba(147,51,234,0.45)] transition-all duration-200 active:scale-[0.97] hover:-translate-y-0.5"
+              >
+                <span>Explore Services</span>
+                <ArrowRightIcon className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ================================================================== */}
-      {/* 4. TECHNOLOGY STACK                                                 */}
+      {/* 2. ABOUT US SECTION & CAPABILITIES                                  */}
       {/* ================================================================== */}
-      <section className="py-16 px-4 sm:px-6 border-b border-line bg-ink-800/40">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 border-b border-line bg-ink">
         <div className="mx-auto max-w-7xl">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <p className="font-mono text-xs uppercase tracking-wider text-signal font-semibold mb-2">
+          <ScrollReveal>
+            <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+              <span className="font-mono text-xs uppercase tracking-widest text-purple-500 dark:text-purple-400 font-bold block mb-2">
+                ABOUT US
+              </span>
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-[34px] font-bold tracking-tight text-white leading-tight">
+                Building Technology That Powers Growth
+              </h2>
+              {/* Subtle accent bar matching reference */}
+              <div className="w-12 h-[3px] rounded-full bg-purple-600/80 mx-auto my-4" />
+              <p className="text-xs sm:text-sm md:text-base text-slate-400 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
+                TechKnox is a technology-focused company helping businesses turn ideas into scalable digital solutions. From modern websites and applications to automation and data-driven systems, we combine technology with practical business thinking.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Capabilities 2-Card Mobile & 4-Card Desktop Responsive Grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+            {capabilityCards.map((card, idx) => {
+              const Icon = card.icon;
+              return (
+                <ScrollReveal
+                  key={card.title}
+                  delay={idx * 50}
+                  className="rounded-2xl border border-line bg-panel p-4 sm:p-6 flex flex-col justify-between hover:border-purple-500/40 hover:shadow-[0_8px_30px_rgba(124,58,237,0.12)] hover:-translate-y-1 transition-all duration-200 group"
+                >
+                  <div>
+                    {/* Purple Outline Icon Box */}
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl border border-purple-500/30 bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4 sm:mb-5 group-hover:border-purple-500/50 group-hover:scale-105 transition-all duration-200">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="font-display text-sm sm:text-base font-bold text-white mb-1.5 sm:mb-2 group-hover:text-purple-400 transition-colors leading-tight">
+                      {card.title}
+                    </h3>
+                    <p className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-400 leading-relaxed mb-4 line-clamp-3 sm:line-clamp-none">
+                      {card.description}
+                    </p>
+                  </div>
+                  <div className="pt-2 sm:pt-3">
+                    <Link
+                      href={card.link}
+                      className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-semibold text-purple-400 hover:text-purple-300 group-hover:underline"
+                    >
+                      <span>Learn More</span>
+                      <ArrowRightIcon className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-1" />
+                    </Link>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================== */}
+      {/* 3. TECHNOLOGY STACK                                                 */}
+      {/* ================================================================== */}
+      <section className="py-14 sm:py-16 px-4 sm:px-6 border-b border-line bg-ink-800/40">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+            <p className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-purple-600 dark:text-purple-400 font-semibold mb-2">
               Technology Stack
             </p>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-star">
@@ -573,13 +550,14 @@ export default async function HomePage() {
       {/* ================================================================== */}
       {/* 10. REACH OUT / FINAL CONTACT BANNER                                */}
       {/* ================================================================== */}
-      <section className="py-20 px-4 sm:px-6 bg-ink-800">
-        <div className="mx-auto max-w-5xl">
-          <div className="rounded-2xl border border-line bg-panel p-8 sm:p-14 text-center shadow-sm">
-            <p className="font-mono text-xs uppercase tracking-wider text-signal font-semibold mb-3">
-              Get In Touch
-            </p>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-star mb-4">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-ink-800/40 border-t border-line">
+        <div className="mx-auto max-w-4xl">
+          <div className="rounded-2xl border border-line bg-panel p-8 sm:p-12 text-center shadow-sm">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-line bg-panel text-[10px] sm:text-xs font-mono uppercase tracking-wider font-semibold text-purple-600 dark:text-purple-400 mb-3 shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+              <span>Get In Touch</span>
+            </div>
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-star mb-3">
               Let&apos;s discuss your project.
             </h2>
             <p className="max-w-lg mx-auto text-sm sm:text-base text-steel leading-relaxed mb-8">
@@ -590,26 +568,26 @@ export default async function HomePage() {
               <Link
                 href="/request-a-solution"
                 id="footer-start-project-btn"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-signal px-5 sm:px-6 py-3 sm:py-3.5 text-xs font-semibold text-white shadow-sm hover:bg-signal-hover transition active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-700 px-5 sm:px-6 py-3 sm:py-3.5 text-xs font-semibold text-white shadow-xs transition-colors active:scale-[0.98]"
               >
                 <span>Start a Project</span>
                 <ArrowRightIcon className="w-4 h-4" />
               </Link>
 
               <a
-                href="https://wa.me/918310179301?text=Hi%20TechKnox%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                href="https://wa.me/918310179301?text=Hi%20techknox%2C%20I%27d%20like%20to%20discuss%20a%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-4 sm:px-5 py-3 sm:py-3.5 text-xs font-semibold text-emerald-600 hover:bg-emerald-500/20 transition"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 sm:px-5 py-3 sm:py-3.5 text-xs font-semibold text-emerald-600 hover:bg-emerald-500/20 transition-colors"
               >
-                <WhatsAppIcon className="w-4 h-4 text-emerald-600" />
+                <WhatsAppOutlineIcon className="w-4 h-4 text-emerald-600" />
                 <span>WhatsApp Us</span>
               </a>
 
               {profile.email && (
                 <a
                   href={`mailto:${profile.email}`}
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-panel px-4 sm:px-5 py-3 sm:py-3.5 text-xs font-medium text-star hover:bg-ink-800 transition max-w-full truncate"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-line bg-panel px-4 sm:px-5 py-3 sm:py-3.5 text-xs font-medium text-star hover:bg-ink-800 hover:border-line-bright transition-colors max-w-full truncate"
                 >
                   <span className="truncate">Email: {profile.email}</span>
                 </a>
@@ -621,3 +599,4 @@ export default async function HomePage() {
     </div>
   );
 }
+

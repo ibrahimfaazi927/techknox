@@ -13,42 +13,42 @@
     --border-line: #E2E8F0;
     --border-line-bright: #CBD5E1;
     --border-line-subtle: rgba(15, 23, 42, 0.04);
-    --signal: #1D4ED8;
-    --signal-hover: #1E40AF;
-    --signal-glow: rgba(29, 78, 216, 0.15);
-    --signal2: #2563EB;
-    --signal2-hover: #1D4ED8;
+    --signal: #7C3AED;
+    --signal-hover: #6D28D9;
+    --signal-glow: rgba(124, 58, 237, 0.15);
+    --signal2: #9333EA;
+    --signal2-hover: #7C3AED;
     --text-star: #0F172A;
     --text-steel: #334155;
     --text-steeldim: #64748B;
-    --grid-dot: rgba(15, 23, 42, 0.06);
-    --hero-glow: rgba(29, 78, 216, 0.06);
-    --card-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
-    --card-shadow-hover: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    --grid-dot: rgba(15, 23, 42, 0.05);
+    --hero-glow: rgba(124, 58, 237, 0.06);
+    --card-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
+    --card-shadow-hover: 0 8px 20px -4px rgba(15, 23, 42, 0.06), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
   }
 
   .dark {
-    --bg-ink: #050608;
-    --bg-ink-900: #050608;
-    --bg-ink-800: #0A0D12;
-    --bg-panel: #0A0D12;
-    --bg-panel-light: #0F131A;
-    --bg-panel-card: #0F131A;
-    --border-line: #161B22;
-    --border-line-bright: #21262D;
+    --bg-ink: #07090E;
+    --bg-ink-900: #05060A;
+    --bg-ink-800: #0C1017;
+    --bg-panel: #0C1017;
+    --bg-panel-light: #121824;
+    --bg-panel-card: #101520;
+    --border-line: #18202E;
+    --border-line-bright: #243045;
     --border-line-subtle: rgba(255, 255, 255, 0.03);
-    --signal: #2563EB;
-    --signal-hover: #1D4ED8;
-    --signal-glow: rgba(37, 99, 235, 0.12);
-    --signal2: #3B82F6;
-    --signal2-hover: #2563EB;
-    --text-star: #F0F6FC;
-    --text-steel: #8B949E;
-    --text-steeldim: #6E7681;
+    --signal: #8B5CF6;
+    --signal-hover: #7C3AED;
+    --signal-glow: rgba(139, 92, 246, 0.15);
+    --signal2: #A855F7;
+    --signal2-hover: #8B5CF6;
+    --text-star: #F1F5F9;
+    --text-steel: #94A3B8;
+    --text-steeldim: #64748B;
     --grid-dot: rgba(255, 255, 255, 0.03);
-    --hero-glow: rgba(37, 99, 235, 0.04);
-    --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.6), 0 1px 2px -1px rgba(0, 0, 0, 0.5);
-    --card-shadow-hover: 0 12px 28px -6px rgba(0, 0, 0, 0.8), 0 8px 10px -6px rgba(0, 0, 0, 0.6);
+    --hero-glow: rgba(139, 92, 246, 0.06);
+    --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
+    --card-shadow-hover: 0 10px 24px -4px rgba(0, 0, 0, 0.7), 0 6px 8px -3px rgba(0, 0, 0, 0.5);
   }
 
   * {
@@ -58,7 +58,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-ink text-star min-h-screen antialiased selection:bg-signal selection:text-white transition-colors duration-150;
+    @apply bg-ink text-star min-h-screen antialiased selection:bg-purple-600 selection:text-white transition-colors duration-150;
   }
   :focus-visible {
     outline: 2px solid var(--signal);

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useTheme } from './ThemeProvider';
+import { SunIcon, MoonIcon } from './Icons';
 
 export default function ThemeToggle({ className = '' }: { className?: string }) {
   const { resolvedTheme, setTheme } = useTheme();
@@ -12,8 +13,6 @@ export default function ThemeToggle({ className = '' }: { className?: string }) 
   }, []);
 
   const toggleTheme = () => {
-    // If resolvedTheme is available from state, toggle based on it,
-    // otherwise fallback to inspecting document.documentElement
     const currentIsDark = mounted
       ? resolvedTheme === 'dark'
       : typeof document !== 'undefined'
@@ -29,41 +28,61 @@ export default function ThemeToggle({ className = '' }: { className?: string }) 
       onClick={toggleTheme}
       aria-label="Toggle light and dark theme"
       title="Toggle light and dark theme"
-      className={`relative flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-panel text-steel transition hover:border-line-bright hover:text-star focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal ${className}`}
+      className={`relative flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-panel text-steel transition-colors hover:border-line-bright hover:text-star focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal ${className}`}
     >
-      {/* Sun Icon (Visible in dark mode, switches to light) */}
-      <svg
-        className={`h-4 w-4 text-amber-400 transition-transform duration-300 ${
-          mounted ? (resolvedTheme === 'dark' ? 'block' : 'hidden') : 'dark:block hidden'
-        }`}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-        />
-      </svg>
-
-      {/* Moon Icon (Visible in light mode, switches to dark) */}
-      <svg
-        className={`h-4 w-4 text-signal transition-transform duration-300 ${
-          mounted ? (resolvedTheme === 'light' ? 'block' : 'hidden') : 'dark:hidden block'
-        }`}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-        />
-      </svg>
+      {mounted && resolvedTheme === 'dark' ? (
+        <SunIcon className="h-4 w-4 text-amber-400" />
+      ) : (
+        <MoonIcon className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+      )}
     </button>
   );
 }
+
+export function ThemeMenuSwitch() {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = mounted ? resolvedTheme === 'dark' : true;
+
+  return (
+    <div className="flex items-center justify-between p-2 rounded-xl border border-line bg-panel">
+      <div className="flex items-center gap-2 pl-1">
+        <span className="text-xs font-medium text-star">Appearance</span>
+      </div>
+      <div className="flex items-center gap-1 bg-ink-800 p-1 rounded-lg border border-line">
+        <button
+          type="button"
+          onClick={() => setTheme('light')}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+            !isDark
+              ? 'bg-panel text-star shadow-xs border border-line'
+              : 'text-steel hover:text-star'
+          }`}
+          aria-label="Set Light Theme"
+        >
+          <SunIcon className="w-3.5 h-3.5 text-amber-500" />
+          <span>Light</span>
+        </button>
+        <button
+          type="button"
+          onClick={() => setTheme('dark')}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+            isDark
+              ? 'bg-panel text-star shadow-xs border border-line'
+              : 'text-steel hover:text-star'
+          }`}
+          aria-label="Set Dark Theme"
+        >
+          <MoonIcon className="w-3.5 h-3.5 text-purple-500" />
+          <span>Dark</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
