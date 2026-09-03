@@ -3,6 +3,7 @@ import React from 'react';
 interface SectionHeaderProps {
   badge?: string;
   title: string;
+  highlightWord?: string;
   description?: string;
   align?: 'left' | 'center';
   className?: string;
@@ -11,29 +12,45 @@ interface SectionHeaderProps {
 export default function SectionHeader({
   badge,
   title,
+  highlightWord,
   description,
-  align = 'left',
+  align = 'center',
   className = ''
 }: SectionHeaderProps) {
   const isCenter = align === 'center';
 
+  // If highlightWord is provided, split the title around it and apply gradient
+  const renderTitle = () => {
+    if (highlightWord && title.includes(highlightWord)) {
+      const parts = title.split(highlightWord);
+      return (
+        <>
+          {parts[0]}
+          <span className="bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
+            {highlightWord}
+          </span>
+          {parts[1]}
+        </>
+      );
+    }
+    return title;
+  };
+
   return (
-    <div className={`mb-10 md:mb-14 ${isCenter ? 'text-center mx-auto max-w-2xl' : 'max-w-2xl'} ${className}`}>
+    <div className={`mb-16 md:mb-20 ${isCenter ? 'text-center' : ''} ${className}`}>
       {badge && (
-        <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-line bg-panel text-[10px] sm:text-xs font-mono uppercase tracking-wider font-semibold text-signal mb-3 shadow-xs ${isCenter ? 'mx-auto' : ''}`}>
-          <span className="w-1.5 h-1.5 rounded-full bg-signal" />
-          <span>{badge}</span>
+        <div className={`text-xs font-mono uppercase tracking-widest text-violet-400 font-semibold mb-4 ${isCenter ? 'mx-auto' : ''}`}>
+          {badge}
         </div>
       )}
-      <h2 className="font-display text-2xl sm:text-3xl lg:text-[32px] font-bold tracking-tight text-star leading-snug">
-        {title}
+      <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+        {renderTitle()}
       </h2>
       {description && (
-        <p className="mt-2.5 text-sm sm:text-[15px] text-steel leading-relaxed">
+        <p className="text-zinc-400 text-sm sm:text-base leading-relaxed font-normal max-w-xl mt-4 mx-auto">
           {description}
         </p>
       )}
     </div>
   );
 }
-

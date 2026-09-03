@@ -29,7 +29,7 @@ export default function RevealObserver() {
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' }
     );
 
     // Observe all current .reveal elements

@@ -17,87 +17,92 @@ export default async function ServicesPage() {
   const services = await getServices();
 
   return (
-    <div className="relative overflow-hidden bg-white dark:bg-ink text-slate-900 dark:text-star">
+    <div className="relative overflow-hidden bg-black text-white selection:bg-zinc-800 selection:text-white">
       {/* ================================================================== */}
       {/* 1. HERO                                                             */}
       {/* ================================================================== */}
-      <section className="pt-14 pb-16 sm:pt-20 sm:pb-20 px-4 sm:px-6 border-b border-slate-200/80 dark:border-line bg-gradient-to-b from-white via-slate-50/70 to-white dark:from-ink-900 dark:via-ink dark:to-ink-800">
-        <div className="mx-auto max-w-7xl">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-indigo-200/80 dark:border-indigo-800/40 bg-indigo-50/80 dark:bg-indigo-950/50 text-[10px] sm:text-xs font-mono font-semibold text-indigo-700 dark:text-indigo-400 mb-5 shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-              <span>Services &amp; Capabilities</span>
-            </div>
-            <h1 className="font-display text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-slate-950 dark:text-star leading-[1.15] mb-4">
-              Technology engineered around your specific business requirements.
-            </h1>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-steel leading-relaxed max-w-2xl font-normal">
-              From web applications and business portals to AI-driven automation and API integrations, explore our core engineering disciplines below.
-            </p>
+      <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-24 px-6 md:px-12 border-b border-zinc-900 overflow-hidden">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-violet-600/10 rounded-full blur-[140px] pointer-events-none" />
+
+        <div className="relative z-10 max-w-5xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-950/80 text-xs font-mono uppercase tracking-widest text-violet-400 mb-6">
+            <span className="w-2 h-2 rounded-full bg-violet-400" />
+            <span>Services &amp; Capabilities</span>
           </div>
+
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6">
+            Technology engineered around your{' '}
+            <span className="bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
+              specific requirements.
+            </span>
+          </h1>
+
+          <p className="text-zinc-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-normal">
+            From web applications and business portals to AI-driven automation and API integrations, explore our core engineering disciplines below.
+          </p>
         </div>
       </section>
 
       {/* ================================================================== */}
       {/* 2. SERVICES CATALOG                                                 */}
       {/* ================================================================== */}
-      <section className="py-14 sm:py-20 px-4 sm:px-6 border-b border-slate-200/80 dark:border-line bg-slate-50/40 dark:bg-ink-800/30">
-        <div className="mx-auto max-w-7xl">
+      <section className="py-20 sm:py-28 px-6 md:px-12 border-b border-zinc-900 bg-black">
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 gap-8">
             {services.map((service, index) => (
               <ScrollReveal key={service.id} delay={index * 50}>
                 <div
                   id={service.slug}
-                  className="rounded-2xl border border-slate-200/80 dark:border-line bg-white dark:bg-panel p-6 sm:p-10 shadow-xs hover:border-slate-300 dark:hover:border-line-bright transition"
+                  className="rounded-2xl border border-zinc-900 bg-zinc-950/40 p-8 sm:p-12 hover:border-violet-500/40 hover:shadow-glow-violet transition-all duration-300"
                 >
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
                     {/* Left: Info */}
                     <div className="lg:col-span-6">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-11 h-11 rounded-xl bg-indigo-50 dark:bg-ink-800 border border-indigo-100 dark:border-line flex items-center justify-center text-indigo-600 dark:text-indigo-400 shadow-2xs">
-                          <ServiceIconMapper icon={service.icon} className="w-5 h-5" />
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-violet-400 shadow-xs">
+                          <ServiceIconMapper icon={service.icon} className="w-6 h-6" />
                         </div>
-                        <span className="font-mono text-xs uppercase tracking-wider text-slate-400 dark:text-steeldim font-semibold">
+                        <span className="font-mono text-xs uppercase tracking-widest text-zinc-500 font-semibold">
                           Service 0{index + 1}
                         </span>
                       </div>
 
-                      <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-star mb-3">
+                      <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 tracking-tight">
                         {service.title}
                       </h2>
 
-                      <p className="text-sm sm:text-base text-slate-600 dark:text-steel leading-relaxed mb-6 font-normal">
+                      <p className="text-sm sm:text-base text-zinc-400 leading-relaxed mb-8 font-normal">
                         {service.description || service.short_description}
                       </p>
 
-                      <div className="flex flex-wrap items-center gap-3 pt-2">
+                      <div className="flex flex-wrap items-center gap-4 pt-2">
                         <Link
                           href={`/services/${service.slug}`}
-                          className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 px-5 py-2.5 text-xs font-semibold text-white shadow-xs transition-colors"
+                          className="inline-flex items-center gap-2 rounded-lg bg-white text-black px-6 py-3 text-xs font-semibold uppercase tracking-widest hover:bg-zinc-200 transition-all duration-200 shadow-md"
                         >
-                          <span>Explore Service Details</span>
+                          <span>Explore Details</span>
                           <ArrowRightIcon className="w-3.5 h-3.5" />
                         </Link>
                         <Link
                           href={`/request-a-solution?service=${encodeURIComponent(service.title)}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 dark:text-steel hover:text-slate-900 dark:hover:text-star transition px-3 py-2"
+                          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider font-semibold text-zinc-400 hover:text-violet-400 transition-colors px-4 py-3"
                         >
-                          <span>Request Scoping →</span>
+                          <span>Request Scoping &rarr;</span>
                         </Link>
                       </div>
                     </div>
 
                     {/* Right: Key Deliverables & Tech */}
-                    <div className="lg:col-span-6 rounded-2xl bg-slate-50/70 dark:bg-ink-800 p-6 sm:p-7 border border-slate-200/70 dark:border-line space-y-4">
+                    <div className="lg:col-span-6 rounded-2xl bg-black border border-zinc-900 p-6 sm:p-8 space-y-6">
                       {service.features && service.features.length > 0 && (
                         <div>
-                          <p className="font-mono text-[10px] uppercase tracking-wider text-slate-500 dark:text-steeldim font-semibold mb-3">
+                          <p className="font-mono text-xs uppercase tracking-widest text-violet-400 font-semibold mb-4">
                             Key Deliverables &amp; Capabilities
                           </p>
-                          <ul className="space-y-2">
+                          <ul className="space-y-3">
                             {service.features.map((feat) => (
-                              <li key={feat} className="flex items-start gap-2 text-xs text-slate-700 dark:text-steel">
-                                <CheckIcon className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
+                              <li key={feat} className="flex items-start gap-3 text-xs sm:text-sm text-zinc-300">
+                                <CheckIcon className="w-4 h-4 text-violet-400 shrink-0 mt-0.5" />
                                 <span>{feat}</span>
                               </li>
                             ))}
@@ -106,17 +111,17 @@ export default async function ServicesPage() {
                       )}
 
                       {service.technologies && service.technologies.length > 0 && (
-                        <div className="pt-3 border-t border-slate-200/60 dark:border-line">
-                          <p className="font-mono text-[10px] uppercase tracking-wider text-slate-500 dark:text-steeldim font-semibold mb-2">
-                            Supported Technologies
+                        <div className="pt-4 border-t border-zinc-900">
+                          <p className="font-mono text-xs uppercase tracking-widest text-zinc-500 font-semibold mb-3">
+                            Technologies Used
                           </p>
-                          <div className="flex flex-wrap gap-1.5">
-                            {service.technologies.map((t) => (
+                          <div className="flex flex-wrap gap-2">
+                            {service.technologies.map((tech) => (
                               <span
-                                key={t}
-                                className="px-2.5 py-0.5 rounded-md bg-white dark:bg-panel border border-slate-200 dark:border-line font-mono text-[10px] text-slate-700 dark:text-steel"
+                                key={tech}
+                                className="px-3 py-1 rounded-lg border border-zinc-900 bg-zinc-900/50 text-xs font-mono text-zinc-400"
                               >
-                                {t}
+                                {tech}
                               </span>
                             ))}
                           </div>
@@ -132,32 +137,24 @@ export default async function ServicesPage() {
       </section>
 
       {/* ================================================================== */}
-      {/* 3. CTA BANNER                                                       */}
+      {/* 3. CTA BANNER                                                      */}
       {/* ================================================================== */}
-      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-white dark:bg-panel">
-        <div className="mx-auto max-w-4xl text-center">
-          <div className="rounded-3xl border border-slate-200/80 dark:border-line bg-slate-50/50 dark:bg-ink-800/40 p-8 sm:p-12 shadow-xs">
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-star mb-3">
-              Need a cross-discipline solution?
+      <section className="py-20 sm:py-28 px-6 md:px-12 bg-black">
+        <div className="max-w-4xl mx-auto">
+          <div className="rounded-[2rem] border border-violet-500/30 bg-gradient-to-br from-violet-600 via-indigo-700 to-indigo-900 p-10 sm:p-14 text-center text-white shadow-cta-glow relative overflow-hidden">
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 tracking-tight">
+              Ready to scope your engineering requirements?
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-steel max-w-xl mx-auto mb-8 leading-relaxed font-normal">
-              Most business challenges combine custom software with API integrations and automated workflows. We can architect a unified solution for your specific requirements.
+            <p className="text-violet-100/90 text-sm sm:text-base mb-8 max-w-xl mx-auto font-normal">
+              Book an architectural consultation or submit your project details. We&apos;ll evaluate feasibility and deliver a transparent scope within 48 hours.
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link
-                href="/request-a-solution"
-                className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 px-6 py-3.5 text-xs font-semibold text-white shadow-xs transition-colors"
-              >
-                <span>Start a Project</span>
-                <ArrowRightIcon className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-line bg-white dark:bg-panel px-5 py-3.5 text-xs font-medium text-slate-800 dark:text-star hover:bg-slate-50 transition-colors"
-              >
-                <span>Talk with an Engineer</span>
-              </Link>
-            </div>
+            <Link
+              href="/request-a-solution"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white text-black text-xs font-semibold uppercase tracking-widest hover:bg-zinc-100 transition-all duration-200 shadow-lg cursor-pointer"
+            >
+              <span>Submit Project Inquiry</span>
+              <ArrowRightIcon className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
