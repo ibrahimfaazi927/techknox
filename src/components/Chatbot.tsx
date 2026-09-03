@@ -12,8 +12,8 @@ interface Message {
 }
 
 const suggestedQuestions = [
-  'What services does TechKnox provide?',
-  'What can TechKnox build?',
+  'What services does Teknox provide?',
+  'What can Teknox build?',
   'I need a website or web application',
   'I need an AI solution',
   'Can you automate my business?',
@@ -23,7 +23,7 @@ const suggestedQuestions = [
 const welcomeMessage: Message = {
   id: 'welcome-msg',
   role: 'assistant',
-  content: `Hi! 👋 I'm the TechKnox AI assistant.\n\nI can help you learn about our services and explore what kind of technology solution might be right for your business.\n\nWhat would you like to know?`,
+  content: `Hi! 👋 I'm the Teknox AI assistant.\n\nI can help you learn about our services and explore what kind of technology solution might be right for your business.\n\nWhat would you like to know?`,
   timestamp: ''
 };
 
@@ -64,43 +64,38 @@ export default function Chatbot() {
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     };
 
-    const newMessages = [...messages, userMessage];
-    setMessages(newMessages);
-    setInput('');
+    setMessages((prev) => [...prev, userMessage]);
+    if (!textToSend) setInput('');
     setIsLoading(true);
     setError(null);
 
     try {
-      // Send conversation history (excluding welcome message if fresh)
-      const apiMessages = newMessages
-        .filter((m) => m.id !== 'welcome-msg')
-        .map((m) => ({ role: m.role, content: m.content }));
-
-      const res = await fetch('/api/chat', {
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: apiMessages })
+        body: JSON.stringify({
+          messages: [...messages, userMessage].map((m) => ({
+            role: m.role,
+            content: m.content
+          }))
+        })
       });
 
-      if (!res.ok) {
-        throw new Error(`Server returned error: ${res.status}`);
+      if (!response.ok) {
+        throw new Error('Failed to get a response');
       }
 
-      const data = await res.json();
-      if (data.reply) {
-        const assistantMessage: Message = {
-          id: `ai-${Date.now()}`,
-          role: 'assistant',
-          content: data.reply,
-          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        };
-        setMessages((prev) => [...prev, assistantMessage]);
-      } else {
-        throw new Error('No reply received');
-      }
-    } catch (err) {
-      console.error('Chat error:', err);
-      setError('Could not connect to the consultant. Please try again.');
+      const data = await response.json();
+      const assistantMessage: Message = {
+        id: `assistant-${Date.now()}`,
+        role: 'assistant',
+        content: data.reply,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+
+      setMessages((prev) => [...prev, assistantMessage]);
+    } catch {
+      setError('Something went wrong. Please try again or reach out directly.');
     } finally {
       setIsLoading(false);
     }
@@ -116,7 +111,6 @@ export default function Chatbot() {
   const handleResetChat = () => {
     setMessages([welcomeMessage]);
     setError(null);
-    setInput('');
   };
 
   return (
@@ -126,8 +120,8 @@ export default function Chatbot() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="group relative flex h-12 w-12 sm:h-13 sm:w-13 items-center justify-center rounded-full bg-gradient-to-tr from-purple-600 via-purple-500 to-indigo-500 hover:from-purple-500 hover:to-indigo-400 text-white shadow-[0_0_22px_rgba(147,51,234,0.5)] transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
-          aria-label="Open TechKnox AI Assistant"
+          className="group relative flex h-12 w-12 sm:h-13 sm:w-13 items-center justify-center rounded-full bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white shadow-[0_4px_22px_rgba(79,70,229,0.4)] transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          aria-label="Open Teknox AI Assistant"
         >
           <svg
             className="w-5 h-5 sm:w-5.5 sm:h-5.5 transition-transform duration-200 group-hover:scale-110"
@@ -147,11 +141,11 @@ export default function Chatbot() {
 
       {/* Modern Chat Window */}
       {isOpen && (
-        <div className="flex flex-col w-[calc(100vw-24px)] sm:w-[400px] h-[500px] sm:h-[560px] max-h-[80vh] rounded-xl border border-line bg-panel shadow-xl overflow-hidden animate-in fade-in slide-in-from-bottom-3 duration-200">
+        <div className="flex flex-col w-[calc(100vw-24px)] sm:w-[400px] h-[500px] sm:h-[560px] max-h-[80vh] rounded-2xl border border-slate-200 dark:border-line bg-white dark:bg-panel shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-3 duration-200">
           {/* Header */}
-          <div className="flex items-center justify-between px-5 py-3.5 border-b border-line bg-ink-800">
+          <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-200 dark:border-line bg-slate-50 dark:bg-ink-800">
             <div className="flex items-center gap-3">
-              <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-signal/10 border border-signal/25 text-signal">
+              <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-50 dark:bg-signal/10 border border-indigo-200 dark:border-signal/25 text-indigo-600 dark:text-signal">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path
                     strokeLinecap="round"
@@ -159,16 +153,16 @@ export default function Chatbot() {
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                   />
                 </svg>
-                <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 bg-emerald-500 rounded-full border border-panel" />
+                <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 bg-emerald-500 rounded-full border border-white dark:border-panel" />
               </div>
               <div>
-                <div className="font-display font-bold text-sm text-star flex items-center gap-2">
-                  <span>TechKnox AI</span>
-                  <span className="px-2 py-0.5 rounded-full bg-signal/10 border border-signal/20 text-[10px] font-mono text-signal">
+                <div className="font-display font-bold text-sm text-slate-900 dark:text-star flex items-center gap-2">
+                  <span>Teknox AI</span>
+                  <span className="px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-signal/10 border border-indigo-200 dark:border-signal/20 text-[10px] font-mono text-indigo-700 dark:text-signal">
                     Consultant
                   </span>
                 </div>
-                <div className="text-[11px] font-mono text-steeldim">Solutions & Services Specialist</div>
+                <div className="text-[11px] font-mono text-slate-500 dark:text-steeldim">Solutions & Services Specialist</div>
               </div>
             </div>
 
@@ -234,7 +228,7 @@ export default function Chatbot() {
 
             {/* Error Message */}
             {error && (
-              <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-[11px] text-red-400">
+              <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-[11px] text-red-600 dark:text-red-400">
                 {error}
               </div>
             )}
@@ -285,7 +279,7 @@ export default function Chatbot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask about TechKnox services, tech, solutions..."
+                placeholder="Ask about Teknox services, tech, solutions..."
                 disabled={isLoading}
                 className="w-full rounded-lg border border-line bg-ink-800 px-3.5 py-2.5 pr-11 text-xs text-star placeholder:text-steeldim outline-none focus:border-signal focus:ring-2 focus:ring-signal/20 transition disabled:opacity-50"
               />

@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { getLegalPage } from '@/lib/data';
 
 export const metadata: Metadata = {
-  title: 'Terms and Conditions — TechKnox',
-  description: 'Terms and conditions governing custom software engineering and website usage for TechKnox.'
+  title: 'Terms and Conditions — Teknox',
+  description: 'Terms and conditions governing custom software engineering and website usage for Teknox.'
 };
 
 export const revalidate = 3600;

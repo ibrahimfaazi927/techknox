@@ -119,12 +119,12 @@ export default function SolutionRequestForm({ defaultSolutionType = '' }: Soluti
               {errorMessage}{' '}
               {errorMessage.includes('directly') && (
                 <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=techknoxin@gmail.com"
+                  href="mailto:contact@teknox.dev"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline hover:text-signal transition font-medium"
                 >
-                  techknoxin@gmail.com
+                  contact@teknox.dev
                 </a>
               )}
             </div>

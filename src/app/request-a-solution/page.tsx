@@ -4,9 +4,9 @@ import { ArrowRightIcon } from '@/components/Icons';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Start a Project — Request a Solution · TechKnox',
+  title: 'Start a Project — Request a Solution · Teknox',
   description:
-    'Submit your project requirements to TechKnox. Custom software, AI automation, or API integration — we will assess your needs and respond within one business day.'
+    'Submit your project requirements to Teknox. Custom software, AI automation, or API integration — we will assess your needs and respond within one business day.'
 };
 
 export default function RequestASolutionPage({
@@ -77,7 +77,7 @@ export default function RequestASolutionPage({
                     <span>Contact page →</span>
                   </Link>
                   <a
-                    href="https://wa.me/918310179301?text=Hi%20TechKnox%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                    href="https://wa.me/918310179301?text=Hi%20Teknox%2C%20I%27d%20like%20to%20discuss%20a%20project."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 text-emerald-600 font-medium hover:underline"

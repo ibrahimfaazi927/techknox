@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { getServices, getProjects } from '@/lib/data';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://techknox.dev';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://teknox.dev';
   const [services, projects] = await Promise.all([getServices(), getProjects()]);
 
   const staticRoutes: MetadataRoute.Sitemap = [

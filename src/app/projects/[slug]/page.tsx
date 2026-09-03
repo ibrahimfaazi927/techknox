@@ -18,13 +18,13 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const project = await getProjectBySlug(params.slug);
-  if (!project) return { title: 'Project Not Found — TechKnox' };
+  if (!project) return { title: 'Project Not Found — Teknox' };
 
   return {
-    title: `${project.name} — Case Study · TechKnox`,
+    title: `${project.name} — Case Study · Teknox`,
     description: project.short_description || `Technical case study for ${project.name}`,
     openGraph: {
-      title: `${project.name} — TechKnox`,
+      title: `${project.name} — Teknox`,
       description: project.short_description || undefined
     }
   };

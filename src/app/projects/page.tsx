@@ -6,9 +6,9 @@ import { ArrowRightIcon } from '@/components/Icons';
 import ScrollReveal from '@/components/ScrollReveal';
 
 export const metadata: Metadata = {
-  title: 'Projects & Case Studies — TechKnox',
+  title: 'Projects & Case Studies — Teknox',
   description:
-    'Explore custom software architectures, concept systems, AI pipelines, and API integrations built by TechKnox.'
+    'Explore custom software architectures, concept systems, AI pipelines, and API integrations built by Teknox.'
 };
 
 export const revalidate = 3600;
@@ -17,15 +17,15 @@ export default async function ProjectsPage() {
   const projects = await getProjects();
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden bg-white dark:bg-ink text-slate-900 dark:text-star">
       {/* ================================================================== */}
       {/* 1. HERO                                                             */}
       {/* ================================================================== */}
-      <section className="pt-14 pb-16 sm:pt-20 sm:pb-20 px-4 sm:px-6 border-b border-line bg-panel">
+      <section className="pt-14 pb-16 sm:pt-20 sm:pb-20 px-4 sm:px-6 border-b border-slate-200/80 dark:border-line bg-gradient-to-b from-white via-slate-50/70 to-white dark:from-ink-900 dark:via-ink dark:to-ink-800">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-line bg-panel text-[10px] sm:text-xs font-mono font-semibold text-purple-600 dark:text-purple-400 mb-4 shadow-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-indigo-200/80 dark:border-indigo-800/40 bg-indigo-50/80 dark:bg-indigo-950/50 text-[10px] sm:text-xs font-mono font-semibold text-indigo-700 dark:text-indigo-400 mb-5 shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
               <span>Portfolio &amp; Case Studies</span>
             </div>
             <h1 className="font-display text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-star leading-[1.15] mb-4">

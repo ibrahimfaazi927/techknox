@@ -7,7 +7,7 @@ export async function updateCompanyProfile(formData: FormData) {
   const supabase = await requireAdmin();
 
   // General
-  const brand_name = String(formData.get('brand_name') ?? 'TechKnox').trim();
+  const brand_name = String(formData.get('brand_name') ?? 'Teknox').trim();
   const tagline = String(formData.get('tagline') ?? '').trim() || null;
   const short_description = String(formData.get('short_description') ?? '').trim() || null;
   const full_description = String(formData.get('full_description') ?? '').trim() || null;

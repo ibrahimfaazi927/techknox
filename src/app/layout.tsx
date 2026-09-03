@@ -17,37 +17,37 @@ const display = Space_Grotesk({ subsets: ['latin'], variable: '--font-display', 
 // IBM Plex Mono removed — system monospace fallback used via --font-mono CSS variable.
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://techknox.dev'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://teknox.dev'),
   title: {
-    default: 'TechKnox — We build the technology your business needs',
-    template: '%s · TechKnox'
+    default: 'Teknox — Modern Software, AI Automation & Digital Systems',
+    template: '%s · Teknox'
   },
   description:
-    'TechKnox engineers custom web applications, AI automation, API integrations, software systems, and internal business tools tailored to your operational requirements.',
+    'Teknox engineers high-performance web applications, AI automation pipelines, API integrations, and custom business systems for fast-growing companies.',
   keywords: [
-    'TechKnox',
-    'custom web application development',
-    'AI automation agency',
+    'Teknox',
+    'custom software development',
+    'startup web development',
+    'AI automation studio',
     'API integration services',
     'custom business software',
-    'business dashboards',
-    'workflow automation',
-    'CRM development'
+    'SaaS application development',
+    'workflow automation'
   ],
-  authors: [{ name: 'TechKnox' }],
-  creator: 'TechKnox',
+  authors: [{ name: 'Teknox' }],
+  creator: 'Teknox',
   openGraph: {
-    title: 'TechKnox — We build the technology your business needs',
+    title: 'Teknox — Modern Software, AI Automation & Digital Systems',
     description:
-      'Custom websites, web applications, API integrations, AI systems, and business automation built around your problem.',
+      'High-performance web applications, API integrations, AI systems, and business automation built for modern companies.',
     type: 'website',
-    url: 'https://techknox.dev',
-    siteName: 'TechKnox'
+    url: 'https://teknox.dev',
+    siteName: 'Teknox'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TechKnox — Custom Technology Solutions',
-    description: 'We build the technology your business needs.'
+    title: 'Teknox — Modern Software & AI Solutions',
+    description: 'Engineering intelligent software and digital systems for fast-growing companies.'
   },
   robots: {
     index: true,
@@ -69,7 +69,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html
       lang="en"
       suppressHydrationWarning
-      className={`dark ${body.variable} ${display.variable}`}
+      className={`${body.variable} ${display.variable}`}
     >
       <body className="font-body antialiased bg-ink text-star min-h-screen flex flex-col selection:bg-signal selection:text-white">
         <ThemeProvider>

@@ -1,24 +1,24 @@
 import { CompanyProfile, Service, Solution, Project, ProcessStep, LegalPage } from './types';
 
 export const defaultCompanyProfile: CompanyProfile = {
-  brand_name: 'TechKnox',
+  brand_name: 'Teknox',
   tagline: 'We build the technology your business needs.',
   short_description:
-    'TechKnox is a technology agency that engineers custom web applications, AI automation, API integrations, software systems, and internal business tools tailored to your exact operational requirements.',
+    'Teknox is a modern technology studio that engineers custom web applications, AI automation, API integrations, software systems, and internal business tools tailored to your exact operational requirements.',
   full_description:
-    'TechKnox helps forward-thinking companies solve operational friction and build modern digital capabilities. We take a problem-first approach to software development, designing and building custom websites, web applications, mobile apps, workflow automations, third-party integrations, and AI systems that deliver measurable business outcomes.',
-  email: 'techknoxin@gmail.com',
+    'Teknox helps forward-thinking companies solve operational friction and build modern digital capabilities. We take a problem-first approach to software development, designing and building custom websites, web applications, mobile apps, workflow automations, third-party integrations, and AI systems that deliver measurable business outcomes.',
+  email: 'contact@teknox.dev',
   phone: null,
   whatsapp: null,
   address: null,
   location: null,
   city: null,
   country: null,
-  website: 'https://techknox.dev',
-  linkedin_url: 'https://linkedin.com/company/techknox',
-  github_url: 'https://github.com/techknox',
-  instagram_url: 'https://instagram.com/techknox.dev',
-  twitter_url: 'https://x.com/techknoxdev',
+  website: 'https://teknox.dev',
+  linkedin_url: 'https://linkedin.com/company/teknox',
+  github_url: 'https://github.com/teknox',
+  instagram_url: 'https://instagram.com/teknox.dev',
+  twitter_url: 'https://x.com/teknoxdev',
   business_hours: 'Monday – Friday: 9:00 AM – 6:00 PM (Client Timezones Supported)',
   contact_cta: 'Start a Project',
   footer_description:
@@ -117,7 +117,7 @@ export const sampleServices: Service[] = [
     short_description:
       'Seamlessly connect payment gateways, CRMs, ERPs, WhatsApp Business, AI APIs, accounting software, and third-party SaaS platforms.',
     description:
-      'Silos slow down operations. TechKnox specializes in custom API integrations and middleware that synchronize data bidirectionally between your existing tools. We build robust, webhook-driven pipelines that connect your payment gateways, communication channels, ERPs, CRMs, and custom internal systems.',
+      'Silos slow down operations. Teknox specializes in custom API integrations and middleware that synchronize data bidirectionally between your existing tools. We build robust, webhook-driven pipelines that connect your payment gateways, communication channels, ERPs, CRMs, and custom internal systems.',
     icon: 'plug',
     features: [
       'Payment Gateway Integration (Stripe, Razorpay, PayPal, Bank Webhooks)',
@@ -157,7 +157,7 @@ export const sampleServices: Service[] = [
     short_description:
       'Purpose-built software systems, specialized operational tools, backend architectures, and database infrastructure designed around your business logic.',
     description:
-      'When off-the-shelf SaaS fails to match how your business operates, TechKnox engineers custom software from the ground up. We build modular, secure backends, custom calculation engines, multi-tenant databases, and operational software that gives you full autonomy and control.',
+      'When off-the-shelf SaaS fails to match how your business operates, Teknox engineers custom software from the ground up. We build modular, secure backends, custom calculation engines, multi-tenant databases, and operational software that gives you full autonomy and control.',
     icon: 'terminal',
     features: [
       'Bespoke Backend Engineering (Node.js, Go, Python, Next.js)',
@@ -374,7 +374,7 @@ export const sampleProjects: Project[] = [
     industry: 'Internal Tool / Concept Build',
     project_type: 'Web Application & CRM',
     live_url: null,
-    github_url: 'https://github.com/techknox/techknox',
+    github_url: 'https://github.com/teknox/teknox',
     is_demo: true,
     results: 'Demonstrates modular schema design, sub-100ms CRUD responsiveness, and flexible workflow state machines.',
     status: 'completed',
@@ -404,7 +404,7 @@ export const sampleProjects: Project[] = [
     industry: 'AI & Automation / Concept Build',
     project_type: 'AI System & Pipeline',
     live_url: null,
-    github_url: 'https://github.com/techknox/techknox',
+    github_url: 'https://github.com/teknox/teknox',
     is_demo: true,
     results: 'Processes complex multi-page invoices in under 4 seconds with 98.5% automated field extraction accuracy.',
     status: 'completed',
@@ -434,7 +434,7 @@ export const sampleProjects: Project[] = [
     industry: 'Integration Architecture / Concept Build',
     project_type: 'API & Middleware Engine',
     live_url: null,
-    github_url: 'https://github.com/techknox/techknox',
+    github_url: 'https://github.com/teknox/teknox',
     is_demo: true,
     results: 'Guarantees zero dropped event payloads even during simulated 30-minute downstream API outages.',
     status: 'completed',
@@ -464,7 +464,7 @@ export const sampleProjects: Project[] = [
     industry: 'Business Intelligence / Concept Build',
     project_type: 'Data & Dashboard',
     live_url: null,
-    github_url: 'https://github.com/techknox/techknox',
+    github_url: 'https://github.com/teknox/teknox',
     is_demo: true,
     results: 'Demonstrates sub-300ms aggregate chart rendering across 100,000+ simulated transaction records.',
     status: 'completed',
@@ -487,11 +487,11 @@ export const sampleLegalPages: Record<string, LegalPage> = {
     slug: 'privacy-policy',
     title: 'Privacy Policy',
     content: `
-# Privacy Policy for TechKnox
+# Privacy Policy for Teknox
 
 **Last Updated:** August 2026
 
-TechKnox ("we", "us", or "our") values and respects your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or engage our custom technology development and consulting services.
+Teknox ("we", "us", or "our") values and respects your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or engage our custom technology development and consulting services.
 
 ---
 
@@ -525,7 +525,7 @@ We do **not** sell, rent, or monetize your personal or company information to an
 
 ### 3. Data Confidentiality & Client Intellectual Property
 
-All business specifications, architecture designs, proprietary business logic, and credentials shared with TechKnox during project consultations and client engagements are treated as strictly confidential. We are committed to executing non-disclosure agreements (NDAs) upon client request prior to receiving sensitive business data.
+All business specifications, architecture designs, proprietary business logic, and credentials shared with Teknox during project consultations and client engagements are treated as strictly confidential. We are committed to executing non-disclosure agreements (NDAs) upon client request prior to receiving sensitive business data.
 
 ---
 
@@ -561,8 +561,8 @@ We may update this Privacy Policy from time to time to reflect changes in our op
 ### 8. Contact Us
 
 If you have questions, feedback, or concerns regarding this Privacy Policy, please contact us:
-- **Email:** techknoxin@gmail.com
-- **Website:** [techknox.dev](https://techknox.dev)
+- **Email:** contact@teknox.dev
+- **Website:** [teknox.dev](https://teknox.dev)
 - **Contact Page:** [/contact](file:///contact)
     `
   },
@@ -570,11 +570,11 @@ If you have questions, feedback, or concerns regarding this Privacy Policy, plea
     slug: 'terms-and-conditions',
     title: 'Terms and Conditions',
     content: `
-# Terms and Conditions for TechKnox
+# Terms and Conditions for Teknox
 
 **Last Updated:** August 2026
 
-Please read these Terms and Conditions ("Terms") carefully before using the TechKnox website or engaging TechKnox ("we", "us", or "our") for custom software, web development, AI automation, or technology consulting services.
+Please read these Terms and Conditions ("Terms") carefully before using the Teknox website or engaging Teknox ("we", "us", or "our") for custom software, web development, AI automation, or technology consulting services.
 
 By accessing our website or submitting project requests, you agree to be bound by these Terms. If you do not agree, please do not use our website or services.
 
@@ -582,14 +582,14 @@ By accessing our website or submitting project requests, you agree to be bound b
 
 ### 1. Scope of Technology Services
 
-TechKnox provides custom technology engineering, software development, web and mobile application development, API integrations, workflow automation, and technical consulting. All client engagements are governed by specific project proposals, statements of work (SOW), or service agreements mutually agreed upon between TechKnox and the client.
+Teknox provides custom technology engineering, software development, web and mobile application development, API integrations, workflow automation, and technical consulting. All client engagements are governed by specific project proposals, statements of work (SOW), or service agreements mutually agreed upon between Teknox and the client.
 
 ---
 
 ### 2. Website Use & Intellectual Property
 
-- All content, brand assets, logos, design layouts, graphics, and documentation on this website are the property of TechKnox and are protected by applicable copyright and intellectual property laws.
-- You may not reproduce, copy, distribute, or reverse-engineer any portion of the TechKnox website or concept demonstrations without prior written authorization.
+- All content, brand assets, logos, design layouts, graphics, and documentation on this website are the property of Teknox and are protected by applicable copyright and intellectual property laws.
+- You may not reproduce, copy, distribute, or reverse-engineer any portion of the Teknox website or concept demonstrations without prior written authorization.
 - Concept projects and demo prototypes displayed in our portfolio are showcased for demonstration and capability presentation purposes.
 
 ---
@@ -603,9 +603,9 @@ TechKnox provides custom technology engineering, software development, web and m
 
 ### 4. Third-Party Integrations & External Platforms
 
-TechKnox builds custom integrations connecting client systems to third-party platforms (such as payment gateways, CRMs, WhatsApp Business, AI providers, and ERPs). 
+Teknox builds custom integrations connecting client systems to third-party platforms (such as payment gateways, CRMs, WhatsApp Business, AI providers, and ERPs). 
 - We do not claim official corporate partnership with third-party software providers unless explicitly verified.
-- TechKnox is not responsible for downtimes, API rate limit modifications, pricing changes, or policy alterations instituted by independent third-party providers.
+- Teknox is not responsible for downtimes, API rate limit modifications, pricing changes, or policy alterations instituted by independent third-party providers.
 
 ---
 
@@ -613,19 +613,19 @@ TechKnox builds custom integrations connecting client systems to third-party pla
 
 Clients are responsible for:
 - Providing accurate project requirements, brand assets, and access credentials necessary for project execution.
-- Ensuring they possess appropriate rights and licenses for any text, media, APIs, or data provided to TechKnox for incorporation into projects.
+- Ensuring they possess appropriate rights and licenses for any text, media, APIs, or data provided to Teknox for incorporation into projects.
 
 ---
 
 ### 6. Limitation of Liability
 
-To the maximum extent permitted by applicable law, TechKnox shall not be liable for any indirect, incidental, consequential, or punitive damages resulting from the use or inability to use our website, concept builds, or third-party service dependencies.
+To the maximum extent permitted by applicable law, Teknox shall not be liable for any indirect, incidental, consequential, or punitive damages resulting from the use or inability to use our website, concept builds, or third-party service dependencies.
 
 ---
 
 ### 7. Modifications to Terms
 
-TechKnox reserves the right to modify or replace these Terms at any time. Changes become effective immediately upon posting to this page. Continued use of our website or services after any modifications constitutes acceptance of the revised Terms.
+Teknox reserves the right to modify or replace these Terms at any time. Changes become effective immediately upon posting to this page. Continued use of our website or services after any modifications constitutes acceptance of the revised Terms.
 
 ---
 
@@ -638,8 +638,8 @@ Any disputes arising from the use of our website or services shall be handled th
 ### 9. Inquiries and Contact
 
 If you have questions regarding these Terms and Conditions, please contact us at:
-- **Email:** techknoxin@gmail.com
-- **Website:** [techknox.dev](https://techknox.dev)
+- **Email:** contact@teknox.dev
+- **Website:** [teknox.dev](https://teknox.dev)
 - **Contact Form:** [/contact](file:///contact)
     `
   }

@@ -5,7 +5,7 @@
  * ---------------
  * International phone input with searchable country selector.
  * Uses react-phone-number-input for country data (country codes, calling codes).
- * UI is fully custom-styled to match TechKnox dark/glass aesthetic.
+ * UI is fully custom-styled to match Teknox dark/glass aesthetic.
  *
  * - Default country: India (IN, +91)
  * - Searchable by country name, ISO code, or calling code

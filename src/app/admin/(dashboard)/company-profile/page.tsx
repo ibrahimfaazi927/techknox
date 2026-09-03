@@ -1,8 +1,9 @@
+import { Metadata } from 'next';
 import { getCompanyProfile } from '@/lib/data';
 import SettingsForm from './SettingsForm';
 
-export const metadata = {
-  title: 'Settings — Admin · TechKnox'
+export const metadata: Metadata = {
+  title: 'Settings — Admin · Teknox'
 };
 
 export default async function AdminCompanyProfilePage() {

@@ -5,9 +5,9 @@ import { ArrowRightIcon, WhatsAppOutlineIcon } from '@/components/Icons';
 import ScrollReveal from '@/components/ScrollReveal';
 
 export const metadata: Metadata = {
-  title: 'About TechKnox — Software Engineering Studio',
+  title: 'About Teknox — Software Engineering Studio',
   description:
-    'TechKnox is a technology company specializing in custom software, AI automation, and API integration for businesses.'
+    'Teknox is a modern technology studio specializing in custom software, AI automation, and API integration for businesses.'
 };
 
 export const revalidate = 3600;
@@ -42,24 +42,24 @@ export default async function AboutPage() {
   ];
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden bg-white dark:bg-ink text-slate-900 dark:text-star">
       {/* ================================================================== */}
       {/* 1. HERO                                                             */}
       {/* ================================================================== */}
-      <section className="pt-14 pb-16 sm:pt-20 sm:pb-20 px-4 sm:px-6 border-b border-line bg-panel">
+      <section className="pt-14 pb-16 sm:pt-20 sm:pb-20 px-4 sm:px-6 border-b border-slate-200/80 dark:border-line bg-gradient-to-b from-white via-slate-50/70 to-white dark:from-ink-900 dark:via-ink dark:to-ink-800">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-line bg-panel text-[10px] sm:text-xs font-mono font-semibold text-purple-600 dark:text-purple-400 mb-4 shadow-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-              <span>About TechKnox</span>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-indigo-200/80 dark:border-indigo-800/40 bg-indigo-50/80 dark:bg-indigo-950/50 text-[10px] sm:text-xs font-mono font-semibold text-indigo-700 dark:text-indigo-400 mb-5 shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+              <span>About Teknox</span>
             </div>
-            <h1 className="font-display text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-star leading-[1.15] mb-5">
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-slate-950 dark:text-star leading-[1.15] mb-5">
               A software engineering company building systems for real businesses.
             </h1>
-            <p className="text-sm sm:text-base text-steel leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-steel leading-relaxed max-w-2xl font-normal">
               {profile.full_description ||
                 profile.short_description ||
-                'TechKnox is a technology-focused company helping businesses turn ideas into scalable digital solutions. From modern websites and applications to automation and data-driven systems, we combine technology with practical business thinking.'}
+                'Teknox is a technology-focused company helping businesses turn ideas into scalable digital solutions. From modern websites and applications to automation and data-driven systems, we combine technology with practical business thinking.'}
             </p>
           </div>
         </div>
@@ -68,21 +68,21 @@ export default async function AboutPage() {
       {/* ================================================================== */}
       {/* 2. WHAT WE ACTUALLY DO                                              */}
       {/* ================================================================== */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 border-b border-line bg-ink-800/40">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 border-b border-slate-200/80 dark:border-line bg-slate-50/50 dark:bg-ink-800/40">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             <div className="lg:col-span-6">
               <ScrollReveal>
-                <p className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-purple-600 dark:text-purple-400 font-semibold mb-2">
+                <p className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-semibold mb-2">
                   What We Build
                 </p>
-                <h2 className="font-display text-2xl sm:text-3xl font-bold text-star mb-4">
+                <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-star mb-4">
                   End-to-end digital systems for operational businesses.
                 </h2>
-                <p className="text-sm sm:text-base text-steel leading-relaxed mb-4">
-                  Most software agencies build generic applications from template stacks. TechKnox is different — we design systems around specific operational workflows. Every component of our code is purposefully engineered for your exact business logic.
+                <p className="text-sm sm:text-base text-slate-600 dark:text-steel leading-relaxed mb-4 font-normal">
+                  Most software agencies build generic applications from template stacks. Teknox is different — we design systems around specific operational workflows. Every component of our code is purposefully engineered for your exact business logic.
                 </p>
-                <p className="text-sm sm:text-base text-steel leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-600 dark:text-steel leading-relaxed font-normal">
                   From backend API architecture to fully integrated customer-facing portals and automated background workflows — we handle the complete technical scope, design, implementation, and handover.
                 </p>
               </ScrollReveal>
@@ -95,9 +95,9 @@ export default async function AboutPage() {
                 { label: 'API Integration Projects', detail: 'Connecting payment systems, CRMs, third-party SaaS, and internal databases.' }
               ].map((item, i) => (
                 <ScrollReveal key={item.label} delay={i * 60}>
-                  <div className="rounded-xl border border-line bg-panel p-5 sm:p-6 shadow-xs">
-                    <h3 className="font-display text-base font-bold text-star mb-1">{item.label}</h3>
-                    <p className="text-xs text-steel leading-relaxed">{item.detail}</p>
+                  <div className="rounded-2xl border border-slate-200/80 dark:border-line bg-white dark:bg-panel p-5 sm:p-6 shadow-2xs">
+                    <h3 className="font-display text-base font-bold text-slate-900 dark:text-star mb-1">{item.label}</h3>
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-steel leading-relaxed font-normal">{item.detail}</p>
                   </div>
                 </ScrollReveal>
               ))}
@@ -109,17 +109,17 @@ export default async function AboutPage() {
       {/* ================================================================== */}
       {/* 3. OPERATING PRINCIPLES                                             */}
       {/* ================================================================== */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 border-b border-line bg-panel">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 border-b border-slate-200/80 dark:border-line bg-white dark:bg-panel">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
             <div className="max-w-2xl mb-10 sm:mb-12">
-              <p className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-purple-600 dark:text-purple-400 font-semibold mb-2">
+              <p className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-semibold mb-2">
                 How We Work
               </p>
-              <h2 className="font-display text-2xl sm:text-3xl font-bold text-star mb-3">
+              <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-star mb-3">
                 Operating principles that guide every project.
               </h2>
-              <p className="text-sm sm:text-base text-steel leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-steel leading-relaxed font-normal">
                 These principles apply to every client engagement, regardless of project size.
               </p>
             </div>
@@ -128,12 +128,12 @@ export default async function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {principles.map((item, i) => (
               <ScrollReveal key={item.label} delay={i * 60}>
-                <div className="rounded-xl border border-line bg-panel p-6 sm:p-7 shadow-xs h-full">
-                  <span className="font-mono text-xs font-bold text-purple-600 dark:text-purple-400 block mb-2">
+                <div className="rounded-2xl border border-slate-200/80 dark:border-line bg-slate-50/50 dark:bg-panel p-6 sm:p-7 shadow-2xs h-full">
+                  <span className="font-mono text-xs font-bold text-indigo-600 dark:text-indigo-400 block mb-2">
                     Principle 0{i + 1}
                   </span>
-                  <h3 className="font-display text-base sm:text-lg font-bold text-star mb-2">{item.label}</h3>
-                  <p className="text-xs sm:text-sm text-steel leading-relaxed">{item.desc}</p>
+                  <h3 className="font-display text-base sm:text-lg font-bold text-slate-900 dark:text-star mb-2">{item.label}</h3>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-steel leading-relaxed font-normal">{item.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -144,17 +144,17 @@ export default async function AboutPage() {
       {/* ================================================================== */}
       {/* 4. TECHNOLOGY FOUNDATION                                            */}
       {/* ================================================================== */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 border-b border-line bg-ink-800/40">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 border-b border-slate-200/80 dark:border-line bg-slate-50/50 dark:bg-ink-800/40">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
             <div className="max-w-2xl mb-10 sm:mb-12">
-              <p className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-purple-600 dark:text-purple-400 font-semibold mb-2">
+              <p className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-semibold mb-2">
                 Technology
               </p>
-              <h2 className="font-display text-2xl sm:text-3xl font-bold text-star mb-3">
+              <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-star mb-3">
                 Our engineering stack.
               </h2>
-              <p className="text-sm sm:text-base text-steel leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-steel leading-relaxed font-normal">
                 We use industry-standard, well-maintained technologies selected for reliability, performance, and long-term support.
               </p>
             </div>
@@ -163,14 +163,14 @@ export default async function AboutPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {techPillars.map((pillar, i) => (
               <ScrollReveal key={pillar.title} delay={i * 60}>
-                <div className="rounded-xl border border-line bg-panel p-5 sm:p-6 shadow-xs h-full">
-                  <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-star mb-3.5">
+                <div className="rounded-2xl border border-slate-200/80 dark:border-line bg-white dark:bg-panel p-5 sm:p-6 shadow-2xs h-full">
+                  <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-star mb-3.5">
                     {pillar.title}
                   </h3>
                   <ul className="space-y-2">
                     {pillar.items.map((item) => (
-                      <li key={item} className="flex items-center gap-2 text-xs text-steel">
-                        <span className="w-1 h-1 rounded-full bg-purple-500 shrink-0" />
+                      <li key={item} className="flex items-center gap-2 text-xs text-slate-600 dark:text-steel">
+                        <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -185,35 +185,35 @@ export default async function AboutPage() {
       {/* ================================================================== */}
       {/* 5. CONTACT BANNER                                                   */}
       {/* ================================================================== */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-panel">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white dark:bg-panel">
         <div className="mx-auto max-w-4xl text-center">
-          <div className="rounded-2xl border border-line bg-ink-800/40 p-6 sm:p-12 shadow-xs">
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-star mb-3">
+          <div className="rounded-3xl border border-slate-200/90 dark:border-line bg-slate-50/60 dark:bg-ink-800/40 p-6 sm:p-12 shadow-xs">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-star mb-3">
               Let&apos;s talk about your project.
             </h2>
-            <p className="text-xs sm:text-sm text-steel max-w-xl mx-auto mb-8 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-steel max-w-xl mx-auto mb-8 leading-relaxed font-normal">
               We are direct, transparent, and focused on building software that creates genuine operational value for your business.
             </p>
-            <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link
                 href="/request-a-solution"
-                className="inline-flex items-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-700 px-5 sm:px-6 py-3 sm:py-3.5 text-xs font-semibold text-white shadow-xs transition-colors"
+                className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 px-6 py-3.5 text-xs font-semibold text-white shadow-xs transition-colors"
               >
                 <span>Start a Project</span>
                 <ArrowRightIcon className="w-4 h-4" />
               </Link>
               <a
-                href="https://wa.me/918310179301?text=Hi%20techknox%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                href="https://wa.me/918310179301?text=Hi%20teknox%2C%20I%27d%20like%20to%20discuss%20a%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 sm:px-5 py-3 sm:py-3.5 text-xs font-semibold text-emerald-600 hover:bg-emerald-500/20 transition-colors"
+                className="inline-flex items-center gap-2 rounded-xl border border-emerald-300 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 px-5 py-3.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 transition-colors"
               >
                 <WhatsAppOutlineIcon className="w-4 h-4" />
                 <span>WhatsApp Us</span>
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-line bg-panel px-4 sm:px-5 py-3 sm:py-3.5 text-xs font-medium text-star hover:bg-ink-800 transition-colors"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-line bg-white dark:bg-panel px-5 py-3.5 text-xs font-medium text-slate-800 dark:text-star hover:bg-slate-50 transition-colors"
               >
                 <span>Contact &amp; Inquiries</span>
               </Link>
@@ -224,4 +224,3 @@ export default async function AboutPage() {
     </div>
   );
 }
-

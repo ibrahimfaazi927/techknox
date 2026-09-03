@@ -19,13 +19,13 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const service = await getServiceBySlug(params.slug);
-  if (!service) return { title: 'Service Not Found — TechKnox' };
+  if (!service) return { title: 'Service Not Found — Teknox' };
 
   return {
-    title: `${service.title} — Services · TechKnox`,
-    description: service.short_description || `Learn about ${service.title} services from TechKnox.`,
+    title: `${service.title} — Services · Teknox`,
+    description: service.short_description || `Learn about ${service.title} services from Teknox.`,
     openGraph: {
-      title: `${service.title} — TechKnox`,
+      title: `${service.title} — Teknox`,
       description: service.short_description || undefined
     }
   };
@@ -207,7 +207,7 @@ export default async function ServiceDetailPage({
             <ScrollReveal>
               <SectionHeader
                 badge="Advantages"
-                title="Why build this with TechKnox"
+                title="Why build this with Teknox"
                 description="Measurable operational advantages when implementing this solution with our engineering team."
               />
             </ScrollReveal>
@@ -298,7 +298,7 @@ export default async function ServiceDetailPage({
                 <SectionHeader
                   badge="Case Studies"
                   title="Related builds &amp; architectures"
-                  description="Working software systems and concept builds developed by TechKnox."
+                  description="Working software systems and concept builds developed by Teknox."
                   className="mb-0 md:mb-0"
                 />
               </ScrollReveal>

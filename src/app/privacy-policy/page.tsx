@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { getLegalPage } from '@/lib/data';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — TechKnox',
-  description: 'Privacy Policy and data protection terms for TechKnox services and website visitors.'
+  title: 'Privacy Policy — Teknox',
+  description: 'Privacy Policy and data protection terms for Teknox services and website visitors.'
 };
 
 export const revalidate = 3600;

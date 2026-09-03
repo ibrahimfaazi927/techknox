@@ -172,7 +172,7 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Compa
                   name="email"
                   type="email"
                   defaultValue={initialProfile.email ?? ''}
-                  placeholder="techknoxin@gmail.com"
+                  placeholder="contact@teknox.dev"
                   className={inputClass}
                 />
               </div>
@@ -278,7 +278,7 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Compa
                 <input
                   name="linkedin_url"
                   defaultValue={initialProfile.linkedin_url ?? ''}
-                  placeholder="https://linkedin.com/company/techknox"
+                  placeholder="https://linkedin.com/company/teknox"
                   className={inputClass}
                 />
               </div>
@@ -288,7 +288,7 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Compa
                 <input
                   name="github_url"
                   defaultValue={initialProfile.github_url ?? ''}
-                  placeholder="https://github.com/techknox"
+                  placeholder="https://github.com/teknox"
                   className={inputClass}
                 />
               </div>
@@ -300,7 +300,7 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Compa
                 <input
                   name="instagram_url"
                   defaultValue={initialProfile.instagram_url ?? ''}
-                  placeholder="https://instagram.com/techknox.dev"
+                  placeholder="https://instagram.com/teknox.dev"
                   className={inputClass}
                 />
               </div>
@@ -310,7 +310,7 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Compa
                 <input
                   name="twitter_url"
                   defaultValue={initialProfile.twitter_url ?? ''}
-                  placeholder="https://x.com/techknoxdev"
+                  placeholder="https://x.com/teknoxdev"
                   className={inputClass}
                 />
               </div>
@@ -322,7 +322,7 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Compa
                 <input
                   name="website"
                   defaultValue={initialProfile.website ?? ''}
-                  placeholder="https://techknox.dev"
+                  placeholder="https://teknox.dev"
                   className={inputClass}
                 />
               </div>
@@ -353,8 +353,8 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Compa
               <label className={labelClass}>Site Default Title</label>
               <input
                 name="site_title"
-                defaultValue={initialProfile.site_title ?? 'TechKnox — We build the technology your business needs'}
-                placeholder="TechKnox — We build the technology your business needs"
+                defaultValue={initialProfile.site_title ?? 'Teknox — We build the technology your business needs'}
+                placeholder="Teknox — We build the technology your business needs"
                 className={inputClass}
               />
             </div>
@@ -375,7 +375,7 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Compa
               <input
                 name="og_image_url"
                 defaultValue={initialProfile.og_image_url ?? ''}
-                placeholder="https://techknox.dev/og-image.png"
+                placeholder="https://teknox.dev/og-image.png"
                 className={inputClass}
               />
             </div>
@@ -437,7 +437,7 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Compa
                 <input
                   name="legal_entity_name"
                   defaultValue={initialProfile.legal_entity_name ?? ''}
-                  placeholder="e.g. TechKnox Solutions LLC"
+                  placeholder="e.g. Teknox Solutions LLC"
                   className={inputClass}
                 />
               </div>

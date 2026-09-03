@@ -1,7 +1,7 @@
 import { login } from './actions';
 import TechKnoxLogo from '@/components/TechKnoxLogo';
 
-export const metadata = { title: 'Admin Login — TechKnox' };
+export const metadata = { title: 'Admin Login — Teknox' };
 
 export default async function AdminLoginPage({
   searchParams
@@ -28,7 +28,7 @@ export default async function AdminLoginPage({
     <div className="flex min-h-[85vh] items-center justify-center px-6 py-16">
       <div className="w-full max-w-md glass-card rounded-3xl p-8 sm:p-10 border border-line-bright shadow-2xl">
         <div className="flex justify-center mb-6">
-          <TechKnoxLogo brandName="TechKnox" />
+          <TechKnoxLogo brandName="Teknox" size="md" variant="stacked" />
         </div>
 
         <h1 className="font-display text-2xl font-bold text-center text-star mb-1">
@@ -61,7 +61,7 @@ export default async function AdminLoginPage({
               autoCorrect="off"
               autoComplete="email"
               spellCheck={false}
-              placeholder="techknoxin@gmail.com"
+              placeholder="contact@teknox.dev"
               className="w-full rounded-xl border border-line bg-ink px-4 py-3 text-sm text-star outline-none focus:border-signal font-sans"
             />
           </div>

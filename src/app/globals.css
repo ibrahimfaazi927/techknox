@@ -12,43 +12,43 @@
     --bg-panel-card: #FFFFFF;
     --border-line: #E2E8F0;
     --border-line-bright: #CBD5E1;
-    --border-line-subtle: rgba(15, 23, 42, 0.04);
-    --signal: #7C3AED;
-    --signal-hover: #6D28D9;
-    --signal-glow: rgba(124, 58, 237, 0.15);
-    --signal2: #9333EA;
-    --signal2-hover: #7C3AED;
+    --border-line-subtle: rgba(15, 23, 42, 0.06);
+    --signal: #4F46E5;
+    --signal-hover: #4338CA;
+    --signal-glow: rgba(79, 70, 229, 0.14);
+    --signal2: #7C3AED;
+    --signal2-hover: #6D28D9;
     --text-star: #0F172A;
     --text-steel: #334155;
     --text-steeldim: #64748B;
     --grid-dot: rgba(15, 23, 42, 0.05);
-    --hero-glow: rgba(124, 58, 237, 0.06);
-    --card-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
-    --card-shadow-hover: 0 8px 20px -4px rgba(15, 23, 42, 0.06), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
+    --hero-glow: rgba(79, 70, 229, 0.08);
+    --card-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 4px 14px -2px rgba(15, 23, 42, 0.05);
+    --card-shadow-hover: 0 12px 30px -6px rgba(15, 23, 42, 0.09), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
   }
 
   .dark {
-    --bg-ink: #07090E;
-    --bg-ink-900: #05060A;
-    --bg-ink-800: #0C1017;
-    --bg-panel: #0C1017;
-    --bg-panel-light: #121824;
-    --bg-panel-card: #101520;
-    --border-line: #18202E;
-    --border-line-bright: #243045;
-    --border-line-subtle: rgba(255, 255, 255, 0.03);
-    --signal: #8B5CF6;
-    --signal-hover: #7C3AED;
-    --signal-glow: rgba(139, 92, 246, 0.15);
-    --signal2: #A855F7;
-    --signal2-hover: #8B5CF6;
-    --text-star: #F1F5F9;
+    --bg-ink: #0A0D14;
+    --bg-ink-900: #07090E;
+    --bg-ink-800: #111622;
+    --bg-panel: #111622;
+    --bg-panel-light: #161D2D;
+    --bg-panel-card: #141A28;
+    --border-line: #1E293B;
+    --border-line-bright: #334155;
+    --border-line-subtle: rgba(255, 255, 255, 0.04);
+    --signal: #6366F1;
+    --signal-hover: #4F46E5;
+    --signal-glow: rgba(99, 102, 241, 0.16);
+    --signal2: #8B5CF6;
+    --signal2-hover: #7C3AED;
+    --text-star: #F8FAFC;
     --text-steel: #94A3B8;
     --text-steeldim: #64748B;
-    --grid-dot: rgba(255, 255, 255, 0.03);
-    --hero-glow: rgba(139, 92, 246, 0.06);
-    --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
-    --card-shadow-hover: 0 10px 24px -4px rgba(0, 0, 0, 0.7), 0 6px 8px -3px rgba(0, 0, 0, 0.5);
+    --grid-dot: rgba(255, 255, 255, 0.04);
+    --hero-glow: rgba(99, 102, 241, 0.08);
+    --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 2px 8px -1px rgba(0, 0, 0, 0.3);
+    --card-shadow-hover: 0 12px 28px -4px rgba(0, 0, 0, 0.6), 0 6px 12px -3px rgba(0, 0, 0, 0.4);
   }
 
   * {
@@ -58,7 +58,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-ink text-star min-h-screen antialiased selection:bg-purple-600 selection:text-white transition-colors duration-150;
+    @apply bg-ink text-star min-h-screen antialiased selection:bg-indigo-600 selection:text-white transition-colors duration-150;
   }
   :focus-visible {
     outline: 2px solid var(--signal);
@@ -107,7 +107,7 @@
   }
 
   .bg-dots {
-    background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+    background-image: radial-gradient(var(--grid-dot) 1.25px, transparent 1.25px);
     background-size: 24px 24px;
   }
 
@@ -118,15 +118,29 @@
     background-size: 40px 40px;
   }
 
+  .bg-startup-mesh {
+    background: radial-gradient(circle at 15% 15%, rgba(79, 70, 229, 0.05) 0%, transparent 45%),
+                radial-gradient(circle at 85% 25%, rgba(6, 182, 212, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(124, 58, 237, 0.03) 0%, transparent 50%);
+  }
+
   .text-gradient {
     color: var(--text-star);
   }
 
+  .text-brand-gradient {
+    @apply bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-600 bg-clip-text text-transparent;
+  }
+
+  .dark .text-brand-gradient {
+    @apply bg-gradient-to-r from-indigo-400 via-purple-300 to-cyan-300 bg-clip-text text-transparent;
+  }
+
   .btn-primary {
-    @apply bg-signal text-white font-medium transition-all duration-150 hover:bg-signal-hover active:scale-[0.98] shadow-sm;
+    @apply bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition-all duration-150 active:scale-[0.98] shadow-sm hover:shadow-indigo-500/20 hover:shadow-md;
   }
 
   .btn-secondary {
-    @apply bg-panel text-star border border-line font-medium transition-all duration-150 hover:bg-ink-800 hover:border-line-bright active:scale-[0.98];
+    @apply bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-medium transition-all duration-150 hover:border-slate-300 active:scale-[0.98] shadow-2xs;
   }
 }

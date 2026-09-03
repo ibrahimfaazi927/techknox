@@ -5,9 +5,9 @@ import ContactForm from './ContactForm';
 import { WhatsAppOutlineIcon, ArrowRightIcon } from '@/components/Icons';
 
 export const metadata: Metadata = {
-  title: 'Contact TechKnox — Start a Project or Request a Quote',
+  title: 'Contact Teknox — Start a Project or Request a Quote',
   description:
-    'Get in touch with TechKnox to discuss your software project, AI automation, or API integration. Direct contact via email, phone, and WhatsApp.'
+    'Get in touch with Teknox to discuss your software project, AI automation, or API integration. Direct contact via email, phone, and WhatsApp.'
 };
 
 export const revalidate = 3600;
@@ -25,21 +25,21 @@ export default async function ContactPage({
   const serviceItems = services.map((s) => ({ id: s.id, title: s.title }));
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden bg-white dark:bg-ink text-slate-900 dark:text-star">
       {/* ================================================================== */}
       {/* 1. HERO                                                             */}
       {/* ================================================================== */}
-      <section className="pt-14 pb-16 sm:pt-20 sm:pb-20 px-4 sm:px-6 border-b border-line bg-panel">
+      <section className="pt-14 pb-16 sm:pt-20 sm:pb-20 px-4 sm:px-6 border-b border-slate-200/80 dark:border-line bg-gradient-to-b from-white via-slate-50/70 to-white dark:from-ink-900 dark:via-ink dark:to-ink-800">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-line bg-panel text-[10px] sm:text-xs font-mono font-semibold text-purple-600 dark:text-purple-400 mb-4 shadow-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-indigo-200/80 dark:border-indigo-800/40 bg-indigo-50/80 dark:bg-indigo-950/50 text-[10px] sm:text-xs font-mono font-semibold text-indigo-700 dark:text-indigo-400 mb-5 shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
               <span>Contact &amp; Project Inquiries</span>
             </div>
-            <h1 className="font-display text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-star leading-[1.15] mb-4">
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-slate-950 dark:text-star leading-[1.15] mb-4">
               Start a conversation about your project.
             </h1>
-            <p className="text-sm sm:text-base text-steel leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-steel leading-relaxed max-w-2xl font-normal">
               Use the form below or reach us directly by email, phone, or WhatsApp. We typically respond within one business day.
             </p>
           </div>
@@ -49,16 +49,16 @@ export default async function ContactPage({
       {/* ================================================================== */}
       {/* 2. CONTACT LAYOUT                                                   */}
       {/* ================================================================== */}
-      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-ink-800/30">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-slate-50/40 dark:bg-ink-800/30">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left: Contact Channels */}
             <div className="lg:col-span-4 space-y-6">
               <div>
-                <h2 className="font-display text-xl font-bold text-star mb-2">
+                <h2 className="font-display text-xl font-bold text-slate-900 dark:text-star mb-2">
                   Direct contact
                 </h2>
-                <p className="text-sm text-steel leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-steel leading-relaxed font-normal">
                   Prefer a direct conversation? Reach us via any of the channels below.
                 </p>
               </div>
@@ -70,14 +70,14 @@ export default async function ContactPage({
                     href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-xl border border-line bg-panel p-4 text-sm hover:border-line-bright hover:shadow-sm transition"
+                    className="flex items-center gap-3 rounded-2xl border border-slate-200/80 dark:border-line bg-white dark:bg-panel p-4 text-sm hover:border-slate-300 hover:shadow-2xs transition"
                   >
-                    <div className="w-9 h-9 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-purple-600 dark:text-purple-400 font-bold text-xs shrink-0">
+                    <div className="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-ink-800 border border-indigo-100 dark:border-line flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-xs shrink-0">
                       @
                     </div>
                     <div>
-                      <span className="block font-mono text-[10px] uppercase tracking-wider text-steeldim mb-0.5">Email</span>
-                      <span className="font-medium text-star">{profile.email}</span>
+                      <span className="block font-mono text-[10px] uppercase tracking-wider text-slate-400 dark:text-steeldim mb-0.5">Email</span>
+                      <span className="font-medium text-slate-900 dark:text-star">{profile.email}</span>
                     </div>
                   </a>
                 )}
@@ -85,90 +85,90 @@ export default async function ContactPage({
                 {profile.phone && (
                   <a
                     href={`tel:${profile.phone}`}
-                    className="flex items-center gap-3 rounded-xl border border-line bg-panel p-4 text-sm hover:border-line-bright hover:shadow-sm transition"
+                    className="flex items-center gap-3 rounded-2xl border border-slate-200/80 dark:border-line bg-white dark:bg-panel p-4 text-sm hover:border-slate-300 hover:shadow-2xs transition"
                   >
-                    <div className="w-9 h-9 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-purple-600 dark:text-purple-400 text-xs shrink-0">
+                    <div className="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-ink-800 border border-indigo-100 dark:border-line flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-xs shrink-0">
                       ☎
                     </div>
                     <div>
-                      <span className="block font-mono text-[10px] uppercase tracking-wider text-steeldim mb-0.5">Phone</span>
-                      <span className="font-medium text-star">{profile.phone}</span>
+                      <span className="block font-mono text-[10px] uppercase tracking-wider text-slate-400 dark:text-steeldim mb-0.5">Phone</span>
+                      <span className="font-medium text-slate-900 dark:text-star">{profile.phone}</span>
                     </div>
                   </a>
                 )}
 
                 <a
-                  href="https://wa.me/918310179301?text=Hi%20techknox%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                  href="https://wa.me/918310179301?text=Hi%20teknox%2C%20I%27d%20like%20to%20discuss%20a%20project."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4 text-sm hover:bg-emerald-500/10 transition-colors"
+                  className="flex items-center gap-3 rounded-2xl border border-emerald-300 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/5 p-4 text-sm hover:bg-emerald-100/70 transition-colors"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-emerald-500/15 flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-500/15 flex items-center justify-center shrink-0">
                     <WhatsAppOutlineIcon className="w-5 h-5 text-emerald-600" />
                   </div>
                   <div>
-                    <span className="block font-mono text-[10px] uppercase tracking-wider text-emerald-600/80 mb-0.5">WhatsApp</span>
-                    <span className="font-medium text-emerald-700 dark:text-emerald-400">Chat with us now</span>
+                    <span className="block font-mono text-[10px] uppercase tracking-wider text-emerald-700/80 mb-0.5 font-semibold">WhatsApp</span>
+                    <span className="font-medium text-emerald-800 dark:text-emerald-400">Chat with us directly</span>
                   </div>
                 </a>
 
                 {(profile.location || profile.address || profile.city) && (
-                  <div className="flex items-center gap-3 rounded-xl border border-line bg-panel p-4 text-sm">
-                    <div className="w-9 h-9 rounded-lg bg-ink-800 border border-line flex items-center justify-center text-purple-600 dark:text-purple-400 text-xs shrink-0">
+                  <div className="flex items-center gap-3 rounded-2xl border border-slate-200/80 dark:border-line bg-white dark:bg-panel p-4 text-sm">
+                    <div className="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-ink-800 border border-indigo-100 dark:border-line flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-xs shrink-0">
                       ◎
                     </div>
                     <div>
-                      <span className="block font-mono text-[10px] uppercase tracking-wider text-steeldim mb-0.5">Location</span>
-                      <span className="font-medium text-star">
-                        {profile.location || profile.address || [profile.city, profile.country].filter(Boolean).join(', ')}
+                      <span className="block font-mono text-[10px] uppercase tracking-wider text-slate-400 dark:text-steeldim mb-0.5">Location</span>
+                      <span className="font-medium text-slate-900 dark:text-star">
+                        {[profile.city, profile.country].filter(Boolean).join(', ') || profile.location || profile.address}
                       </span>
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Office Hours */}
+              {/* Business Hours */}
               {profile.business_hours && (
-                <div className="rounded-xl border border-line bg-panel p-5 text-xs">
-                  <p className="font-mono uppercase tracking-wider text-steeldim font-semibold mb-2">Business Hours</p>
-                  <p className="text-steel leading-relaxed">{profile.business_hours}</p>
+                <div className="rounded-2xl border border-slate-200/80 dark:border-line bg-white dark:bg-panel p-5 text-xs text-slate-600 dark:text-steel space-y-1">
+                  <span className="font-mono font-bold uppercase tracking-wider text-slate-900 dark:text-star block">Business Hours</span>
+                  <p>{profile.business_hours}</p>
                 </div>
               )}
 
-              {/* Start a Project shortcut */}
-              <div className="rounded-xl border border-line bg-panel p-5">
-                <p className="text-xs font-semibold text-star mb-2">Prefer a structured intake form?</p>
-                <p className="text-xs text-steel mb-4 leading-relaxed">
-                  Our solution scoping form helps us understand your requirements in detail for an accurate proposal.
+              {/* Scoping CTA Link */}
+              <div className="rounded-2xl border border-indigo-200 dark:border-signal/30 bg-indigo-50/70 dark:bg-signal/5 p-5 space-y-2">
+                <span className="font-display font-bold text-sm text-indigo-950 dark:text-star block">
+                  Need a full architectural proposal?
+                </span>
+                <p className="text-xs text-slate-600 dark:text-steel leading-relaxed font-normal">
+                  Use our structured solution scoping form to specify features, timeline, and budget.
                 </p>
-                <Link
-                  href="/request-a-solution"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-600 dark:text-purple-400 hover:underline"
-                >
-                  <span>Go to Project Intake Form</span>
-                  <ArrowRightIcon className="w-3 h-3" />
-                </Link>
+                <div className="pt-2">
+                  <Link
+                    href="/request-a-solution"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-signal hover:underline"
+                  >
+                    <span>Go to Solution Scoping Form</span>
+                    <ArrowRightIcon className="w-3 h-3" />
+                  </Link>
+                </div>
               </div>
             </div>
 
             {/* Right: Contact Form */}
-            <div className="lg:col-span-8">
-              <div className="rounded-2xl border border-line bg-panel p-8 sm:p-10 shadow-sm">
-                <div className="mb-8">
-                  <h2 className="font-display text-2xl font-bold text-star mb-2">
-                    Send us a message
-                  </h2>
-                  <p className="text-sm text-steel">
-                    Tell us about your project and we will get back to you within one business day.
-                  </p>
-                </div>
+            <div className="lg:col-span-8 rounded-2xl border border-slate-200/90 dark:border-line bg-white dark:bg-panel p-6 sm:p-10 shadow-xs">
+              <h2 className="font-display text-xl font-bold text-slate-900 dark:text-star mb-2">
+                Send a project enquiry
+              </h2>
+              <p className="text-sm text-slate-600 dark:text-steel mb-8 leading-relaxed font-normal">
+                Tell us about your system requirements, operational challenge, or new product idea.
+              </p>
 
-                <ContactForm
-                  services={serviceItems}
-                  submittedFromUrl={submittedFromUrl}
-                  errorFromUrl={errorFromUrl}
-                />
-              </div>
+              <ContactForm
+                services={serviceItems}
+                submittedFromUrl={submittedFromUrl}
+                errorFromUrl={errorFromUrl}
+              />
             </div>
           </div>
         </div>

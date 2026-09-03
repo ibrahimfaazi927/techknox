@@ -11,7 +11,7 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
       <aside className="w-64 shrink-0 border-r border-line bg-ink-900/90 px-6 py-8 flex flex-col justify-between hidden md:flex">
         <div>
           <div className="mb-8">
-            <TechKnoxLogo brandName="TechKnox" />
+            <TechKnoxLogo brandName="Teknox" />
             <div className="mt-2 font-mono text-[11px] text-signal font-medium uppercase tracking-wider pl-1">
               Admin & CMS Portal
             </div>
@@ -50,7 +50,7 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
       <div className="flex-1 flex flex-col min-w-0">
         {/* Mobile Admin Navigation Header */}
         <div className="md:hidden border-b border-line bg-panel p-4 flex items-center justify-between">
-          <div className="font-display font-bold text-star text-sm">TechKnox Admin</div>
+          <div className="font-display font-bold text-star text-sm">Teknox Admin</div>
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <Link href="/" target="_blank" className="font-mono text-xs text-signal">Site ↗</Link>

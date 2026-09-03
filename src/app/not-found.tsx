@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ArrowRightIcon } from '@/components/Icons';
 
 export const metadata = {
-  title: '404 — Page Not Found · TechKnox'
+  title: '404 — Page Not Found · Teknox'
 };
 
 export default function NotFound() {

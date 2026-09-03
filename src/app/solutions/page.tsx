@@ -6,9 +6,9 @@ import { ServiceIconMapper, ArrowRightIcon, CheckIcon } from '@/components/Icons
 import ScrollReveal from '@/components/ScrollReveal';
 
 export const metadata: Metadata = {
-  title: 'Solutions — Outcome-Focused Business Technology · TechKnox',
+  title: 'Solutions — Outcome-Focused Business Technology · Teknox',
   description:
-    'Explore TechKnox outcome-driven solutions: Lead Management, Customer Support Automation, Internal Business Automation, Custom Business Platforms, Data Reporting, and Booking Systems.'
+    'Explore Teknox outcome-driven solutions: Lead Management, Customer Support Automation, Internal Business Automation, Custom Business Platforms, Data Reporting, and Booking Systems.'
 };
 
 export const revalidate = 3600;

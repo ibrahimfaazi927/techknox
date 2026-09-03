@@ -1,7 +1,7 @@
-# TechKnox — starter codebase
+# Teknox — starter codebase
 
 This is a real Next.js 14 (App Router) + TypeScript + Tailwind + Supabase
-codebase, generated from the TechKnox build spec. Read this file before you
+codebase, generated from the Teknox build spec. Read this file before you
 do anything else — it tells you exactly what's built, what's a working
 pattern to copy, and what's still a stub.
 
