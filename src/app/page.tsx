@@ -104,13 +104,13 @@ export default async function HomePage() {
             <span>Next-Generation Software &amp; AI Studio</span>
           </div>
 
-          {/* Staggered Word Reveal Display Headline (Strictly 2 Lines, Larger Typography) */}
+          {/* Staggered Word Reveal Display Headline (Bigger on Mobile, 2 Lines on Desktop) */}
           <h1
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6.25rem] 2xl:text-[7rem] font-extrabold tracking-tight leading-[1.05] text-white w-full max-w-7xl mx-auto flex flex-col items-center justify-center text-center mb-10 gap-1 sm:gap-3"
+            className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6.25rem] 2xl:text-[7rem] font-extrabold tracking-tight leading-[1.08] sm:leading-[1.05] text-white w-full max-w-7xl mx-auto flex flex-col items-center justify-center text-center mb-8 sm:mb-10 gap-1 sm:gap-3"
             style={{ perspective: 1000 }}
           >
-            {/* Line 1: Where Ideas Become */}
-            <span className="inline-flex items-center justify-center whitespace-nowrap">
+            {/* Line 1 (Wraps cleanly on mobile, 1 line on desktop) */}
+            <span className="flex flex-wrap sm:inline-flex items-center justify-center sm:whitespace-nowrap">
               <span className="inline-block overflow-hidden py-1">
                 <span className="inline-block animate-word text-white delay-100">
                   Where
@@ -121,7 +121,7 @@ export default async function HomePage() {
                 <span className="inline-block animate-word text-white delay-200">
                   Ideas
                 </span>
-                <span className="inline-block select-none">&nbsp;</span>
+                <span className="inline-block select-none sm:inline">&nbsp;</span>
               </span>
               <span className="inline-block overflow-hidden py-1">
                 <span className="inline-block animate-word text-white delay-300">
@@ -130,8 +130,8 @@ export default async function HomePage() {
               </span>
             </span>
 
-            {/* Line 2: Digital Solutions */}
-            <span className="inline-flex items-center justify-center whitespace-nowrap">
+            {/* Line 2 (Digital Solutions) */}
+            <span className="flex flex-wrap sm:inline-flex items-center justify-center sm:whitespace-nowrap">
               <span className="inline-block overflow-hidden py-1">
                 <span className="inline-block animate-word bg-gradient-to-r from-violet-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent delay-400">
                   Digital
